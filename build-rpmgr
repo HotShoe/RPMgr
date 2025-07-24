@@ -1,0 +1,3 @@
+#!/bin/bash
+
+lazbuild --build-mode=release rpmgr.lpr
