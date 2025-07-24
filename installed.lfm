@@ -1,0 +1,561 @@
+object instfrm: Tinstfrm
+  Left = 622
+  Height = 886
+  Top = 33
+  Width = 1205
+  Caption = 'Installed Packages'
+  ClientHeight = 886
+  ClientWidth = 1205
+  Color = 12768223
+  Font.Color = clBlack
+  Font.Height = -19
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '3.6.0.0'
+  object ingrid: TDBGrid
+    Left = 8
+    Height = 656
+    Top = 8
+    Width = 1192
+    AutoEdit = False
+    Color = clWhite
+    Columns = <    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        Title.Caption = 'Inst.'
+        Width = 60
+        FieldName = 'Installed'
+      end    
+      item
+        Title.Caption = 'Name'
+        Width = 500
+        FieldName = 'Name'
+      end    
+      item
+        Title.Caption = 'Version'
+        Width = 300
+        FieldName = 'Version'
+      end    
+      item
+        Title.Caption = 'Desc'
+        Visible = False
+        FieldName = 'Desc'
+      end    
+      item
+        Title.Caption = 'Arch'
+        Visible = False
+        FieldName = 'Arch'
+      end    
+      item
+        Title.Caption = 'Grp'
+        Visible = False
+        FieldName = 'Grp'
+      end    
+      item
+        Title.Caption = 'Installed size'
+        Width = 150
+        FieldName = 'isize'
+      end    
+      item
+        Title.Caption = 'Package size'
+        Width = 150
+        FieldName = 'psize'
+      end>
+    DataSource = insrc
+    FixedColor = 12768223
+    FixedHotColor = 12768223
+    Font.Color = clBlack
+    Font.Height = -19
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgDblClickAutoSize]
+    ParentFont = False
+    PopupMenu = instmnu
+    ReadOnly = True
+    TabOrder = 0
+    TitleFont.Color = clBlack
+    TitleFont.Height = -19
+    TitleFont.Style = [fsBold]
+  end
+  object desc: TDBMemo
+    Left = 8
+    Height = 176
+    Top = 664
+    Width = 1192
+    Color = 16185007
+    DataField = 'desc'
+    DataSource = insrc
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Style = [fsBold]
+    ParentFont = False
+    PopupMenu = instmnu
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+  end
+  object closebtn: TBCButton
+    Left = 1008
+    Height = 33
+    Top = 848
+    Width = 163
+    StateClicked.Background.Gradient1.StartColor = 8404992
+    StateClicked.Background.Gradient1.EndColor = 4194304
+    StateClicked.Background.Gradient1.GradientType = gtRadial
+    StateClicked.Background.Gradient1.Point1XPercent = 50
+    StateClicked.Background.Gradient1.Point1YPercent = 100
+    StateClicked.Background.Gradient1.Point2XPercent = 0
+    StateClicked.Background.Gradient1.Point2YPercent = 0
+    StateClicked.Background.Gradient2.StartColor = clWhite
+    StateClicked.Background.Gradient2.EndColor = clBlack
+    StateClicked.Background.Gradient2.GradientType = gtLinear
+    StateClicked.Background.Gradient2.Point1XPercent = 0
+    StateClicked.Background.Gradient2.Point1YPercent = 0
+    StateClicked.Background.Gradient2.Point2XPercent = 0
+    StateClicked.Background.Gradient2.Point2YPercent = 100
+    StateClicked.Background.Gradient1EndPercent = 100
+    StateClicked.Background.Style = bbsGradient
+    StateClicked.Border.Style = bboNone
+    StateClicked.FontEx.Color = 16770790
+    StateClicked.FontEx.FontQuality = fqFineAntialiasing
+    StateClicked.FontEx.Shadow = True
+    StateClicked.FontEx.ShadowRadius = 2
+    StateClicked.FontEx.ShadowOffsetX = 1
+    StateClicked.FontEx.ShadowOffsetY = 1
+    StateClicked.FontEx.Style = [fsBold]
+    StateHover.Background.Gradient1.StartColor = 16744448
+    StateHover.Background.Gradient1.EndColor = 8404992
+    StateHover.Background.Gradient1.GradientType = gtRadial
+    StateHover.Background.Gradient1.Point1XPercent = 50
+    StateHover.Background.Gradient1.Point1YPercent = 100
+    StateHover.Background.Gradient1.Point2XPercent = 0
+    StateHover.Background.Gradient1.Point2YPercent = 0
+    StateHover.Background.Gradient2.StartColor = clWhite
+    StateHover.Background.Gradient2.EndColor = clBlack
+    StateHover.Background.Gradient2.GradientType = gtLinear
+    StateHover.Background.Gradient2.Point1XPercent = 0
+    StateHover.Background.Gradient2.Point1YPercent = 0
+    StateHover.Background.Gradient2.Point2XPercent = 0
+    StateHover.Background.Gradient2.Point2YPercent = 100
+    StateHover.Background.Gradient1EndPercent = 100
+    StateHover.Background.Style = bbsGradient
+    StateHover.Border.Style = bboNone
+    StateHover.FontEx.Color = clWhite
+    StateHover.FontEx.FontQuality = fqFineAntialiasing
+    StateHover.FontEx.Shadow = True
+    StateHover.FontEx.ShadowRadius = 2
+    StateHover.FontEx.ShadowOffsetX = 1
+    StateHover.FontEx.ShadowOffsetY = 1
+    StateHover.FontEx.Style = [fsBold]
+    StateNormal.Background.Color = clNavy
+    StateNormal.Background.Gradient1.StartColor = 4194304
+    StateNormal.Background.Gradient1.EndColor = 8405056
+    StateNormal.Background.Gradient1.GradientType = gtLinear
+    StateNormal.Background.Gradient1.Point1XPercent = 0
+    StateNormal.Background.Gradient1.Point1YPercent = 0
+    StateNormal.Background.Gradient1.Point2XPercent = 0
+    StateNormal.Background.Gradient1.Point2YPercent = 100
+    StateNormal.Background.Gradient2.StartColor = 8405056
+    StateNormal.Background.Gradient2.EndColor = 4194304
+    StateNormal.Background.Gradient2.GradientType = gtRadial
+    StateNormal.Background.Gradient2.Point1XPercent = 50
+    StateNormal.Background.Gradient2.Point1YPercent = 100
+    StateNormal.Background.Gradient2.Point2XPercent = 0
+    StateNormal.Background.Gradient2.Point2YPercent = 0
+    StateNormal.Background.Gradient1EndPercent = 60
+    StateNormal.Background.Style = bbsColor
+    StateNormal.Border.Color = clYellow
+    StateNormal.Border.LightWidth = 1
+    StateNormal.Border.Style = bboNone
+    StateNormal.FontEx.Color = clWhite
+    StateNormal.FontEx.FontQuality = fqFineAntialiasing
+    StateNormal.FontEx.Height = 20
+    StateNormal.FontEx.Shadow = True
+    StateNormal.FontEx.ShadowRadius = 2
+    StateNormal.FontEx.ShadowOffsetX = 1
+    StateNormal.FontEx.ShadowOffsetY = 1
+    StateNormal.FontEx.Style = [fsBold]
+    Caption = 'Close'
+    Color = clNone
+    DropDownWidth = 16
+    DropDownArrowSize = 8
+    GlobalOpacity = 255
+    Glyph.Data = {
+      36090000424D3609000000000000360000002800000018000000180000000100
+      2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF18FFFFFFB5FFFFFFF7FFFFFFD0FFFFFF3AFFFF
+      FF00FFFFFF00FFFFFF3AFFFFFFD0FFFFFFF7FFFFFFB5FFFFFF18FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0004ACD5EC00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AA
+      D4FF00AAD4FF00AAD4FFB5E6F3FFF3F3FFFF9090FFFFDADAFFFFF5FCFDFF40BF
+      DFFF47C2E0F1FFFFFFF5DADAFFFF9090FFFFF3F3FFFFFFFFFFB5FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000AAD4FFA3E0EFFFCCEEF6FFCCEEF6FFCCEEF6FFCCEE
+      F6FFCCEEF6FFCCEEF6FFFDFEFFFF8F8FFFFF0000FFFF1515FFFFD2D2FFFFFBFE
+      FEFFF5FCFDFFD2D2FFFF1515FFFF0000FFFF8F8FFFFFFFFFFFF6FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFDADAFFFF1515FFFF0000FFFF1515FFFFD2D2
+      FFFFD2D2FFFF1515FFFF0000FFFF1515FFFFDADAFFFFFFFFFFD0FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF0000AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFF9C5AFFFFFAF7FFD2D2FFFF1515FFFF0000FFFF1515
+      FFFF1515FFFF0000FFFF1515FFFFD2D2FFFFFFFFFFF5FFFFFF3A04ACD5EC00AA
+      D4FF00AAD4FF00AAD4FF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD6D6FFFF1818FFFF0000
+      FFFF0000FFFF1515FFFFD2D2FFFFFFFFFFF5FFFFFF42FFFFFF0000AAD4FFA3E0
+      EFFFCCEEF6FFCCEEF6FF00AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF9F5FFFFFFAF7FFD2D2FFFF1515FFFF0000
+      FFFF0000FFFF1515FFFFD2D2FFFFFFFFFFF5FFFFFF40FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2D2FFFF1515FFFF0000FFFF1515
+      FFFF1515FFFF0000FFFF1515FFFFD2D2FFFFFFFFFFF5FFFFFF3A00AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFFE7D8FFDADAFFFF1515FFFF0000FFFF1515FFFFD2D2
+      FFFFD2D2FFFF1515FFFF0000FFFF1515FFFFDADAFFFFFFFFFFD000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFF8F8FFFFF0000FFFF1515FFFFD2D2FFFFFDFE
+      FFFFF5FCFDFFD2D2FFFF1515FFFF0000FFFF8F8FFFFFFFFFFFF600AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFFDAC1FFF3F3FFFF9090FFFFDADAFFFFFFFFFFFFD8F2
+      F8FF40BFDFFFFFFFFFF5DADAFFFF9090FFFFF3F3FFFFFFFFFFB500AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF3AFFFFFFD0FFFFFFF7FFFFFFB5FFFFFF1800AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF7F2AFFFFBF94FFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF7F2AFFFFBF94FFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFBF94FFFF7F2AFFFF7F
+      2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF7F2AFFFF7F2AFFFFBF94FFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFCBEEF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCBEE
+      F6FF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF00AAD4FFA3E0EFFFCCEEF6FFCCEEF6FFCCEEF6FFCCEE
+      F6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFA3E0
+      EFFF00AAD4FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFF17B2D8FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AA
+      D4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AA
+      D4FF04ACD5ECFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFCBEEF6FF00AAD4FFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFCBEE
+      F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFCBEEF6FF00AAD4FFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000AAD4FFA3E0
+      EFFFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEEF6FFCCEE
+      F6FFCCEEF6FFCCEEF6FFCCEEF6FFA3E0EFFF00AAD4FFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0004ACD5EC00AA
+      D4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF00AA
+      D4FF00AAD4FF00AAD4FF00AAD4FF00AAD4FF04ACD5ECFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+    }
+    OnClick = closebtnClick
+    ParentColor = False
+    Rounding.RoundX = 12
+    Rounding.RoundY = 12
+    RoundingDropDown.RoundX = 1
+    RoundingDropDown.RoundY = 1
+    TextApplyGlobalOpacity = False
+    MemoryUsage = bmuHigh
+  end
+  object applybtn: TBCButton
+    Left = 552
+    Height = 33
+    Top = 848
+    Width = 224
+    StateClicked.Background.Gradient1.StartColor = 8404992
+    StateClicked.Background.Gradient1.EndColor = 4194304
+    StateClicked.Background.Gradient1.GradientType = gtRadial
+    StateClicked.Background.Gradient1.Point1XPercent = 50
+    StateClicked.Background.Gradient1.Point1YPercent = 100
+    StateClicked.Background.Gradient1.Point2XPercent = 0
+    StateClicked.Background.Gradient1.Point2YPercent = 0
+    StateClicked.Background.Gradient2.StartColor = clWhite
+    StateClicked.Background.Gradient2.EndColor = clBlack
+    StateClicked.Background.Gradient2.GradientType = gtLinear
+    StateClicked.Background.Gradient2.Point1XPercent = 0
+    StateClicked.Background.Gradient2.Point1YPercent = 0
+    StateClicked.Background.Gradient2.Point2XPercent = 0
+    StateClicked.Background.Gradient2.Point2YPercent = 100
+    StateClicked.Background.Gradient1EndPercent = 100
+    StateClicked.Background.Style = bbsGradient
+    StateClicked.Border.Style = bboNone
+    StateClicked.FontEx.Color = 16770790
+    StateClicked.FontEx.FontQuality = fqFineAntialiasing
+    StateClicked.FontEx.Shadow = True
+    StateClicked.FontEx.ShadowRadius = 2
+    StateClicked.FontEx.ShadowOffsetX = 1
+    StateClicked.FontEx.ShadowOffsetY = 1
+    StateClicked.FontEx.Style = [fsBold]
+    StateHover.Background.Gradient1.StartColor = 16744448
+    StateHover.Background.Gradient1.EndColor = 8404992
+    StateHover.Background.Gradient1.GradientType = gtRadial
+    StateHover.Background.Gradient1.Point1XPercent = 50
+    StateHover.Background.Gradient1.Point1YPercent = 100
+    StateHover.Background.Gradient1.Point2XPercent = 0
+    StateHover.Background.Gradient1.Point2YPercent = 0
+    StateHover.Background.Gradient2.StartColor = clWhite
+    StateHover.Background.Gradient2.EndColor = clBlack
+    StateHover.Background.Gradient2.GradientType = gtLinear
+    StateHover.Background.Gradient2.Point1XPercent = 0
+    StateHover.Background.Gradient2.Point1YPercent = 0
+    StateHover.Background.Gradient2.Point2XPercent = 0
+    StateHover.Background.Gradient2.Point2YPercent = 100
+    StateHover.Background.Gradient1EndPercent = 100
+    StateHover.Background.Style = bbsGradient
+    StateHover.Border.Style = bboNone
+    StateHover.FontEx.Color = clWhite
+    StateHover.FontEx.FontQuality = fqFineAntialiasing
+    StateHover.FontEx.Shadow = True
+    StateHover.FontEx.ShadowRadius = 2
+    StateHover.FontEx.ShadowOffsetX = 1
+    StateHover.FontEx.ShadowOffsetY = 1
+    StateHover.FontEx.Style = [fsBold]
+    StateNormal.Background.Color = 2348323
+    StateNormal.Background.Gradient1.StartColor = 4194304
+    StateNormal.Background.Gradient1.EndColor = 8405056
+    StateNormal.Background.Gradient1.GradientType = gtLinear
+    StateNormal.Background.Gradient1.Point1XPercent = 0
+    StateNormal.Background.Gradient1.Point1YPercent = 0
+    StateNormal.Background.Gradient1.Point2XPercent = 0
+    StateNormal.Background.Gradient1.Point2YPercent = 100
+    StateNormal.Background.Gradient2.StartColor = 8405056
+    StateNormal.Background.Gradient2.EndColor = 4194304
+    StateNormal.Background.Gradient2.GradientType = gtRadial
+    StateNormal.Background.Gradient2.Point1XPercent = 50
+    StateNormal.Background.Gradient2.Point1YPercent = 100
+    StateNormal.Background.Gradient2.Point2XPercent = 0
+    StateNormal.Background.Gradient2.Point2YPercent = 0
+    StateNormal.Background.Gradient1EndPercent = 60
+    StateNormal.Background.Style = bbsColor
+    StateNormal.Border.Color = clYellow
+    StateNormal.Border.LightWidth = 1
+    StateNormal.Border.Style = bboSolid
+    StateNormal.FontEx.Color = clBlack
+    StateNormal.FontEx.FontQuality = fqFineAntialiasing
+    StateNormal.FontEx.Height = 20
+    StateNormal.FontEx.Shadow = True
+    StateNormal.FontEx.ShadowColor = clGray
+    StateNormal.FontEx.ShadowRadius = 2
+    StateNormal.FontEx.ShadowOffsetX = 1
+    StateNormal.FontEx.ShadowOffsetY = 1
+    StateNormal.FontEx.Style = [fsBold]
+    Caption = 'Apply changes'
+    Color = clNone
+    DropDownWidth = 16
+    DropDownArrowSize = 8
+    Enabled = False
+    GlobalOpacity = 255
+    Glyph.Data = {
+      36090000424D3609000000000000360000002800000018000000180000000100
+      2000000000000009000064000000640000000000000000000000F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FF7A3180FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000
+      FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000
+      FFFF0000FFFF7A3180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FF7A3180FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000
+      FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000
+      FFFF0000FFFF7A3180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FF7A3180FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000
+      FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000
+      FFFF0000FFFF7A3180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFFAB180FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFAB180FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFE9E9E9FFEBEBEBFFECECECFFEEEE
+      EEFFEEEEEEFFF0F0F0FFF2F2F2FFF2F2F2FFF2F2F2FFF2F2F2FFF2F2F2FFF2F2
+      F2FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFE4E4E4FFE5E5E5FFE7E7E7FFE8E8
+      E8FFEAEAEAFFEBEBEBFFECECECFFF0CBB3FFF3A979FFF3A979FFF3CFB7FFF2F2
+      F2FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFE0E0E0FFE1E1E1FFE3E3E3FFE4E4
+      E4FFE5E5E5FFE6E6E6FFE8E8E8FFEFA675FFF56200FFF56200FFF2A878FFEFEF
+      EFFFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFDBDBDBFFDCDCDCFFDEDEDEFFE0E0
+      E0FFE1E1E1FFE2E2E2FFE4E4E4FFEDA373FFF56200FFF56200FFEFA675FFEAEA
+      EAFFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFD7D7D7FFD7D7D7FFDADADAFFDADA
+      DAFFDCDCDCFFDDDDDDFFDFDFDFFFEBA171FFF56200FFF56200FFECA372FFE6E6
+      E6FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFD2D2D2FFD3D3D3FFD5D5D5FFD6D6
+      D6FFD7D7D7FFD9D9D9FFDADADAFFE99F6FFFF56200FFF56200FFEAA170FFE1E1
+      E1FFF56200FFF56200FFF56200FFF56200FFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFCDCDCDFFCFCFCFFFD0D0D0FFD1D1
+      D1FFD3D3D3FFD4D4D4FFD6D6D6FFE69C6CFFF56200FFF56200FFE89F6EFFDDDD
+      DDFFF56200FFF56200FFF56200FFF56200DFFFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFCCCCCCFFCCCCCCFFCCCCCCFFCDCD
+      CDFFCECECEFFCFCFCFFFD1D1D1FFDBB79FFFE49B6AFFE59C6BFFDEB9A1FFD8D8
+      D8FFF56200FFF56200FFF56100E1F8620022FFFFFF00FFFFFF00F56200FFF562
+      00FFF56200FFF56200FFF56200FFF56200FFCCCCCCFFCCCCCCFFCCCCCCFFCCCC
+      CCFFCCCCCCFFCCCCCCFFCCCCCCFFCECECEFFCFCFCFFFD0D0D0FFD2D2D2FFD3D3
+      D3FFF56200FFF56100E1F8620022FFFFFF00FFFFFF00FFFFFF00
+    }
+    OnClick = applybtnClick
+    ParentColor = False
+    Rounding.RoundX = 12
+    Rounding.RoundY = 12
+    RoundingDropDown.RoundX = 1
+    RoundingDropDown.RoundY = 1
+    TextApplyGlobalOpacity = False
+    MemoryUsage = bmuHigh
+  end
+  object instmnu: TPopupMenu
+    OnPopup = instmnuPopup
+    Left = 908
+    Top = 715
+    object instuninst: TMenuItem
+      Caption = 'UnInstall'
+      OnClick = instuninstClick
+    end
+    object instshowfiles: TMenuItem
+      Caption = 'Files provided'
+      OnClick = instshowfilesClick
+    end
+    object instundo: TMenuItem
+      Caption = 'Undo last'
+      OnClick = instundoClick
+    end
+    object instunall: TMenuItem
+      Caption = 'Undo All'
+      OnClick = instunallClick
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object closeitm: TMenuItem
+      Caption = 'Close'
+      OnClick = closeitmClick
+    end
+  end
+  object inst: TZQuery
+    SortedFields = 'Name'
+    Connection = dm.rcon
+    SQL.Strings = (
+      'select * from packages where installed=''True'';'
+    )
+    Params = <>
+    IndexFieldNames = 'Name Asc'
+    Left = 394
+    Top = 714
+    object instInstalled: TZBooleanField
+      FieldKind = fkData
+      FieldName = 'Installed'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object instName: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 100
+    end
+    object instVersion: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Version'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 100
+    end
+    object instDesc: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Desc'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1000
+    end
+    object instArch: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Arch'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object instGrp: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Grp'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object instisize: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'isize'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object instpsize: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'psize'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object insrc: TDataSource
+    DataSet = inst
+    Left = 264
+    Top = 712
+  end
+end

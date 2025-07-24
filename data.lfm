@@ -1,0 +1,389 @@
+object dm: Tdm
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 264
+  HorizontalOffset = 418
+  VerticalOffset = 688
+  Width = 432
+  object rcon: TZConnection
+    ControlsCodePage = cCP_UTF8
+    ClientCodepage = 'UTF-8'
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+      'codepage=UTF-8'
+    )
+    DisableSavepoints = False
+    Port = 0
+    Database = '/usr/share/rpmgr/rpmgr.db'
+    Protocol = 'sqlite'
+    Left = 32
+    Top = 20
+  end
+  object grp: TZTable
+    SortedFields = 'name'
+    Connection = rcon
+    TableName = 'groups'
+    IndexFieldNames = 'name Asc'
+    Left = 184
+    Top = 20
+    object grpname: TZRawStringField
+      DisplayLabel = 'Name'
+      FieldKind = fkData
+      FieldName = 'name'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 100
+    end
+    object grpinstalled: TZBooleanField
+      DisplayLabel = 'Installed'
+      FieldKind = fkData
+      FieldName = 'installed'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object grpdesc: TZRawStringField
+      DisplayLabel = 'Desc'
+      FieldKind = fkData
+      FieldName = 'desc'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1000
+    end
+  end
+  object grpsrc: TDataSource
+    DataSet = grp
+    OnDataChange = grpsrcDataChange
+    Left = 104
+    Top = 20
+  end
+  object pkgsrc: TDataSource
+    DataSet = pkg
+    OnDataChange = pkgsrcDataChange
+    Left = 264
+    Top = 20
+  end
+  object query: TZQuery
+    Connection = rcon
+    SQL.Strings = (
+      'select * from packages;'
+    )
+    Params = <>
+    Left = 264
+    Top = 104
+  end
+  object pkg: TZTable
+    SortedFields = 'name'
+    Connection = rcon
+    TableName = 'packages'
+    MasterFields = 'name'
+    MasterSource = grpsrc
+    LinkedFields = 'grp'
+    IndexFieldNames = 'name Asc'
+    Left = 350
+    Top = 24
+    object pkgInstalled: TZBooleanField
+      FieldKind = fkData
+      FieldName = 'Installed'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object pkgName: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 100
+    end
+    object pkgVersion: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Version'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 100
+    end
+    object pkgDesc: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Desc'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1000
+    end
+    object pkgArch: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Arch'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object pkgGrp: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Grp'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object pkgisize: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'isize'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object pkgpsize: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'psize'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qs: TDataSource
+    DataSet = query
+    Left = 192
+    Top = 104
+  end
+  object instsrc: TDataSource
+    Left = 552
+    Top = 72
+  end
+  object inst: TZQuery
+    SortedFields = 'name'
+    Connection = rcon
+    SQL.Strings = (
+      'select * from packages where installed = true;'
+    )
+    Params = <>
+    DataSource = instsrc
+    IndexFieldNames = 'name Asc'
+    Left = 632
+    Top = 72
+  end
+  object psrc: TZQuery
+    Connection = rcon
+    SQL.Strings = (
+      'select * from packages where name like ''%gcc%'' or desc like ''%gcc%'';'
+    )
+    Params = <>
+    Left = 384
+    Top = 104
+    object psrcInstalled: TZBooleanField
+      FieldKind = fkData
+      FieldName = 'Installed'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object psrcName: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 300
+    end
+    object psrcVersion: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Version'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 300
+    end
+    object psrcDesc: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Desc'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 450
+    end
+    object psrcArch: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Arch'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Visible = False
+      Size = 50
+    end
+    object psrcGrp: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Grp'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 300
+    end
+  end
+  object ssrc: TDataSource
+    DataSet = psrc
+    Left = 317
+    Top = 104
+  end
+  object reposrc: TDataSource
+    DataSet = repos
+    Left = 32
+    Top = 112
+  end
+  object repos: TZTable
+    Connection = rcon
+    TableName = 'repo'
+    Left = 104
+    Top = 112
+    object reposRepoID: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'RepoID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 200
+    end
+    object reposName: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 500
+    end
+    object reposStatus: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Status'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object reposType: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Type'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object reposConfig: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Config'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 400
+    end
+    object reposBaseURL: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'BaseURL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1000
+    end
+    object reposMetaLink: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'MetaLink'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1000
+    end
+    object reposKeys: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Keys'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1000
+    end
+    object reposVerifyRepo: TZBooleanField
+      FieldKind = fkData
+      FieldName = 'VerifyRepo'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object reposVerifyPkg: TZBooleanField
+      FieldKind = fkData
+      FieldName = 'VerifyPkg'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object reposInfo: TZRawStringField
+      FieldKind = fkData
+      FieldName = 'Info'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1000
+    end
+  end
+end

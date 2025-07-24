@@ -1,0 +1,85 @@
+object loginfrm: Tloginfrm
+  Left = 536
+  Height = 238
+  Top = 302
+  Width = 708
+  Caption = 'Authentication Required'
+  ClientHeight = 238
+  ClientWidth = 708
+  Font.Height = -21
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '3.6.0.0'
+  object Label1: TLabel
+    Left = 40
+    Height = 71
+    Top = 48
+    Width = 628
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'Authentication is required to run the RPMgr package Manager'
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentFont = False
+    WordWrap = True
+  end
+  object okbtn: TButton
+    Left = 400
+    Height = 40
+    Top = 185
+    Width = 99
+    Caption = 'OK'
+    Default = True
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = okbtnClick
+  end
+  object cancelbtn: TButton
+    Left = 551
+    Height = 40
+    Top = 185
+    Width = 137
+    Caption = 'Cancel'
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = cancelbtnClick
+  end
+  object Label2: TLabel
+    Left = 213
+    Height = 30
+    Top = 14
+    Width = 203
+    Caption = 'You are logged in as '
+  end
+  object logtxt: TLabel
+    Left = 418
+    Height = 30
+    Top = 14
+    Width = 166
+    AutoSize = False
+    Caption = 'logtxt'
+    Font.Height = -21
+    Font.Name = 'Loglbl'
+    ParentFont = False
+  end
+  object pwtxt: TEdit
+    Left = 63
+    Height = 46
+    Hint = 'Type in your administrator password. This is CASE SENSITIVE.'
+    Top = 131
+    Width = 593
+    EchoMode = emPassword
+    Font.Height = -24
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentShowHint = False
+    PasswordChar = '*'
+    ShowHint = True
+    TabOrder = 2
+  end
+end

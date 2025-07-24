@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dbdir="/usr/share/rpmgr"
+dbfile="/usr/share/rpmgr/rpmgr.db"
+
+if [ ! -d "$dbdir" ]; then
+/usr/bin/mkdir "$dbdir"
+/usr/bin/cp ./rpmgr.db1 "$dbfile"
+/usr/bin/cp ./rpmgr.8.gz /usr/share/man/man8
+/usr/bin/cp ./license.txt "$dbdir"
+/usr/bin/cp ./rpmgr "$dbdir"
+fi;
+
+if [ ! -f "$dbfile" ]; then
+/usr/bin/cp ./rpmgr.db1 "$dbfile"
+fi;
+
+/usr/bin/chown root:wheel "$dbfile"
+/usr/bin/chmod 660 "$dbfile"
+/usr/bin/chown root:wheel "$dbdir/license.txt"
+/usr/bin/chmod 644 "$dbdir/license.txt"
+/usr/bin/chmod 774 /usr/share/rpmgr/rpmgr
+/usr/bin/chown root:wheel "$dbdir/rpmgr"
+/usr/bin/ln -s /usr/bin/rpmgr "$dbdir/rpmgr"
+

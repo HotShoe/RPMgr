@@ -1,0 +1,2 @@
+#!/bin/bash
+objdump -xT $1 | grep '  NEEDED' > libs.txt
