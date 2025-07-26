@@ -31,9 +31,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="Data"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="242"/>
-        <CursorPos X="13" Y="260"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="233"/>
+        <CursorPos X="51" Y="240"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -53,8 +53,8 @@
         <Filename Value="globs.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1052"/>
-        <CursorPos X="22" Y="1064"/>
+        <TopLine Value="1024"/>
+        <CursorPos X="11" Y="1015"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit>
@@ -66,8 +66,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="67"/>
-        <CursorPos X="15" Y="83"/>
+        <TopLine Value="170"/>
+        <CursorPos X="47" Y="190"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -112,8 +112,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="67"/>
-        <CursorPos Y="81"/>
+        <TopLine Value="142"/>
+        <CursorPos X="47" Y="151"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -134,8 +134,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="53"/>
-        <CursorPos X="9" Y="147"/>
+        <CursorPos X="2"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -145,7 +144,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="25" Y="54"/>
+        <CursorPos X="2"/>
         <UsageCount Value="203"/>
       </Unit>
       <Unit>
@@ -154,11 +153,10 @@
         <ComponentName Value="loginfrm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="315"/>
         <CursorPos Y="339"/>
-        <UsageCount Value="156"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="158"/>
       </Unit>
       <Unit>
         <Filename Value="license.pas"/>
@@ -167,9 +165,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="20"/>
-        <CursorPos Y="28"/>
-        <UsageCount Value="107"/>
+        <TopLine Value="33"/>
+        <CursorPos X="47" Y="54"/>
+        <UsageCount Value="109"/>
       </Unit>
       <Unit>
         <Filename Value="repo.pas"/>
@@ -180,7 +178,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos Y="54"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="94"/>
       </Unit>
       <Unit>
         <Filename Value="addrepo.pas"/>
@@ -189,9 +187,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="34"/>
-        <CursorPos X="15" Y="50"/>
-        <UsageCount Value="78"/>
+        <CursorPos Y="18"/>
+        <UsageCount Value="80"/>
       </Unit>
       <Unit>
         <Filename Value="login.pas"/>
@@ -576,19 +573,7 @@
         <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="77" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="78" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="79" TopLine="70"/>
-      </Position>
+    <JumpHistory HistoryIndex="27">
       <Position>
         <Filename Value="updates.pas"/>
         <Caret Line="80" TopLine="70"/>
@@ -696,6 +681,10 @@
       <Position>
         <Filename Value="updates.pas"/>
         <Caret Line="75" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="data.pas"/>
+        <Caret Line="263" Column="42" TopLine="250"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -1,3 +1,17 @@
+{Copyright 2025 Jim Miller
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.}
+
 Unit Data;
 
 {$mode ObjFPC}{$H+}
@@ -10,18 +24,12 @@ Uses
     fileutil,
     Dialogs,
     forms,
-    DB , SQLite3Conn,
+    DB,
+    SQLite3Conn,
     ZConnection,
     ZDataset,
-    ZAbstractRODataset , ZSqlProcessor;
-
-Const
-    grpstr = 'CREATE TABLE "group" ("name"	varchar(100) NOT NULL UNIQUE,"desc"	TEXT NOT NULL,'
-      + '"installed"	boolean NOT NULL DEFAULT ''false'',"packages"	TEXT,PRIMARY KEY("name"));';
-
-    pkgstr = 'CREATE TABLE "packages" ("name"	varchar(100) NOT NULL UNIQUE,"desc"	TEXT NOT NULL,'
-      + '"installed"	boolean NOT NULL DEFAULT ''false'',"version"	varchar(100) NOT NULL,"arch"'
-      + 'varchar(50) NOT NULL DEFAULT ''noarch'',"group"	varchar(100),PRIMARY KEY("name"));';
+    ZAbstractRODataset,
+    ZSqlProcessor;
 
 Type
 
@@ -92,6 +100,7 @@ Uses
     globs,
     mlstr,
     binexec;
+
     {$R *.lfm}
 
     { Tdm }
@@ -225,12 +234,12 @@ begin
 
     ok:= rootexec('/usr/bin/chown root:wheel '+dbdir,admin);
     ok:= rootexec('/usr/bin/chmod 775 '+dbdir,admin);
-    ok:= rootexec('/usr/bin/cp '+mydir+'license.txt '+dbdir,admin);
+    ok:= rootexec('/usr/bin/cp '+mydir+'LICENSE '+dbdir,admin);
     ok:= rootexec('/usr/bin/cp '+mydir+'rpmgr.db1 '+dbdir+'rpmgr.db',admin);
     ok:= rootexec('/usr/bin/chown root:wheel '+dbfile,admin);
     ok:= rootexec('/usr/bin/chmod 660 '+dbfile,admin);
-    ok:= rootexec('/usr/bin/chown root:wheel '+dbdir+'license.txt',admin);
-    ok:= rootexec('/usr/bin/chmod 644 '+dbdir+'license.txt',admin);
+    ok:= rootexec('/usr/bin/chown root:wheel '+dbdir+'LICENSE',admin);
+    ok:= rootexec('/usr/bin/chmod 644 '+dbdir+'LICENSE',admin);
 
     if not ok then
       begin
@@ -257,7 +266,7 @@ initialization
     if loginfrm = nil then
     loginfrm:= Tloginfrm.Create(nil);
 
-    //loginfrm.ShowModal;
+    loginfrm.ShowModal;
 
     If not directoryexists(dbdir) Then
     ok:= rootexec('/usr/bin/mkdir '+dbdir,admin);

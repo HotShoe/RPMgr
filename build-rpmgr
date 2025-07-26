@@ -1,3 +1,3 @@
 #!/bin/bash
 
-lazbuild --build-mode=release rpmgr.lpr
+lazbuild --build-mode="x86-64 release" rpmgr.lpr

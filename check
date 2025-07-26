@@ -1,2 +1,2 @@
 #!/bin/bash
-objdump -xT $1 | grep '  NEEDED' > libs.txt
+objdump -xT ./rpmgr | grep '  NEEDED' > libs.txt

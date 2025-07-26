@@ -1,3 +1,17 @@
+{Copyright 2025 Jim Miller
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.}
+
 unit config;
 
 {$mode ObjFPC}{$H+}
@@ -53,7 +67,10 @@ uses
     updates,
     search,
     installed,
-    files;
+    files,
+    actions,
+    repo,
+    addrepo;
 
 {$R *.lfm}
 
@@ -123,6 +140,25 @@ begin
      srchfrm.srchgrid.TitleFont.Color:= crec.hdgfc;
      srchfrm.desc.Color:= crec.dscbg;
      srchfrm.desc.Font.Color:= crec.dscfg;
+
+     repofrm.Color:= crec.frmbg;
+     repofrm.Font.Color:= crec.frmfc;
+     repofrm.repogrid.Color:= crec.grdbg;
+     repofrm.repogrid.Font.Color:= crec.grdfc;
+     repofrm.repogrid.FixedColor:= crec.hdgbg;
+     repofrm.repogrid.TitleFont.Color:= crec.hdgfc;
+     repofrm.infomemo.Color:= crec.dscbg;
+     repofrm.infomemo.Font.Color:= crec.dscfg;
+
+     actfrm.Color:= crec.frmbg;
+     actfrm.Font.Color:= crec.frmfc;
+     actfrm.actgrid.Color:= crec.grdbg;
+     actfrm.actgrid.Font.Color:= crec.grdfc;
+     actfrm.actgrid.FixedColor:= crec.hdgbg;
+     actfrm.actgrid.TitleFont.Color:= crec.hdgfc;
+
+     addrepofrm.Color:= crec.frmbg;
+     addrepofrm.Font.Color:= crec.frmfc;
 
 end;
 

@@ -1,5 +1,6 @@
-{The Jstr32 unit was written originally in 1986 for Turbo Pascal by me
+{The mlstr unit was written originally in 1986 for Turbo Pascal by me
 Jem Miller @Missing Link Software.
+
 This unit is licensed under the WTF license. Do WTF you want with it. Burn
 it, give it away, make millions with it, or throw darts at it. I still use
 this sucker in virtually all of my work.

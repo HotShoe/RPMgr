@@ -15,56 +15,56 @@ object cfgfrm: Tcfgfrm
     Left = 84
     Height = 27
     Top = 78
-    Width = 222
+    Width = 220
     Caption = 'Form background color'
   end
   object Label2: TLabel
     Left = 158
     Height = 27
     Top = 124
-    Width = 148
+    Width = 146
     Caption = 'Form font color'
   end
   object Label3: TLabel
     Left = 165
     Height = 27
     Top = 170
-    Width = 140
+    Width = 139
     Caption = 'Text area color'
   end
   object Label4: TLabel
     Left = 121
     Height = 27
     Top = 216
-    Width = 184
+    Width = 183
     Caption = 'Text area font color'
   end
   object Label5: TLabel
-    Left = 33
+    Left = 21
     Height = 27
     Top = 262
-    Width = 272
-    Caption = 'Package descrition box color'
+    Width = 283
+    Caption = 'Package description box color'
   end
   object Label6: TLabel
     Left = 16
     Height = 27
     Top = 308
-    Width = 289
+    Width = 288
     Caption = 'Package description font color'
   end
   object Label7: TLabel
     Left = 130
     Height = 27
     Top = 354
-    Width = 176
+    Width = 174
     Caption = 'Grid heading color'
   end
   object Label8: TLabel
     Left = 86
     Height = 27
     Top = 400
-    Width = 220
+    Width = 218
     Caption = 'Grid heading font color'
   end
   object frmbgbtn: TColorButton
@@ -159,7 +159,7 @@ object cfgfrm: Tcfgfrm
       Left = 32
       Height = 29
       Top = 8
-      Width = 169
+      Width = 170
       Caption = 'Offline updates'
       Checked = True
       State = cbChecked
@@ -169,7 +169,7 @@ object cfgfrm: Tcfgfrm
       Left = 32
       Height = 27
       Top = 32
-      Width = 339
+      Width = 341
       Caption = '(Updates are done between reboots)'
     end
   end
