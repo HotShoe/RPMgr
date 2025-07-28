@@ -1542,6 +1542,21 @@ object mainfrm: Tmainfrm
         Caption = 'Check Updates'
         OnClick = mnuupdatesClick
       end
+      object Separator5: TMenuItem
+        Caption = '-'
+      end
+      object mnufixdb: TMenuItem
+        Caption = 'Refresh databases'
+        OnClick = mnufixdbClick
+      end
+      object mnutextintegrity: TMenuItem
+        Caption = 'Test DB Integrity'
+        OnClick = mnutextintegrityClick
+      end
+      object mnufixbroken: TMenuItem
+        Caption = 'Fix broken package(s)'
+        OnClick = mnufixbrokenClick
+      end
     end
     object MenuItem3: TMenuItem
       Caption = 'Help'

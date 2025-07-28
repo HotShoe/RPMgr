@@ -47,6 +47,10 @@ Type
       distbtn: TBCButton;
       closebtn: TBCButton;
       applybtn: TBCButton;
+      mnufixdb : TMenuItem;
+      mnutextintegrity : TMenuItem;
+      mnufixbroken : TMenuItem;
+      Separator5 : TMenuItem;
       rootlbl: TLabel;
       mnuundo: TMenuItem;
       pkggrid: TDBGrid;
@@ -111,6 +115,9 @@ Type
       Procedure grpquitClick(Sender: TObject);
       Procedure grpremoveClick(Sender: TObject);
       Procedure integritybtnClick(Sender: TObject);
+      procedure mnufixbrokenClick(Sender : TObject);
+      procedure mnutextintegrityClick(Sender : TObject);
+      procedure mnufixdbClick(Sender : TObject);
       Procedure mnucfgClick(Sender: TObject);
       Procedure mnuundoClick(Sender: TObject);
       Procedure mnuupdatesClick(Sender: TObject);
@@ -364,6 +371,30 @@ Begin
       ShowMessage('No problems were found.');
 
 End;
+
+ procedure Tmainfrm.mnufixbrokenClick(Sender : TObject);
+begin
+     notefrm.info('Repairing databases, standby...');
+
+     rootexec('/usr/bin/dnf5 repair fix', admin);
+     notefrm.Close;
+end;
+
+ procedure Tmainfrm.mnutextintegrityClick(Sender : TObject);
+begin
+     integritybtnClick(nil);
+end;
+
+ procedure Tmainfrm.mnufixdbClick(Sender : TObject);
+begin
+      notefrm.info('Synchronizing databases with repositories. This will take a few ' +
+               	'moments.'+#10+
+                'This dialog will close when the task is completed.');
+      import_pkg;
+      import_grp;
+      import_repos;
+      notefrm.Close;
+end;
 
 Procedure Tmainfrm.mnucfgClick(Sender: TObject);
 Begin

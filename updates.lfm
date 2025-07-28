@@ -116,7 +116,7 @@ object upfrm: Tupfrm
       StateNormal.FontEx.ShadowOffsetX = 1
       StateNormal.FontEx.ShadowOffsetY = 1
       StateNormal.FontEx.Style = [fsBold]
-      Caption = 'Quit'
+      Caption = 'Close'
       Color = clNone
       DropDownWidth = 16
       DropDownArrowSize = 8
