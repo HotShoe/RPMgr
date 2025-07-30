@@ -9,10 +9,11 @@ object repofrm: Trepofrm
   Color = 12768223
   Font.Color = clBlack
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
-  OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '3.6.0.0'
+  LCLVersion = '4.1.0.0'
+  OnShow = FormShow
   object Panel1: TPanel
     Left = 0
     Height = 758
@@ -105,7 +106,7 @@ object repofrm: Trepofrm
   end
   object nametxt: TDBEdit
     Left = 536
-    Height = 39
+    Height = 44
     Top = 49
     Width = 872
     DataField = 'Name'
@@ -179,7 +180,7 @@ object repofrm: Trepofrm
   end
   object basetxt: TDBEdit
     Left = 536
-    Height = 39
+    Height = 44
     Top = 264
     Width = 872
     DataField = 'BaseURL'
@@ -191,7 +192,7 @@ object repofrm: Trepofrm
   end
   object cfgtxt: TDBEdit
     Left = 536
-    Height = 39
+    Height = 44
     Top = 192
     Width = 872
     DataField = 'Config'
@@ -203,7 +204,7 @@ object repofrm: Trepofrm
   end
   object metatxt: TDBEdit
     Left = 536
-    Height = 39
+    Height = 44
     Top = 336
     Width = 872
     DataField = 'MetaLink'
@@ -215,7 +216,7 @@ object repofrm: Trepofrm
   end
   object keytxt: TDBEdit
     Left = 536
-    Height = 39
+    Height = 44
     Top = 408
     Width = 872
     DataField = 'Keys'
@@ -227,7 +228,7 @@ object repofrm: Trepofrm
   end
   object repotxt: TDBEdit
     Left = 656
-    Height = 39
+    Height = 44
     Top = 456
     Width = 80
     DataField = 'VerifyRepo'
@@ -238,7 +239,7 @@ object repofrm: Trepofrm
   end
   object pkgtxt: TDBEdit
     Left = 976
-    Height = 39
+    Height = 44
     Top = 456
     Width = 80
     DataField = 'VerifyPkg'

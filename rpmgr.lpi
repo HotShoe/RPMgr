@@ -24,13 +24,13 @@
       <StringTable Comments="Alpha test" CompanyName="Missing Link Software" FileDescription="Desktop frontend for dnf5 and rpm" InternalName="rpmgr" LegalCopyright="Copyright 2025 by Jem Miller and Missing Link Software" ProductName="RPM Manager" ProductVersion="Alpha test"/>
     </VersionInfo>
     <MacroValues Count="1">
-      <Macro1 Name="LCLWidgetType" Value="qt5"/>
+      <Macro2 Name="LCLWidgetType" Value="qt6"/>
     </MacroValues>
     <BuildModes>
       <Item Name="x86-64 Debug" Default="True"/>
       <Item Name="x86-64 Release">
         <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt5"/>
+          <Macro2 Name="LCLWidgetType" Value="qt6"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -63,7 +63,7 @@
       </Item>
       <Item Name="aarch64 Debug">
         <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt5"/>
+          <Macro2 Name="LCLWidgetType" Value="qt6"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -96,7 +96,7 @@
       </Item>
       <Item Name="aarch64 Release">
         <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt5"/>
+          <Macro2 Name="LCLWidgetType" Value="qt6"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -129,7 +129,7 @@
       </Item>
       <Item Name="ppc64 Debug">
         <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt5"/>
+          <Macro2 Name="LCLWidgetType" Value="qt6"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -162,7 +162,7 @@
       </Item>
       <Item Name="ppc64 Release">
         <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt5"/>
+          <Macro2 Name="LCLWidgetType" Value="qt6"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -193,8 +193,9 @@
           </Linking>
         </CompilerOptions>
       </Item>
-      <SharedMatrixOptions Count="1">
-        <Item1 ID="281507717881" Modes="x86-64 Debug,x86-64 Release,aarch64 Debug,aarch64 Release,ppc64 Debug,ppc64 Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt5"/>
+      <SharedMatrixOptions Count="2">
+        <Item1 ID="281507717881" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt5"/>
+        <Item2 ID="496059221446" Modes="x86-64 Debug,x86-64 Release,aarch64 Debug,aarch64 Release,ppc64 Debug,ppc64 Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt6"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>

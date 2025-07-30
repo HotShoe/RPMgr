@@ -9,9 +9,10 @@ object instfrm: Tinstfrm
   Color = 12768223
   Font.Color = clBlack
   Font.Height = -19
-  OnShow = FormShow
+  Font.Name = 'Sans'
   Position = poScreenCenter
-  LCLVersion = '3.6.0.0'
+  LCLVersion = '4.1.0.0'
+  OnShow = FormShow
   object ingrid: TDBGrid
     Left = 8
     Height = 656

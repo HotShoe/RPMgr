@@ -32,6 +32,7 @@ object upfrm: Tupfrm
       Caption = 'Upgrades are ready to be installed for these packages.'
       Font.Color = clBlack
       Font.Height = -21
+      Font.Name = 'Sans'
       Font.Style = [fsBold]
       ParentFont = False
     end

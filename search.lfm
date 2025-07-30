@@ -9,9 +9,10 @@ object srchfrm: Tsrchfrm
   Color = 12768223
   Font.Color = clBlack
   Font.Height = -19
-  OnShow = FormShow
+  Font.Name = 'Sans'
   Position = poScreenCenter
-  LCLVersion = '3.6.0.0'
+  LCLVersion = '4.1.0.0'
+  OnShow = FormShow
   object srchgrid: TDBGrid
     Left = 0
     Height = 517
@@ -57,9 +58,6 @@ object srchfrm: Tsrchfrm
     PopupMenu = srchmnu
     ReadOnly = True
     TabOrder = 0
-    TitleFont.Color = clBlack
-    TitleFont.Height = -19
-    TitleFont.Style = [fsBold]
   end
   object Panel1: TPanel
     Left = 0

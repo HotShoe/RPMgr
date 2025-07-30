@@ -9,12 +9,13 @@ object addrepofrm: Taddrepofrm
   Color = 12768223
   Font.Color = clBlack
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
   Position = poScreenCenter
   LCLVersion = '4.1.0.0'
   object repotxt: TEdit
     Left = 8
-    Height = 39
+    Height = 44
     Top = 118
     Width = 971
     Color = clWhite
@@ -24,19 +25,19 @@ object addrepofrm: Taddrepofrm
     Left = 8
     Height = 27
     Top = 85
-    Width = 129
+    Width = 128
     Caption = 'Repository ID'
   end
   object Label2: TLabel
     Left = 8
     Height = 27
     Top = 8
-    Width = 329
+    Width = 330
     Caption = 'Base URL (web address or file path)'
   end
   object basetxt: TEdit
     Left = 8
-    Height = 39
+    Height = 44
     Top = 37
     Width = 971
     Color = clWhite

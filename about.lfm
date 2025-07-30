@@ -8,6 +8,7 @@ object aboutfrm: Taboutfrm
   ClientWidth = 605
   Color = 12768223
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
   Position = poScreenCenter
   LCLVersion = '4.1.0.0'

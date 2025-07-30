@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="x86-64 Release"/>
+    <BuildModes Active="x86-64 Debug"/>
     <Units>
       <Unit>
         <Filename Value="rpmgr.lpr"/>
@@ -18,6 +18,7 @@
         <ComponentName Value="mainfrm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="137"/>
         <CursorPos X="11" Y="153"/>
         <UsageCount Value="200"/>
@@ -31,7 +32,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="Data"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="233"/>
         <CursorPos X="51" Y="240"/>
         <UsageCount Value="200"/>
@@ -46,7 +47,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
-        <CursorPos X="6" Y="8"/>
+        <CursorPos Y="8"/>
         <UsageCount Value="211"/>
       </Unit>
       <Unit>
@@ -64,13 +65,10 @@
         <ComponentName Value="upfrm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="171"/>
-        <CursorPos X="24" Y="175"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="172"/>
+        <CursorPos X="15" Y="184"/>
         <UsageCount Value="203"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="files.pas"/>
@@ -80,7 +78,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
-        <CursorPos X="22" Y="25"/>
+        <CursorPos X="14" Y="25"/>
         <UsageCount Value="203"/>
       </Unit>
       <Unit>
@@ -102,7 +100,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
-        <CursorPos X="31" Y="70"/>
+        <CursorPos X="11" Y="70"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -112,7 +110,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="142"/>
+        <TopLine Value="143"/>
         <CursorPos X="47" Y="151"/>
         <UsageCount Value="200"/>
       </Unit>
@@ -123,7 +121,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="33"/>
+        <TopLine Value="34"/>
         <CursorPos Y="39"/>
         <UsageCount Value="200"/>
       </Unit>
@@ -572,51 +570,7 @@
         <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="88" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="75" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="77" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="78" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="79" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="80" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="81" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="83" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="84" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="85" TopLine="70"/>
-      </Position>
-      <Position>
-        <Filename Value="updates.pas"/>
-        <Caret Line="75" TopLine="70"/>
-      </Position>
+    <JumpHistory HistoryIndex="17">
       <Position>
         <Filename Value="data.pas"/>
         <Caret Line="263" Column="42" TopLine="250"/>

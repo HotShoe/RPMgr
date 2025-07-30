@@ -7,8 +7,9 @@ object notefrm: Tnotefrm
   ClientHeight = 240
   ClientWidth = 512
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
-  LCLVersion = '3.6.0.0'
+  LCLVersion = '4.1.0.0'
   object msg: TLabel
     Left = 0
     Height = 240

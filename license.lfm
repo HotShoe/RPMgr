@@ -8,6 +8,7 @@ object licfrm: Tlicfrm
   ClientWidth = 1150
   Color = 12768223
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
   LCLVersion = '4.1.0.0'
   OnCreate = FormCreate

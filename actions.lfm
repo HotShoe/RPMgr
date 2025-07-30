@@ -9,6 +9,7 @@ object actfrm: Tactfrm
   ClientWidth = 452
   Color = 12768223
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
   PopupMenu = actmnu
   SnapOptions.SnapFormTarget = False

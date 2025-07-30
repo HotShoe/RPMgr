@@ -8,6 +8,7 @@ object applyfrm: Tapplyfrm
   ClientWidth = 1195
   Color = 12768223
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
   LCLVersion = '4.1.0.0'
   OnShow = FormShow

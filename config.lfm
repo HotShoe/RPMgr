@@ -9,6 +9,7 @@ object cfgfrm: Tcfgfrm
   Color = 12768223
   Font.Color = clBlack
   Font.Height = -19
+  Font.Name = 'Sans'
   Font.Style = [fsBold]
   LCLVersion = '4.1.0.0'
   object Label1: TLabel
