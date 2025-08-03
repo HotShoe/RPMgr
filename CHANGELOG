@@ -1,0 +1,40 @@
+Changelog for RPMgr Beta
+###########
+0.9.7 Beta
+08-03-25 - .5 release
+- Fixed several errors in the setup file. it was not setting permissions correctly.
+- fixed critical errors in the db creation routines and re-wrote several for better speed and to ensure that installed files actually get marked as installed.
+- Found an extra space in one of the command strings that was silently keeping repo updates from running.
+- code cleanup and optimizations.
+
+08-01-25 - fixed an error in the import packages rotine. this was caused by me, but would keep users from setting up a new system
+08-01-25 - Fixed a bug in import packages. string quoting error in the SQL statement
+08-01-25 - Removed new db stuff in data.pas. the setup file does that now, and the RPM will do it when packaged
+08-01-25 - made fonts the same throughout
+08-01-25 - fixed several non critical bugs in binexec.pas
+08-01-25 - increased SQL buffer size while doing package imports on first setup
+08-01-25 - more operations use RPM interface now. no longer limited by internet speeds of dnf5 operations
+08-01-25 - Fixed enabling repositories. typo in the dnf command.
+
+###########
+0.9.6 Beta
+07-31-25 - fixed updates for pclinuxos
+07-30-25 - Finished updating the Updates section fo pclinuxos
+07-30-25 - Updated the user configuration for pclinuxos
+07-30-25 - created splash screen for pclinuxos and added the distro name to the main header
+07-28-25 - removed hard coded paths and added auto configure for paths for non Fedora systems
+07-28-25 - spelling corrections and formatting
+07-27-25 - re-wrote the initial db setup for better speed
+
+##########
+0.9.0 Beta
+Initial changelog
+07-19-25 - Beta testing has started. I hate doing changelogs
+07-19-25 - I guess I'd better do a changelog since interest is picking up
+
+##########
+Alpha testing
+Alpha versions don't get no stinking changelog.
+
+
+

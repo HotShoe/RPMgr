@@ -1,0 +1,19 @@
+[Desktop Entry]
+Categories=PackageManager;QT;System;Settings;
+Comment[en_US]=Install, remove and upgrade software packages
+Comment=Install, remove and upgrade software packages
+Exec=exec-rpmgr
+GenericName[en_US]=Package Manager
+GenericName=Package Manager
+Icon=/usr/share/rpmgr/rpmgr.png
+MimeType=
+Name[en_US]=RPMgr Package Manager
+Name=RPMgr Package Manager
+Path=
+StartupNotify=true
+StartupWMClass=rpmgr
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
