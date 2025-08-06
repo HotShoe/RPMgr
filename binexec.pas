@@ -69,7 +69,8 @@ Function RootExec(Pname : String; RootPw : Shortstring) : boolean; // no output 
 Implementation
 
 Uses
-    mlstr;
+    mlstr,
+    globs;
 
     {$R *.lfm}
 
@@ -133,7 +134,7 @@ End;
 Procedure Tloginfrm.FormShow(Sender : TObject);
 Begin
     //Find out who we are
-    ok:= exec('/usr/bin/whoami', ['']);
+    ok:= exec(cmd+'whoami',['']);
     outp:= trim(outp);
     user:= outp;
 
@@ -198,7 +199,7 @@ Begin
     //Run the command)
     Aproc.Execute;
 
-    sleep(30);
+    //sleep(30);
     {Needed on fast systems. you can play with this value. 10 works well for
       many modern systems, but remember that the end user may have an older,
       slower machine than you do.}
@@ -229,7 +230,7 @@ Begin
         application.ProcessMessages
       End;
 
-        sleep(30);
+        //sleep(30);
       Until (Bytes = 0);
 
       //Clear the buffers so we don't keep old stuff
@@ -251,7 +252,7 @@ Begin
           application.ProcessMessages;
         End;
 
-        sleep(30);
+        //sleep(30);
       Until (cnt = 0);
 
       //Keep reading output until the process ends and there is no more output data to read
@@ -310,7 +311,7 @@ Begin
     {Needed on fast systems. you can play with this value. 10 works well for
       many modern systems, but remember that the end user may have an older,
       slower machine than you do.}
-    sleep(30);
+    //sleep(30);
 
     Repeat // long repeat to ensure that we get all data
 
@@ -332,7 +333,7 @@ Begin
         application.ProcessMessages
       End;
 
-        sleep(30);
+        //sleep(30);
       Until (Bytes = 0);
 
       //Clear the buffers so we don't keep old stuff
@@ -347,10 +348,13 @@ Begin
           ErrCnt:= Aproc.Stderr.Read(ErrBuf[1], min(cnt, buf_size));
           errstr:= errstr + copy(errbuf, 1, errcnt); // add buffer contents to ErrStr
 
+          If pos('sudo', errbuf) > 0 Then
+            line:= stripto(errstr, ':');
+
           application.ProcessMessages;
         End;
 
-        sleep(30);
+        //sleep(30);
       Until (cnt = 0);
 
       //Keep reading output until the process ends and there is no more output data to read
@@ -406,10 +410,6 @@ Begin
 
       Aproc.Execute; //Run the command. sudo will now ask for a password
 
-      //Write the password to stdin of the sudo program:
-      RootPw:= RootPw + #10;
-
-      Aproc.Input.Write(RootPw[1], Length(RootPw)); //feed the password to the sudo program
       sleep(30);
       {Needed on fast systems. you can play with this value. 10 works well for
       many modern systems, but remember that the end user may have an older,
@@ -502,7 +502,6 @@ Begin
             line:= stripto(errstr, ':');
 
           outmem.Append(errstr);
-          application.ProcessMessages;
         End;
 
         sleep(30); //sleepy time
@@ -569,10 +568,6 @@ Begin
 
       Aproc.Execute; //Run the command. sudo will now ask for a password
 
-      //Write the password to stdin of the sudo program:
-      RootPw:= RootPw + #10;
-
-      Aproc.Input.Write(RootPw[1], Length(RootPw)); //feed the password to the sudo program
       sleep(30);
       {Needed on fast systems. you can play with this value. 10 works well for
       many modern systems, but remember that the end user may have an older,
@@ -586,7 +581,6 @@ Begin
         BytesRead:= Aproc.Output.Read(Buffer[1], min(Bytes, buf_size));
         OutP     := OutP + copy(buffer, 1, bytesread); // add buffer contents to OutP
 
-        application.ProcessMessages;
       End;
 
       //Clear the buffers so we don't keep old stuff
@@ -602,7 +596,9 @@ Begin
           ErrCnt:= Aproc.Stderr.Read(ErrBuf[1], min(cnt, buf_size));
           errstr:= errstr + copy(errbuf, 1, errcnt); // add buffer contents to ErrStr
 
-          application.ProcessMessages; // update your Tmemo
+          If pos('sudo', errbuf) > 0 Then
+            line:= stripto(errstr, ':');
+
         End;
 
         sleep(30); // still making sure we don't outrun the response
@@ -625,9 +621,8 @@ Begin
         Begin
           //Read each line of output from the command process
           BytesRead:= Aproc.output.Read(Buffer[1], min(Bytes, buf_size));
-          OutP     := OutP + copy(buffer, 1, bytesread); // add buffer contents to OutP
+          OutP:= OutP + copy(buffer, 1, bytesread); // add buffer contents to OutP
 
-          application.ProcessMessages;
         End;
 
         sleep(30); // slumber party
@@ -645,7 +640,9 @@ Begin
           ErrCnt:= Aproc.Stderr.Read(ErrBuf[1], min(cnt, buf_size));
           errstr:= errstr + copy(errbuf, 1, errcnt); // add buffer contents to ErrStr
 
-          application.ProcessMessages;
+          If pos('sudo', errbuf) > 0 Then
+            line:= stripto(errstr, ':');
+
         End;
 
         sleep(30);
@@ -653,7 +650,6 @@ Begin
 
     Finally
       errnum:= aproc.exitcode;
-      application.ProcessMessages;
     End;
 
   {Keep reading output until the process ends and there is no more output or
@@ -661,8 +657,6 @@ Begin
     Until (Bytes = 0) and
           (cnt = 0) and
           (aproc.Running = False);
-
-    application.ProcessMessages;
 
     //After the process has finished we clean up our mess
     Errnum:= Aproc.exitcode;

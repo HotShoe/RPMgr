@@ -23,6 +23,7 @@ Uses
     SysUtils,
     unix,
     fileutil,
+    LazHelpCHM,
     Forms,
     Controls,
     Graphics,
@@ -34,9 +35,8 @@ Uses
     DBCtrls,
     DBGrids,
     ExtCtrls,
-    Resizer,
     BCButton,
-    Grids,
+    Grids, LazHelpHTML,
     Types;
 
 Type
@@ -47,6 +47,8 @@ Type
       distbtn: TBCButton;
       closebtn: TBCButton;
       applybtn: TBCButton;
+      helpbrowser: THTMLBrowserHelpViewer;
+      helpdb: THTMLHelpDatabase;
       mnufixdb : TMenuItem;
       mnutextintegrity : TMenuItem;
       mnufixbroken : TMenuItem;
@@ -88,7 +90,6 @@ Type
       mnuapply: TMenuItem;
       mnudocs: TMenuItem;
       Mnuexit: TMenuItem;
-      mnuoffline: TMenuItem;
       mnusearch: TMenuItem;
       mnuundoall: TMenuItem;
       packmnu: TPopupMenu;
@@ -124,7 +125,6 @@ Type
       Procedure mnuaboutClick(Sender: TObject);
       Procedure mnuapplyClick(Sender: TObject);
       Procedure mnudocsClick(Sender: TObject);
-      Procedure mnuofflineClick(Sender: TObject);
       Procedure mnusearchClick(Sender: TObject);
       Procedure mnuundoallClick(Sender: TObject);
       Procedure packmnuPopup(Sender: TObject);
@@ -224,14 +224,14 @@ Var
 Begin
     notefrm.info('Upgrading Fedora. This process will happen in 3 steps: Updating your current system, Upgrading all packages to the newest version of Fedora, and rebooting your system. This dialog will close and your computer will rebot when the process is complete.');
 
-    ok:= rootexec('/usr/bin/dnf5 --refresh upgrade', admin);
-    ok:= rootexec('/usr/bin/dnf5 system-upgrade download --allowerasing', admin);
+    ok:= rootexec(dnf+' --refresh upgrade', admin);
+    ok:= rootexec(dnf+' system-upgrade download --allowerasing', admin);
 
     assignfile(t, mydir + 'newsys');
     rewrite(t);
     closefile(t);
 
-    ok:= exec('/usr/bin/dnf5', ['system-upgrade', 'reboot']);
+    ok:= rootexec(dnf+ 'system-upgrade reboot',admin);
 
 End;
 
@@ -362,7 +362,7 @@ Procedure Tmainfrm.integritybtnClick(Sender: TObject);
 Begin
     notefrm.info('checking package database. this process will take a while. This dialog will close when the process is completed.');
 
-    ok:= rootexec('/usr/bin/dnf5 check check', admin);
+    ok:= rootexec(dnf+' check check', admin);
     notefrm.Close;
 
     If not ok Then
@@ -376,7 +376,7 @@ End;
 begin
      notefrm.info('Repairing databases, standby...');
 
-     rootexec('/usr/bin/dnf5 repair fix', admin);
+     rootexec(dnf+' repair fix', admin);
      notefrm.Close;
 end;
 
@@ -388,8 +388,7 @@ end;
  procedure Tmainfrm.mnufixdbClick(Sender : TObject);
 begin
       notefrm.info('Synchronizing databases with repositories. This will take a few ' +
-               	'moments.'+#10+
-                'This dialog will close when the task is completed.');
+               	'moments. This dialog will close when the task is completed.');
       import_pkg;
       import_grp;
       import_repos;
@@ -424,18 +423,6 @@ End;
 Procedure Tmainfrm.mnudocsClick(Sender: TObject);
 Begin
 
-End;
-
-Procedure Tmainfrm.mnuofflineClick(Sender: TObject);
-Begin
-    mnuoffline.Checked:= not mnuoffline.Checked;
-
-    If mnuoffline.Checked Then
-      crec.offline:= True
-    Else
-      crec.offline:= False;
-
-    savecfg;
 End;
 
 Procedure Tmainfrm.mnusearchClick(Sender: TObject);
@@ -660,7 +647,7 @@ Procedure Tmainfrm.fixbtnClick(Sender: TObject);
 Begin
     notefrm.info('Repairing databases, standby...');
 
-    rootexec('/usr/bin/dnf5 repair fix', admin);
+    rootexec(dnf+' repair fix', admin);
     notefrm.Close;
 End;
 
@@ -668,19 +655,14 @@ Procedure Tmainfrm.FormShow(Sender: TObject);
 Begin
     dm.initdb;
 
-    //import_pkg;
-    //import_grp;
-    //halt;
-
     Try
       if not root then
       loginfrm.showmodal;
 
       notefrm.info('setting up repos and lists');
       getcfg;
-      import_repos;
 
-      ok:= exec('/usr/bin/arch', ['']);
+      ok:= exec(cmd+'arch',['']);
       myarch:= outp;
       myarch:= trim(myarch);
 
@@ -695,6 +677,12 @@ Begin
       curgrp:= dm.grpname.Text;
       grpidx:= 1;
       getinstalled;
+
+      {quick tests}
+      //import_pkg;
+      //import_grp;
+      //import_repos;
+      //halt;
 
       If fileexists(cfgdir + 'newsys') Then
       Begin

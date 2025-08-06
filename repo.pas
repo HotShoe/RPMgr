@@ -69,6 +69,7 @@ type
     private
 
     public
+     repochanged : boolean;
 
     end;
 
@@ -81,6 +82,7 @@ uses
     binexec,
     globs,
     mlstr,
+    notes,
     addrepo;
 
 {$R *.lfm}
@@ -98,17 +100,35 @@ var
 
 begin
      repoid:= dm.reposRepoID.Text;
-     ok:= rootexec('/bin/dnf5 config-manager setopt'+ repoid + '.enabled = 0',admin);
+
+     if statbox.Checked then
+     begin
+     repoid:= repoid+'.enabled=1';
+     ok:= rootexec(dnf+' config-manager setopt '+ repoid,admin);
+     end
+     else
+     begin
+     repoid:= repoid+'.enabled=0';
+     ok:= rootexec(dnf+' config-manager setopt '+ repoid,admin);
+     end;
 
      if ok then
      ShowMessage('Status Updated.')
      else
      ShowMessage('Could not update stutus. Error '+i2str(errnum)+' '+errstr);
 
+     repochanged:= true;
 end;
 
 procedure Trepofrm.closebtnClick(Sender: TObject);
 begin
+     if repochanged then
+     begin
+     notefrm.info('Updating repositories');
+     import_repos;
+     notefrm.Close;
+     end;
+
      close;
 end;
 
@@ -123,6 +143,7 @@ end;
 procedure Trepofrm.FormShow(Sender: TObject);
 begin
      changebtn.Visible:= false;
+     repochanged:= false;
 end;
 
 procedure Trepofrm.removebtnClick(Sender: TObject);
@@ -133,7 +154,10 @@ begin
      repoid:= dm.reposRepoID.Text;
 
      if questiondlg('WARNING!','Permanaently remove the repository ' + repoid + '?',mtwarning,[mbyes,mbno],0) = mryes then
-     rootexec('/usr/bin/rm /etc/yum.repos.d/'+repoid + '.repo',admin);
+     begin
+     rootexec(cmd+'rm /etc/yum.repos.d/'+repoid + '.repo',admin);
+     repochanged:= true;
+     end;
 
 end;
 

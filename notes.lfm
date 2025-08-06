@@ -10,18 +10,29 @@ object notefrm: Tnotefrm
   Font.Name = 'Sans'
   Font.Style = [fsBold]
   LCLVersion = '4.1.0.0'
-  object msg: TLabel
+  object Label1: TLabel
     Left = 0
-    Height = 240
-    Top = 0
+    Height = 213
+    Top = 27
     Width = 512
     Align = alClient
-    Alignment = taCenter
     AutoSize = False
-    Caption = 'Doing stuff...'
+    Color = clNavy
+    ParentColor = False
+    Transparent = False
+  end
+  object msg: TLabel
+    Left = 0
+    Height = 27
+    Top = 0
+    Width = 512
+    Align = alTop
+    Alignment = taCenter
+    Caption = 'Doing Stuff'
     Color = clNavy
     Font.Color = clWhite
     Font.Height = -19
+    Font.Name = 'Sans'
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -29,7 +40,7 @@ object notefrm: Tnotefrm
     WordWrap = True
   end
   object okbtn: TBCButton
-    Left = 208
+    Left = 192
     Height = 33
     Top = 200
     Width = 123

@@ -1,10 +1,12 @@
 object cfgfrm: Tcfgfrm
   Left = 451
-  Height = 519
+  Height = 492
   Top = 147
   Width = 442
+  HelpType = htKeyword
+  HelpKeyword = 'help/.Config.htm'
   Caption = 'Options'
-  ClientHeight = 519
+  ClientHeight = 492
   ClientWidth = 442
   Color = 12768223
   Font.Color = clBlack
@@ -73,6 +75,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 78
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -83,6 +87,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 124
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -93,6 +99,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 170
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -102,6 +110,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 216
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -112,6 +122,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 262
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -122,6 +134,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 308
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -132,6 +146,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 354
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -142,6 +158,8 @@ object cfgfrm: Tcfgfrm
     Height = 33
     Top = 400
     Width = 75
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -175,10 +193,10 @@ object cfgfrm: Tcfgfrm
     end
   end
   object savebtn: TBCButton
-    Left = 104
+    Left = 112
     Height = 41
     Hint = 'Save config and close'
-    Top = 464
+    Top = 440
     Width = 147
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -348,10 +366,10 @@ object cfgfrm: Tcfgfrm
     MemoryUsage = bmuHigh
   end
   object cancelbtn: TBCButton
-    Left = 304
+    Left = 312
     Height = 41
     Hint = 'Close without saving'
-    Top = 464
+    Top = 440
     Width = 123
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304

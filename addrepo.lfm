@@ -3,6 +3,8 @@ object addrepofrm: Taddrepofrm
   Height = 248
   Top = 195
   Width = 992
+  HelpType = htKeyword
+  HelpKeyword = 'help/.Addrepo.htm'
   Caption = 'Add a Repository'
   ClientHeight = 248
   ClientWidth = 992
@@ -18,6 +20,8 @@ object addrepofrm: Taddrepofrm
     Height = 44
     Top = 118
     Width = 971
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Addrepo.htm'
     Color = clWhite
     TabOrder = 1
   end
@@ -40,6 +44,8 @@ object addrepofrm: Taddrepofrm
     Height = 44
     Top = 37
     Width = 971
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Addrepo.htm'
     Color = clWhite
     TabOrder = 0
     OnExit = basetxtExit

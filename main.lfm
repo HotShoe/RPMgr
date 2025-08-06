@@ -3,6 +3,8 @@ object mainfrm: Tmainfrm
   Height = 800
   Top = 75
   Width = 1587
+  HelpType = htKeyword
+  HelpKeyword = 'help/.Main.htm'
   Anchors = []
   Caption = 'RPMgr v 0.9.6'
   ClientHeight = 800
@@ -13,6 +15,7 @@ object mainfrm: Tmainfrm
   DefaultMonitor = dmMainForm
   Font.Color = clBlack
   Font.Height = -19
+  Font.Name = 'Sans'
   Menu = mainmnu
   Position = poScreenCenter
   LCLVersion = '4.1.0.0'
@@ -23,6 +26,8 @@ object mainfrm: Tmainfrm
     Height = 44
     Top = 24
     Width = 392
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Search.htm'
     Color = clWhite
     Font.Color = clBlack
     Font.Height = -19
@@ -49,7 +54,7 @@ object mainfrm: Tmainfrm
     Left = 23
     Height = 37
     Hint = 'Showall installed packages'
-    Top = 675
+    Top = 671
     Width = 184
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
@@ -152,7 +157,7 @@ object mainfrm: Tmainfrm
     Left = 255
     Height = 37
     Hint = 'Show the contents of the selected RPM package'
-    Top = 675
+    Top = 671
     Width = 185
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
@@ -255,7 +260,7 @@ object mainfrm: Tmainfrm
     Left = 23
     Height = 37
     Hint = 'Show or edit repositories'
-    Top = 712
+    Top = 708
     Width = 184
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
@@ -359,7 +364,7 @@ object mainfrm: Tmainfrm
     Left = 255
     Height = 37
     Hint = 'Show all updates available'
-    Top = 712
+    Top = 708
     Width = 185
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
@@ -462,7 +467,7 @@ object mainfrm: Tmainfrm
     Left = 23
     Height = 37
     Hint = 'Try to fix broken package dependencies'
-    Top = 749
+    Top = 745
     Width = 184
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
@@ -663,6 +668,8 @@ object mainfrm: Tmainfrm
     Height = 800
     Top = 0
     Width = 1132
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Packages.htm'
     Align = alRight
     Anchors = [akTop, akLeft, akRight, akBottom]
     ClientHeight = 800
@@ -690,6 +697,9 @@ object mainfrm: Tmainfrm
       Top = 560
       Width = 189
       Caption = 'Installed packages = '
+      Font.Color = clBlack
+      Font.Height = -19
+      ParentFont = False
     end
     object pkgcnt: TLabel
       AnchorSideTop.Control = pkggrid
@@ -699,6 +709,9 @@ object mainfrm: Tmainfrm
       Top = 560
       Width = 100
       Caption = 'Packages ='
+      Font.Color = clBlack
+      Font.Height = -19
+      ParentFont = False
     end
     object desc: TDBMemo
       AnchorSideLeft.Control = pkgpan
@@ -710,6 +723,8 @@ object mainfrm: Tmainfrm
       Height = 157
       Top = 587
       Width = 1120
+      HelpType = htKeyword
+      HelpKeyword = 'help/.Descriptions'
       Anchors = [akTop, akLeft, akRight, akBottom]
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
@@ -1095,6 +1110,8 @@ object mainfrm: Tmainfrm
       Height = 559
       Top = 1
       Width = 1125
+      HelpType = htKeyword
+      HelpKeyword = 'help/.Packages.htm'
       Anchors = [akTop, akLeft, akRight]
       AutoEdit = False
       BorderSpacing.Right = 5
@@ -1157,6 +1174,7 @@ object mainfrm: Tmainfrm
       TabOrder = 1
       TitleFont.Color = clBlack
       TitleFont.Height = -19
+      TitleFont.Name = 'Sans'
       TitleFont.Style = [fsBold]
     end
     object distbtn: TBCButton
@@ -1370,8 +1388,10 @@ object mainfrm: Tmainfrm
     AnchorSideBottom.Side = asrBottom
     Left = 5
     Height = 583
-    Top = 92
+    Top = 88
     Width = 440
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Groups.htm'
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoEdit = False
     BorderSpacing.Left = 5
@@ -1408,6 +1428,7 @@ object mainfrm: Tmainfrm
     TabOrder = 3
     TitleFont.Color = clBlack
     TitleFont.Height = -19
+    TitleFont.Name = 'Sans'
     TitleFont.Style = [fsBold]
     OnMouseDown = grpgridMouseDown
   end
@@ -1419,7 +1440,7 @@ object mainfrm: Tmainfrm
     Left = 255
     Height = 37
     Hint = 'Apply all actions'
-    Top = 749
+    Top = 745
     Width = 185
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
@@ -1516,18 +1537,13 @@ object mainfrm: Tmainfrm
     MemoryUsage = bmuHigh
   end
   object mainmnu: TMainMenu
-    Left = 1048
-    Top = 648
+    Left = 1024
+    Top = 408
     object MenuItem1: TMenuItem
       Caption = 'Options'
       object mnucfg: TMenuItem
         Caption = 'Configure RPMgr'
         OnClick = mnucfgClick
-      end
-      object mnuoffline: TMenuItem
-        Caption = 'Do Offline Updates'
-        Checked = True
-        OnClick = mnuofflineClick
       end
       object Separator1: TMenuItem
         Caption = '-'
@@ -1589,8 +1605,8 @@ object mainfrm: Tmainfrm
   end
   object packmnu: TPopupMenu
     OnPopup = packmnuPopup
-    Left = 872
-    Top = 640
+    Left = 792
+    Top = 400
     object pkginstall: TMenuItem
       Caption = 'Install package'
       OnClick = pkginstallClick
@@ -1632,8 +1648,8 @@ object mainfrm: Tmainfrm
   end
   object grpmnu: TPopupMenu
     OnPopup = grpmnuPopup
-    Left = 536
-    Top = 648
+    Left = 512
+    Top = 384
     object grpinstall: TMenuItem
       Caption = 'Install group'
       OnClick = grpinstallClick
@@ -1656,5 +1672,18 @@ object mainfrm: Tmainfrm
       Caption = 'Quit'
       OnClick = grpquitClick
     end
+  end
+  object helpdb: THTMLHelpDatabase
+    BaseURL = 'file://help/'
+    AutoRegister = True
+    KeywordPrefix = 'help/.'
+    Left = 165
+    Top = 190
+  end
+  object helpbrowser: THTMLBrowserHelpViewer
+    BrowserParams = '%s'
+    AutoRegister = True
+    Left = 177
+    Top = 267
   end
 end

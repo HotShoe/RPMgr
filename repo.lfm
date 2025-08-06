@@ -3,6 +3,8 @@ object repofrm: Trepofrm
   Height = 758
   Top = 141
   Width = 1417
+  HelpType = htKeyword
+  HelpKeyword = 'help/.Repos.htm'
   Caption = 'Repository Management'
   ClientHeight = 758
   ClientWidth = 1417
@@ -10,7 +12,6 @@ object repofrm: Trepofrm
   Font.Color = clBlack
   Font.Height = -19
   Font.Name = 'Sans'
-  Font.Style = [fsBold]
   Position = poScreenCenter
   LCLVersion = '4.1.0.0'
   OnShow = FormShow
@@ -29,6 +30,8 @@ object repofrm: Trepofrm
       Height = 756
       Top = 1
       Width = 526
+      HelpType = htKeyword
+      HelpKeyword = 'help/.Repos.htm'
       Align = alClient
       Color = clCream
       Columns = <      
@@ -90,6 +93,11 @@ object repofrm: Trepofrm
         end>
       DataSource = dm.reposrc
       FixedColor = 12768223
+      Font.Color = clBlack
+      Font.Height = -19
+      Font.Name = 'Sans'
+      Font.Style = [fsBold]
+      ParentFont = False
       ReadOnly = True
       TabOrder = 0
     end
@@ -109,6 +117,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 49
     Width = 872
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'Name'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -121,49 +131,49 @@ object repofrm: Trepofrm
     Left = 536
     Height = 27
     Top = 24
-    Width = 56
+    Width = 54
     Caption = 'Name'
   end
   object Label5: TLabel
     Left = 536
     Height = 27
     Top = 168
-    Width = 96
+    Width = 90
     Caption = 'Config file'
   end
   object Label6: TLabel
     Left = 536
     Height = 27
     Top = 240
-    Width = 87
+    Width = 84
     Caption = 'Base URL'
   end
   object Label7: TLabel
     Left = 536
     Height = 27
     Top = 312
-    Width = 89
+    Width = 83
     Caption = 'Meta link'
   end
   object Label8: TLabel
     Left = 536
     Height = 27
     Top = 384
-    Width = 45
+    Width = 41
     Caption = 'Keys'
   end
   object Label9: TLabel
     Left = 536
     Height = 27
     Top = 460
-    Width = 107
+    Width = 103
     Caption = 'Verify Repo'
   end
   object Label11: TLabel
     Left = 816
     Height = 27
     Top = 460
-    Width = 149
+    Width = 142
     Caption = 'Verify packages'
   end
   object infomemo: TDBMemo
@@ -171,6 +181,8 @@ object repofrm: Trepofrm
     Height = 192
     Top = 504
     Width = 872
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     Color = clAqua
     DataField = 'Info'
     DataSource = dm.reposrc
@@ -183,6 +195,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 264
     Width = 872
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'BaseURL'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -195,6 +209,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 192
     Width = 872
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'Config'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -207,6 +223,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 336
     Width = 872
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'MetaLink'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -219,6 +237,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 408
     Width = 872
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'Keys'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -231,6 +251,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 456
     Width = 80
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'VerifyRepo'
     DataSource = dm.reposrc
     Color = clWhite
@@ -242,6 +264,8 @@ object repofrm: Trepofrm
     Height = 44
     Top = 456
     Width = 80
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Repos.htm'
     DataField = 'VerifyPkg'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -1197,7 +1221,7 @@ object repofrm: Trepofrm
     Left = 536
     Height = 29
     Top = 104
-    Width = 99
+    Width = 98
     Caption = 'Enabled'
     TabOrder = 9
     OnMouseDown = statboxMouseDown

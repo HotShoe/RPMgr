@@ -3,6 +3,8 @@ object instfrm: Tinstfrm
   Height = 886
   Top = 33
   Width = 1205
+  HelpType = htKeyword
+  HelpKeyword = 'help/.installed.htm'
   Caption = 'Installed Packages'
   ClientHeight = 886
   ClientWidth = 1205
@@ -18,6 +20,8 @@ object instfrm: Tinstfrm
     Height = 656
     Top = 8
     Width = 1192
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Installed-packages.htm'
     AutoEdit = False
     Color = clWhite
     Columns = <    
@@ -81,6 +85,8 @@ object instfrm: Tinstfrm
     Height = 176
     Top = 664
     Width = 1192
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Descriptions.htm'
     Color = 16185007
     DataField = 'desc'
     DataSource = insrc

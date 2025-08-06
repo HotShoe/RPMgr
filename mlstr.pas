@@ -100,7 +100,7 @@ Const
 
     { ------------------------------------------------------------------------- }
 
-  { Returns a string with length less than wid. Breaks at space or #13.
+  { Returns a string with length less than wid. Breaks at space, #10 or #13.
   Call this function until the length of the original string is < wid to
   break up long lines. }
 Function wrap(Var line: String; wid: Integer): String;

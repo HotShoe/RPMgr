@@ -165,7 +165,7 @@ Begin
     If uptot > 0 Then
       If (offline = False) Then
       Begin
-        ok:= exec('/usr/bin/dnf5', ['needs-restarting']);
+        ok:= run('',dnf, 'needs-restarting','');
 
         If pos('reboot is required', outp) > 0 Then
           If messagedlg('Question',
@@ -173,14 +173,14 @@ Begin
             mtConfirmation, [mbYes, mbNo], 0) = mrYes Then
           Begin
             dm.closedb;
-            rootexec('/usr/bin/reboot', admin);
+            rootexec(cmd+'reboot', admin);
           End
           Else
           If messagedlg('Question',
             'A reboot is NOT required for these updates, but WILL be required before some of the new updates will take effect. would you like to reboot the system now anyway?', mtConfirmation, [mbYes, mbNo], 0) = mrYes Then
           Begin
             dm.closedb;
-            rootexec('/usr/bin/reboot', admin);
+            rootexec(cmd+'reboot', admin);
           End;
 
       End
@@ -190,7 +190,7 @@ Begin
         mtConfirmation, [mbok], 0) = mrok Then
       Begin
         dm.closedb;
-        rootexec('/usr/bin/dnf5 offline reboot -y', admin);
+        rootexec(dnf+' offline reboot -y', admin);
       End;
 
 End;

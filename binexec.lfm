@@ -609,7 +609,7 @@ object loginfrm: Tloginfrm
   end
   object pwtxt: TEdit
     Left = 63
-    Height = 42
+    Height = 47
     Hint = 'Type in your administrator password. This is CASE DEPENDENT.'
     Top = 131
     Width = 593

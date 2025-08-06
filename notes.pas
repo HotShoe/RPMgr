@@ -17,7 +17,14 @@ unit notes;
 interface
 
 uses
- Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, BCButton;
+    Classes,
+    SysUtils,
+    Forms,
+    Controls,
+    Graphics,
+    Dialogs,
+    StdCtrls,
+    BCButton;
 
 const
      firstime = 'RPManager needs to build its database when first run. This process may take up to 2 minutes to complete depending upon your computer speed. This process only needs to be done the first time RPManager is run. This dialog will close when the process is complete.';
@@ -33,8 +40,9 @@ type
  { Tnotefrm }
 
  Tnotefrm = class(TForm)
-  okbtn: TBCButton;
-  msg: TLabel;
+   Label1 : TLabel;
+   msg : TLabel;
+   okbtn : TBCButton;
   procedure okbtnClick(Sender: TObject);
  private
 
@@ -42,12 +50,18 @@ type
   procedure error(mesg : string);
   procedure info(mesg : string);
   procedure normal(mesg : string);
+  procedure wrapit;
  end;
 
 var
  notefrm: Tnotefrm;
 
 implementation
+uses
+    mlstr;
+
+var
+   lines : tstringlist;
 
 {$R *.lfm}
 
@@ -56,15 +70,32 @@ begin
      close;
 end;
 
+procedure Tnotefrm.wrapit;
+var
+   st : string;
+   x,
+   b : integer;
+
+begin
+     x:= msg.Height;
+     b:= okbtn.Height;
+
+     notefrm.Height:= x+b+40;
+end;
+
 procedure Tnotefrm.error(mesg : string);
 begin
      if notefrm.Showing then
      notefrm.Close;
 
-     application.ProcessMessages;
      msg.Caption:= mesg;
+     application.ProcessMessages;
+     wrapit;
      msg.Color:= clred;
      okbtn.Visible:= true;
+
+     height:= height + 35;
+     okbtn.Top:= height - 35;
 
      showmodal;
 
@@ -79,6 +110,7 @@ begin
      notefrm.Close;
 
      msg.Caption:= mesg;
+     wrapit;
      msg.Color:= clnavy;
      okbtn.Visible:= false;
 
@@ -93,10 +125,14 @@ begin
      if notefrm.Showing then
      notefrm.Close;
 
-     application.ProcessMessages;
      msg.Caption:= mesg;
+     application.ProcessMessages;
+     wrapit;
      msg.Color:= clnavy;
      okbtn.Visible:= true;
+
+     height:= height + 35;
+     okbtn.Top:= height - 35;
 
      showmodal;
 

@@ -1,9 +1,9 @@
 object dm: Tdm
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 264
-  HorizontalOffset = 418
-  VerticalOffset = 688
+  Height = 256
+  HorizontalOffset = 414
+  VerticalOffset = 696
   Width = 432
   object rcon: TZConnection
     ControlsCodePage = cCP_UTF8

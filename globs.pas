@@ -28,7 +28,7 @@ Uses
     Dialogs;
 
 Const
-    ver = '0.9.6';
+    ver = '0.9.7';
 
 Type
     Titemrec = Class
@@ -49,6 +49,9 @@ Type
       hdgbg,
       hdgfc : tcolor;
       offline : Boolean;
+      dnf,
+      rpm,
+      cmd : shortstring;
     End;
 
 Var
@@ -71,6 +74,9 @@ Var
     homedir,
     mydir,
     me,
+    dnf,
+    rpm,
+    cmd,
     cfgdir,
     dbdir,
     curpkg,
@@ -107,7 +113,7 @@ Var
 
 Procedure getcfg;
 Procedure savecfg;
-//Function run(what, prog, cmdln, lname : String) : Boolean;
+Function run(what, prog, cmdln, lname : String) : Boolean;
 //Function pkrun(what, cmdln, lname : String) : Boolean;
 Procedure checkup;
 Procedure gtu(e : Exception);
@@ -165,6 +171,16 @@ Begin
         hdgbg:= $00C2D3DF;
         hdgfc:= clblack;
         offline:= True;
+
+        ok:= exec('which',['cp']);
+        cmd:= copy(outp,1,lastpos('/',outp));
+
+        ok:= exec('which',['rpm']);
+        rpm:= trim(outp);
+
+        ok:= exec('which',['dnf5']);
+        dnf:= trim(outp);
+
       End;
 
       savecfg;
@@ -188,7 +204,10 @@ Begin
 
     End;
 
-    mainfrm.mnuoffline.Checked:= crec.offline;
+    cmd:= crec.cmd;
+    rpm:= crec.rpm;
+    dnf:= crec.dnf;
+
     cfgfrm.Change_Colors;
 
 End;
@@ -290,7 +309,7 @@ begin
 
     sql:= 'update packages set version=' +
             #39 + ver + #39 +
-            ' , installed=true' +
+            ' , installed= True' +
             ' where name = ' +
             #39 + pname + #39 + ';';
 
@@ -316,7 +335,7 @@ begin
 
     sql:= 'update packages set version=' +
             #39 + ver + #39 +
-            ' , installed=true' +
+            ' , installed= True' +
             ' where name = ' +
             #39 + pname + #39 + ';';
 
@@ -351,7 +370,7 @@ begin
 
     sql:= 'update packages set version=' +
             #39 + ver + #39 +
-            ' , installed=true' +
+            ' , installed= True' +
             ' where name = ' +
             #39 + pname + #39 + ';';
 
@@ -413,7 +432,7 @@ begin
 
     sql:= 'update packages set version=' +
             #39 + ver + #39 +
-            ' , installed=false' +
+            ' , installed= False' +
             ' where name = ' +
             #39 + pname + #39 + ';';
 
@@ -444,7 +463,7 @@ begin
 
     sql:= 'update packages set version=' +
             #39 + ver + #39 +
-            ' , installed=false' +
+            ' , installed= False' +
             ' where name = ' +
             #39 + pname + #39 + ';';
 
@@ -501,21 +520,30 @@ End;
 {Loads a file from disk}
 Procedure loadoutp(fname : String);
 Var
-    f: Text;
+    f: file;
+    bytes : longint;
+    buf : array[1.. 16385] of char;
 
 Begin
-    assignfile(f, mydir + fname);
+    assignfile(f, fname);
+    outp:= '';
+    bytes:= 0;
+    fillchar(buf,sizeof(buf),#0);
 
     Try
-      reset(f);
+      reset(f,1);
 
-      Read(f, outp);
+      repeat
+      blockRead(f, buf[1],16385,bytes);
+      outp:= outp + copy(buf,1,bytes);
+      until bytes = 0;
+
       closefile(f);
     Except
       outp:= '';
     End;
 
-    deletefile(mydir + fname);
+    deletefile(fname);
 
 End;
 
@@ -530,14 +558,28 @@ Begin
     End;
 
     If lname <> '' Then
-      lname:= ' > ' + mydir + lname + '.lst';
+    begin
+      lname:= cfgdir + lname + '.lst';
+      outp:= '';
+
+      cmd:= prog + ' ' + cmdln + ' > ' + lname;
+      errnum:= fpsystem(cmd);
+
+      loadoutp(lname);
+    end
+    else
+    begin
     outp:= '';
+    cmd:= prog + ' ' + cmdln+'> '+outp;
 
-    cmd:= prog + ' ' + cmdln + lname;
-    //result:= fpsystem(cmd) = 0;
-    runcommand(prog + ' ' + cmdln, outp);
+    errnum:= fpsystem(cmd);
+    end;
 
-    Result:= outp <> '';
+    //runcommand(prog, outp);
+
+    Result:= errnum = 0;
+
+    notefrm.Close;
 
 End;
 
@@ -584,17 +626,8 @@ End;
 
 {Check for updates}
 Procedure checkup;
-Var
-    tmp: Ansistring;
-
 Begin
-    notefrm.info('Checking for updates');
-    ok:= exec('/usr/bin/dnf5', ['check-upgrade']);
-
-    tmp:= outp;
-
-    If pos(myarch, tmp) > 0 Then
-      ok:= True;
+    ok:= run('Checking for updates',dnf,'check-upgrade','update');
 
     If (not ok) Then
     Begin
@@ -624,21 +657,37 @@ End;
 
 {Build a list of all packages installed on the system}
 Procedure getinstalled;
+var
+    lx : longint;
+
 Begin
-    application.ProcessMessages;
 
     If instlst = nil Then
       instlst:= TStringList.Create;
 
     instlst.Clear;
+    outp:= '';
+    lx:= 0;
 
-    ok:= exec('/usr/bin/dnf5', ['list', '--installed']);
-    instlst.Text:= outp;
-    instlst.Delete(0);// delete the List of installed packages line
-    instlst.Sorted:= True;
-
+    ok:= rootexec(dnf+' list --installed > '+cfgdir+'inst.lst',admin);
+    instlst.LoadFromFile(cfgdir+'inst.lst');
     insttot:= instlst.Count;
-    application.ProcessMessages;
+    instlst.Sorted:= True;
+    deletefile(cfgdir+'inst.lst');
+
+    while lx < insttot do
+    begin
+    line:= instlst[lx];
+    st:= stripto(line,' ');
+    outp:= outp +st+#10;
+
+    inc(lx);
+    end;
+
+    instlst.Clear;
+    instlst.Text:= outp;
+    insttot:= instlst.Count;
+    instlst.SaveToFile(homedir+'inst.lst');
 
 End;
 
@@ -651,21 +700,7 @@ Var
 Begin
     ok:= False;
     cl:= 0;
-
     ok:= instlst.Find(ln,cl);
-    //Repeat
-    //  tst:= instlst[cl];
-    //  tst:= stripto(tst, ' ');
-    //
-    //  If pos(ln, tst) > 0 Then
-    //  Begin
-    //    ok:= True;
-    //    Result:= cl;
-    //    exit;
-    //  End;
-    //
-    //  Inc(cl);
-    //Until cl = insttot;
 
     if ok then
     result:= cl
@@ -726,7 +761,7 @@ Begin
     If filelst = nil Then
       filelst:= TStringList.Create;
 
-    ok:= exec('/usr/bin/rpm', ['-q', '-l', pname]);
+    ok:= run('',rpm, '-ql ' + pname,'flist');
     filelst.Text:= outp;
 
     Result:= ok;
@@ -738,7 +773,7 @@ time.}
 Procedure import_pkg;
 Var
     pnum,
-    x,
+    xl,
     r: Longint;
     sql,
     dl,
@@ -764,13 +799,13 @@ Begin
     dm.grp.Active:= False;
     pkglst.Delimiter:= #10;
 
-    ok:= rootexec('/usr/bin/dnf5 info --available > '+homedir+'pkg.lst',admin);
-    pkglst.LoadFromFile(homedir+'pkg.lst');
+    ok:= rootexec(dnf+' info --available > '+cfgdir+'pkg.lst',admin);
+    pkglst.LoadFromFile(cfgdir+'pkg.lst');
     //pkglst.Text:= outp;
-    outp:= pkglst.Text;
+    //outp:= pkglst.Text;
     //pkglst.SaveToFile(mydir+'pkg.lst');
     pkgtot:= pkglst.Count;
-    deletefile(homedir+'pkg.lst');
+    deletefile(cfgdir+'pkg.lst');
 
     If pkgtot < 1 Then
       exit;
@@ -780,7 +815,7 @@ Begin
     dm.query.SQL.Text:= 'delete from packages;';
     dm.query.ExecSQL;
 
-    x:= 1;
+    xl:= 1;
     r:= 1;
     dm.rcon.AutoCommit:= False;
     dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
@@ -792,48 +827,48 @@ Begin
     dm.rcon.ExecuteDirect('end transaction;');
     dm.rcon.ExecuteDirect('begin transaction;');
 
-    While x < pkgtot - 4 Do
+    While xl < pkgtot - 4 Do
     Begin
-      line:= pkglst[x];
+      line:= pkglst[xl];
       line:= stripto(line, ':');
       st:= remainder;
       st:= strip(st, ' ');
       pname:= st;
 
-      Inc(x);
-      line:= pkglst[x];
+      Inc(xl);
+      line:= pkglst[xl];
       line:= stripto(line, ':');
       epoch:= remainder;
       epoch:= strip(epoch, ' ');
 
-      Inc(x);
-      line:= pkglst[x];
+      Inc(xl);
+      line:= pkglst[xl];
       line:= stripto(line, ':');
       ver:= remainder;
       ver:= strip(ver, ' ');
 
-      Inc(x);
-      line:= pkglst[x];
+      Inc(xl);
+      line:= pkglst[xl];
       line:= stripto(line, ':');
       ver:= ver + '-' + remainder;
       ver:= strip(ver, ' ');
 
-      Inc(x);
-      line:= pkglst[x];
+      Inc(xl);
+      line:= pkglst[xl];
       line:= stripto(line, ':');
       arch:= remainder;
       arch:= strip(arch, ' ');
 
-      Inc(x);
-      line:= pkglst[x];
+      Inc(xl);
+      line:= pkglst[xl];
       dl:= line;
       dlsz:= stripto(line, ':');
       line:= trimleft(line);
       dlsz:= line;
       dlsz:= trim(dlsz);
 
-      Inc(x);
-      line:= pkglst[x];
+      Inc(xl);
+      line:= pkglst[xl];
       sz:= line;
       isz:= stripto(line, ':');
       line:= trimleft(line);
@@ -843,13 +878,13 @@ Begin
       If pname = '' Then
         break;
 
-      Inc(x, 6);
+      Inc(xl, 6);
 
-      desc:= getdesc(x);
+      desc:= getdesc(xl);
       tmp:= sz + #10 + dl + #10;
       desc:= tmp + desc;
       desc:= quotedstr(desc);
-      Inc(x);
+      Inc(xl);
 
       pname:= pname + '.' + arch;
 
@@ -859,26 +894,33 @@ Begin
         ins:= 'True'
       Else
         ins:= 'False';
+        tmp:= 'none';
 
       Try
         sql:= 'insert into packages values(' +
           #39 + ins + #39 + ',' +
           #39 + pname + #39 + ',' +
           #39 + ver + #39 + ',' +
-          #39 + desc + ',' +
+          desc + ',' +
           #39 + arch + #39 + ',' +
-          #39 + 'none' + #39 + ',' +
+          #39 + tmp + #39 + ',' +
           #39 + isz + #39 + ',' +
           #39 + dlsz + #39 + ');';
 
         dm.rcon.ExecuteDirect(sql);
 
       Except
-        Inc(x);
+        on e : exception do
+        begin
+        showmessage(e.Message);
+
+        Inc(xl);
         continue;
+        end;
+
       End;
 
-      If r > 1000 Then
+      If r > 2000 Then
       Begin
         dm.rcon.Commit;
         r:= 1;
@@ -887,7 +929,7 @@ Begin
       End;
 
       Inc(pnum);
-      Inc(x);
+      Inc(xl);
       Inc(r);
     End;
 
@@ -922,12 +964,12 @@ Begin
 
     verlst.Delimiter:= #10;
 
-    ok:= rootexec('/usr/bin/dnf5 list --available > '+homedir+'ver.lst',admin);
-    verlst.LoadFromFile(homedir+'ver.lst');
-    outp:= verlst.Text;
+    ok:= rootexec(dnf+' list --available > '+cfgdir+'ver.lst',admin);
+    verlst.LoadFromFile(cfgdir+'ver.lst');
+    ////outp:= verlst.Text;
     //verlst.SaveToFile(mydir+'ver.lst');
     verlst.Delete(0);
-    deletefile(homedir+'ver.lst');
+    deletefile(cfgdir+'ver.lst');
 
     x:= 0;
     r:= 1;
@@ -966,7 +1008,7 @@ Begin
         continue;
       End;
 
-      If r > 1000 Then
+      If r > 2000 Then
       Begin
         dm.rcon.Commit;
         r:= 1;
@@ -1003,13 +1045,13 @@ Begin
 
     leaflst.Clear;
 
-    ok:= rootexec('/usr/bin/dnf5 leaves > '+homedir+'leaf.lst',admin);
-    leaflst.LoadFromFile(homedir+'leaf.lst');
-    outp:= leaflst.Text;
+    ok:= rootexec(dnf+' leaves > '+cfgdir+'leaf.lst',admin);
+    leaflst.LoadFromFile(cfgdir+'leaf.lst');
+    //outp:= leaflst.Text;
     //leaflst.SaveToFile(mydir+'leaf.lst');
     lvtot:= leaflst.Count;
     leaflst.Sort;
-    deletefile(homedir+'leaf.lst');
+    deletefile(cfgdir+'leaf.lst');
 
     x:= 0;
     i:= 0;
@@ -1046,7 +1088,7 @@ Begin
 
       pname:= pname + '.' + arch;
 
-      sql:= 'UPDATE packages SET grp = Leaves, installed = True WHERE name = ' +
+      sql:= 'UPDATE packages SET grp = ''Leaves'', installed = True WHERE name = ' +
         #39 + pname + #39 + ';';
 
       dm.rcon.ExecuteDirect(sql);
@@ -1081,6 +1123,7 @@ Var
     gname,
     fname,
     desc: String;
+    x,
     r: Longint;
     inst: Boolean;
 
@@ -1089,12 +1132,12 @@ Begin
     grplst.Clear;
     grptot:= 0;
 
-    ok:= rootexec('/usr/bin/dnf5 group info > '+homedir+'grp.lst',admin);
-    grplst.LoadFromFile(homedir+'grp.lst');
-    outp:= grplst.Text;
+    ok:= rootexec(dnf+' group info > '+cfgdir+'grp.lst',admin);
+    grplst.LoadFromFile(cfgdir+'grp.lst');
+    //grplst.Text:= outp;
     //grplst.SaveToFile(mydir+'grp.lst');
     grptot:= grplst.Count;
-    deletefile(homedir+'grp.lst');
+    deletefile(cfgdir+'grp.lst');
 
     If grptot < 1 Then
       exit;
@@ -1104,15 +1147,7 @@ Begin
     dm.query.SQL.Text:= 'delete from groups;';
     dm.query.ExecSQL;
 
-    dm.grp.Insert;
-    dm.grpdesc.Text:=
-      'These packages are not attached or dependent on a group or package, and are more or less "independant packages" installed by users or administrators to fill specific needs.';
-    dm.grpname.Text:= 'Leaves';
-    dm.grpinstalled.AsBoolean:= True;
-    dm.grp.Post;
-
     dm.grp.DisableControls;
-    getleaves;
 
     dm.rcon.AutoCommit:= False;
     dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
@@ -1143,17 +1178,6 @@ Begin
 
       If gname = '' Then
         break;
-
-      //If (gname = 'KDE Educational applications') or (gname = 'LibreOffice') or
-      //  (gname = 'KDE Office') Then
-      //Begin
-      //  Repeat
-      //    Inc(x);
-      //  Until grplst[x] = '';
-      //
-      //  Inc(x, 2);
-      //  continue;
-      //End;
 
       Inc(x);
       line:= grplst[x];
@@ -1192,10 +1216,12 @@ Begin
         dm.rcon.Commit;
         r:= 1;
       Except
-        dm.grp.Cancel;
+        //dm.grp.Cancel;
         Inc(x);
         continue;
       End;
+
+      //dm.rcon.Commit;
 
       While grplst[x] <> '' Do
       Begin
@@ -1204,20 +1230,11 @@ Begin
         line:= trimleft(line);
         fname:= line;
 
-        ln:= installed(fname);
+        ln:= installed(fname+'.'+myarch);
 
-        If ok Then
+        If (ok = true) Then
         Begin
-          line:= instlst[ln];
-          fname:= stripto(line, ' ');
-
-          //dm.query.Close;
-          //dm.query.SQL.Text:= 'select * from packages where name= ' +
-          //					fname.QuotedString + ';';
-          //dm.query.Open;
-          //
-          //pkgroup:= dm.query.FieldByName('Group').Text;
-          //pkgroup:= pkgroup + ' ' + gname;
+        fname:= fname+'.'+myarch;
 
           sql:= 'update packages set grp = ' +
           #39 + gname + #39 +
@@ -1228,7 +1245,7 @@ Begin
         End
         Else
         Begin
-          fname:= line;
+        fname:= line;
 
           dm.query.sql.Clear;
           dm.query.SQL.Text:= 'select * from packages where name like ' + #39 + fname + '%' + #39 + ';';
@@ -1258,7 +1275,7 @@ Begin
           dm.rcon.ExecuteDirect(sql);
         End;
 
-        If r > 150 Then
+        If r > 2000 Then
         Begin
           dm.rcon.Commit;
           r:= 0;
@@ -1273,6 +1290,14 @@ Begin
       Inc(x, 2);
     End;
 
+    dm.grp.Insert;
+    dm.grpdesc.Text:=
+      'These packages are not attached or dependent on a group or package, and are more or less "independant packages" installed by users or administrators to fill specific needs.';
+    dm.grpname.Text:= 'Leaves';
+    dm.grpinstalled.AsBoolean:= True;
+    dm.grp.Post;
+
+    getleaves;
     dm.grp.EnableControls;
     grplst.Free;
     dm.resetdb;
@@ -1304,10 +1329,12 @@ Begin
 
     application.ProcessMessages;
 
-    ok:= exec('/usr/bin/dnf5', ['repo', 'info','--all']);
-    repolst.Text:= outp;
+    ok:= rootexec(dnf+' repo info --all > '+cfgdir+'repo.lst',admin);
+    repolst.LoadFromFile(cfgdir+'repo.lst');
+    //repolst.Text:= outp;
     //repolst.SaveToFile(mydir+'repo.lst');
     repotot:= repolst.Count;
+    deletefile(cfgdir+'repo.lst');
 
     If repotot < 1 Then
       exit;

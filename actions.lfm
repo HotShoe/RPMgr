@@ -3,6 +3,8 @@ object actfrm: Tactfrm
   Height = 768
   Top = 141
   Width = 452
+  HelpType = htKeyword
+  HelpKeyword = 'help/.Actions.htm.htm'
   Anchors = [akLeft]
   Caption = 'Pending Actions'
   ClientHeight = 768
@@ -21,6 +23,8 @@ object actfrm: Tactfrm
     Height = 48
     Top = 720
     Width = 452
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Actions.htm'
     Align = alBottom
     ClientHeight = 48
     ClientWidth = 452
@@ -298,6 +302,8 @@ object actfrm: Tactfrm
     Height = 720
     Top = 0
     Width = 452
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Actions.htm'
     Align = alClient
     Color = clWhite
     ColCount = 2

@@ -260,7 +260,6 @@ object filefrm: Tfilefrm
     Color = clWhite
     Font.Color = clBlack
     Font.Height = -19
-    Font.Style = [fsBold]
     ParentFont = False
     ScrollBars = ssAutoBoth
     TabOrder = 1

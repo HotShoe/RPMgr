@@ -3,6 +3,8 @@ object applyfrm: Tapplyfrm
   Height = 643
   Top = 123
   Width = 1195
+  HelpType = htKeyword
+  HelpKeyword = 'help/.Apply.htm'
   Caption = 'Apply Changes'
   ClientHeight = 643
   ClientWidth = 1195
@@ -17,6 +19,8 @@ object applyfrm: Tapplyfrm
     Height = 50
     Top = 593
     Width = 1195
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Apply.htm'
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 1195
@@ -463,6 +467,8 @@ object applyfrm: Tapplyfrm
     Height = 593
     Top = 0
     Width = 1195
+    HelpType = htKeyword
+    HelpKeyword = 'help/.Apply.htm'
     Align = alClient
     Color = clWhite
     Font.Color = clBlack

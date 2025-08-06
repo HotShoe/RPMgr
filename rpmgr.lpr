@@ -25,6 +25,7 @@ Uses
     {$ENDIF}
     Interfaces, // this includes the LCL widgetset
     Forms,
+    lhelpcontrolpkg,
     main,
     Data,
     notes,

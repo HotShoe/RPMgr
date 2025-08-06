@@ -207,6 +207,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="lhelpcontrolpkg"/>
+      </Item>
+      <Item>
         <PackageName Value="SQLDBLaz"/>
       </Item>
       <Item>
@@ -220,9 +223,6 @@
       </Item>
       <Item>
         <PackageName Value="zcomponent"/>
-      </Item>
-      <Item>
-        <PackageName Value="jem"/>
       </Item>
       <Item>
         <PackageName Value="bgracontrols"/>

@@ -49,7 +49,8 @@ implementation
 uses
     binexec,
     globs,
-    mlstr;
+    mlstr,
+    repo;
 
 {$R *.lfm}
 
@@ -65,13 +66,14 @@ begin
      else
      enb:= '0';
 
-     ok:= rootexec('/usr/bin/dnf5 config-manager addrepo --set=baseurl='+
+     ok:= rootexec(dnf+' config-manager addrepo --set=baseurl='+
                basetxt.Text + ' --set=id=' + repotxt.Text +
                ' --set=enabled=' + enb,admin);
 
      if ok then
      begin
      showmessage('Repo has been added');
+     repofrm.repochanged:= true;
      close;
      end
      else
