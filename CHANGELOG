@@ -2,6 +2,8 @@ Changelog for RPMgr Beta
 ###########
 0.9.7 Beta
 08-03-25 - .5 release
+08-05-25 - Finished the popup menu in the installed files dialog. no idea why I hadn't enabled half of the items.
+08-05-25 - added list files command to search results popup menu. Enabled if package is installed
 08-05-25 - Wrote several of the help pages and set up the help system in the program
 08-05-25 - Fixed a bug in checkup. It was looking for the wrong condition to set ok = true resulting in erratic behaviour.
 - Fixed several errors in the setup script file. it was not setting permissions correctly. This file will not be needed once rpmgr is packaged.
