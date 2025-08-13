@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CONFIG>
+  <Files>
+    <Count Value="50"/>
+    <FileName0 Value="actionbtns.png" ContextName="" ContextNumber="0"/>
+    <FileName1 Value="action.png" ContextName="" ContextNumber="0"/>
+    <FileName2 Value="Addrepo.htm" ContextName="" ContextNumber="0"/>
+    <FileName3 Value="addrepo.png" ContextName="" ContextNumber="0"/>
+    <FileName4 Value="afterupdate.png" ContextName="" ContextNumber="0"/>
+    <FileName5 Value="applybtn.png" ContextName="" ContextNumber="0"/>
+    <FileName6 Value="apply.png" ContextName="" ContextNumber="0"/>
+    <FileName7 Value="bottomrow.png" ContextName="" ContextNumber="0"/>
+    <FileName8 Value="Config.htm" ContextName="" ContextNumber="0"/>
+    <FileName9 Value="config.png" ContextName="" ContextNumber="0"/>
+    <FileName10 Value="desc.png" ContextName="" ContextNumber="0"/>
+    <FileName11 Value="distbtn.png" ContextName="" ContextNumber="0"/>
+    <FileName12 Value="files.png" ContextName="" ContextNumber="0"/>
+    <FileName13 Value="fixbtn.png" ContextName="" ContextNumber="0"/>
+    <FileName14 Value="Group-management.htm" ContextName="" ContextNumber="0"/>
+    <FileName15 Value="Groups.htm" ContextName="" ContextNumber="0"/>
+    <FileName16 Value="groups.png" ContextName="" ContextNumber="0"/>
+    <FileName17 Value="grpmnu.png" ContextName="" ContextNumber="0"/>
+    <FileName18 Value="_index.hhk" ContextName="" ContextNumber="0"/>
+    <FileName19 Value="Installed-files.htm" ContextName="" ContextNumber="0"/>
+    <FileName20 Value="installed.png" ContextName="" ContextNumber="0"/>
+    <FileName21 Value="Installing.htm" ContextName="" ContextNumber="0"/>
+    <FileName22 Value="instbutton.png" ContextName="" ContextNumber="0"/>
+    <FileName23 Value="instmnu.png" ContextName="" ContextNumber="0"/>
+    <FileName24 Value="integbtn.png" ContextName="" ContextNumber="0"/>
+    <FileName25 Value="Intro.htm" ContextName="" ContextNumber="0"/>
+    <FileName26 Value="List-files.htm" ContextName="" ContextNumber="0"/>
+    <FileName27 Value="login.png" ContextName="" ContextNumber="0"/>
+    <FileName28 Value="Main.htm" ContextName="" ContextNumber="0"/>
+    <FileName29 Value="main.png" ContextName="" ContextNumber="0"/>
+    <FileName30 Value="main-updates.png" ContextName="" ContextNumber="0"/>
+    <FileName31 Value="optionmnu.png" ContextName="" ContextNumber="0"/>
+    <FileName32 Value="Packages.htm" ContextName="" ContextNumber="0"/>
+    <FileName33 Value="packages.png" ContextName="" ContextNumber="0"/>
+    <FileName34 Value="pkgmnu.png" ContextName="" ContextNumber="0"/>
+    <FileName35 Value="provbtn.png" ContextName="" ContextNumber="0"/>
+    <FileName36 Value="repobtn.png" ContextName="" ContextNumber="0"/>
+    <FileName37 Value="Repos.htm" ContextName="" ContextNumber="0"/>
+    <FileName38 Value="repos.png" ContextName="" ContextNumber="0"/>
+    <FileName39 Value="rpmgr.png" ContextName="" ContextNumber="0"/>
+    <FileName40 Value="searchdialog.png" ContextName="" ContextNumber="0"/>
+    <FileName41 Value="Search.htm" ContextName="" ContextNumber="0"/>
+    <FileName42 Value="search.png" ContextName="" ContextNumber="0"/>
+    <FileName43 Value="searchpopup.png" ContextName="" ContextNumber="0"/>
+    <FileName44 Value="taskmnu.png" ContextName="" ContextNumber="0"/>
+    <FileName45 Value="upactive.png" ContextName="" ContextNumber="0"/>
+    <FileName46 Value="updatebtn.png" ContextName="" ContextNumber="0"/>
+    <FileName47 Value="Updates.htm" ContextName="" ContextNumber="0"/>
+    <FileName48 Value="updates.png" ContextName="" ContextNumber="0"/>
+    <FileName49 Value="upnotice.png" ContextName="" ContextNumber="0"/>
+  </Files>
+  <OtherFiles>
+    <Count Value="0"/>
+  </OtherFiles>
+  <Windows>
+    <Count Value="0"/>
+  </Windows>
+  <MergeFiles>
+    <Count Value="0"/>
+  </MergeFiles>
+  <Settings>
+    <IndexFile Value="_index.hhk"/>
+    <TOCFile Value="rpmgr.hhc"/>
+    <MakeBinaryTOC Value="True"/>
+    <MakeBinaryIndex Value="False"/>
+    <AutoFollowLinks Value="False"/>
+    <MakeSearchable Value="True"/>
+    <DefaultPage Value="Intro.htm"/>
+    <Title Value=""/>
+    <OutputFileName Value="rpmgr.chm"/>
+    <DefaultFont Value=""/>
+    <DefaultWindow Value=""/>
+    <ScanHtmlContents Value="False"/>
+    <LocaleID Value="1033"/>
+  </Settings>
+</CONFIG>

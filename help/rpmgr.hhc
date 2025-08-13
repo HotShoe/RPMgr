@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+        <param name="ImageType" value="Folder">
+        <param name="Font" value="sans">
+</OBJECT>
+<UL>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Introduction">
+                <param name="Local" value="Intro.htm">
+             </OBJECT>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Main window">
+                <param name="Local" value="Main.htm">
+             </OBJECT>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Group panel">
+                <param name="Local" value="Groups.htm">
+             </OBJECT>
+        <UL> 
+                <LI> <OBJECT type="text/sitemap">
+                        <param name="Name" value="Installing">
+                        <param name="Local" value="Installing.htm">
+                     </OBJECT>
+                <LI> <OBJECT type="text/sitemap">
+                        <param name="Name" value="Managing groups">
+                        <param name="Local" value="Group-management.htm">
+                     </OBJECT>
+        </UL>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Packages panel">
+                <param name="Local" value="Packages.htm">
+             </OBJECT>
+        <UL> 
+                <LI> <OBJECT type="text/sitemap">
+                        <param name="Name" value="Installing">
+                        <param name="Local" value="Installing.htm">
+                     </OBJECT>
+                <LI> <OBJECT type="text/sitemap">
+                        <param name="Name" value="Installed packages">
+                        <param name="Local" value="Installed-files.htm">
+                     </OBJECT>
+                <UL> 
+                        <LI> <OBJECT type="text/sitemap">
+                                <param name="Name" value="List package contents">
+                                <param name="Local" value="List-files.htm">
+                             </OBJECT>
+                </UL>
+        </UL>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Repository management">
+                <param name="Local" value="Repos.htm">
+             </OBJECT>
+        <UL> 
+                <LI> <OBJECT type="text/sitemap">
+                        <param name="Name" value="Adding repositories">
+                        <param name="Local" value="Addrepo.htm">
+                     </OBJECT>
+        </UL>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Searches">
+                <param name="Local" value="Search.htm">
+             </OBJECT>
+        <LI> <OBJECT type="text/sitemap">
+                <param name="Name" value="Updates">
+                <param name="Local" value="Updates.htm">
+             </OBJECT>
+</UL>
+</BODY></HTML>
