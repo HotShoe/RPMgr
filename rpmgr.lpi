@@ -8,6 +8,7 @@
       <Scaled Value="True"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
         <TextName Value="org.mlsoft.rpmgr"/>

@@ -19,7 +19,8 @@ unit addrepo;
 interface
 
 uses
- Classes, SysUtils, Forms, Controls, Graphics, Dialogs,StdCtrls,BCButton;
+ Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, LazHelpCHM,
+ BCButton;
 
 type
 

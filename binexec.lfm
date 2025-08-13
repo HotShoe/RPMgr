@@ -3,6 +3,9 @@ object loginfrm: Tloginfrm
   Height = 238
   Top = 302
   Width = 708
+  HelpType = htKeyword
+  HelpKeyword = 'help/Intro.htm'
+  AutoSize = True
   Caption = 'Authentication Required'
   ClientHeight = 238
   ClientWidth = 708
@@ -543,7 +546,7 @@ object loginfrm: Tloginfrm
     0000
   }
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object Label1: TLabel
     Left = 40
@@ -613,6 +616,8 @@ object loginfrm: Tloginfrm
     Hint = 'Type in your administrator password. This is CASE DEPENDENT.'
     Top = 131
     Width = 593
+    HelpType = htKeyword
+    HelpKeyword = 'help/Intro.htm'
     Color = clWhite
     EchoMode = emPassword
     Font.Color = clBlack

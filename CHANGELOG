@@ -1,5 +1,20 @@
 Changelog for RPMgr Beta
 ###########
+0.9.8.5 Beta
+o8-14-25 - .5 release
+08-13-25 - re-wrote setup file to include help file
+08-13-25 - Help system connected and working for all pages
+08-12-25 - finished writing help pages and compiled chm file
+
+###########
+0.9.8 Beta
+08-11-25 - recompiled lazarus/fpc to version 4.3 with fixes in trunk. This fixes several irritating little things
+08-11-25 - Increased execution speed through the exec routines in binexec
+08-11-25 - Fixed a long standing error in the exec routines. This sometimes caused the checkup and other routines to  get no input from dnf5. This would result in not listing items into an info box, or reporting that no updates were waiting. Both root and non-root exec functions seem to be working as intended and are stable now.
+08-10-25 - More help pages done. Need to decide whether to build the Help system around individual help .html files of compile into a single .CHM file.
+08-10-25 - Matched license display in About to final install dir from the RPM file (/usr/share/licenses/rpmgr/LICENSE)
+
+###########
 0.9.7 Beta
 08-03-25 - .5 release
 08-05-25 - Finished the popup menu in the installed files dialog. no idea why I hadn't enabled half of the items.

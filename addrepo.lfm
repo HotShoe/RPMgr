@@ -4,7 +4,7 @@ object addrepofrm: Taddrepofrm
   Top = 195
   Width = 992
   HelpType = htKeyword
-  HelpKeyword = 'help/.Addrepo.htm'
+  HelpKeyword = 'help/Addrepo.htm'
   Caption = 'Add a Repository'
   ClientHeight = 248
   ClientWidth = 992
@@ -13,15 +13,16 @@ object addrepofrm: Taddrepofrm
   Font.Height = -19
   Font.Name = 'Sans'
   Font.Style = [fsBold]
+  HelpFile = 'rpmgr.chm'
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   object repotxt: TEdit
     Left = 8
     Height = 44
     Top = 118
     Width = 971
     HelpType = htKeyword
-    HelpKeyword = 'help/.Addrepo.htm'
+    HelpKeyword = 'help/Addrepo.htm'
     Color = clWhite
     TabOrder = 1
   end
@@ -45,7 +46,7 @@ object addrepofrm: Taddrepofrm
     Top = 37
     Width = 971
     HelpType = htKeyword
-    HelpKeyword = 'help/.Addrepo.htm'
+    HelpKeyword = 'help/Addrepo.htm'
     Color = clWhite
     TabOrder = 0
     OnExit = basetxtExit

@@ -3,6 +3,8 @@ object filefrm: Tfilefrm
   Height = 785
   Top = 152
   Width = 733
+  HelpType = htKeyword
+  HelpKeyword = 'help/Files.htm'
   Caption = 'Files in package'
   ClientHeight = 785
   ClientWidth = 733
@@ -10,8 +12,9 @@ object filefrm: Tfilefrm
   Font.Color = clBlack
   Font.Height = -19
   Font.Name = 'Sans'
+  HelpFile = '/usr/share/rpmgr/rpmgr.chm'
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object Panel1: TPanel
     Left = 0

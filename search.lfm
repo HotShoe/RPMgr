@@ -4,7 +4,7 @@ object srchfrm: Tsrchfrm
   Top = 144
   Width = 1144
   HelpType = htKeyword
-  HelpKeyword = 'help/.Search.htm'
+  HelpKeyword = 'help/Search.htm'
   Caption = 'Search Results'
   ClientHeight = 687
   ClientWidth = 1144
@@ -13,7 +13,7 @@ object srchfrm: Tsrchfrm
   Font.Height = -19
   Font.Name = 'Sans'
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object srchgrid: TDBGrid
     Left = 0
@@ -21,7 +21,7 @@ object srchfrm: Tsrchfrm
     Top = 0
     Width = 1144
     HelpType = htKeyword
-    HelpKeyword = 'help/.Search.htm'
+    HelpKeyword = 'help/Search.htm'
     Align = alClient
     AutoEdit = False
     Color = clWhite
@@ -351,7 +351,7 @@ object srchfrm: Tsrchfrm
     Top = 517
     Width = 1144
     HelpType = htKeyword
-    HelpKeyword = 'help/.Descriptions.htm'
+    HelpKeyword = 'help/Search.htm'
     Align = alBottom
     Color = clAqua
     DataField = 'Desc'
@@ -387,6 +387,11 @@ object srchfrm: Tsrchfrm
     object srchapply: TMenuItem
       Caption = 'Apply'
       OnClick = srchapplyClick
+    end
+    object srchlist: TMenuItem
+      Caption = 'List files'
+      Enabled = False
+      OnClick = srchlistClick
     end
     object Separator1: TMenuItem
       Caption = '-'

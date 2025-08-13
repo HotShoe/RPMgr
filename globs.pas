@@ -28,7 +28,7 @@ Uses
     Dialogs;
 
 Const
-    ver = '0.9.7';
+    ver = '0.9.8';
 
 Type
     Titemrec = Class
@@ -52,6 +52,7 @@ Type
       dnf,
       rpm,
       cmd : shortstring;
+      dpi : word;
     End;
 
 Var
@@ -627,7 +628,8 @@ End;
 {Check for updates}
 Procedure checkup;
 Begin
-    ok:= run('Checking for updates',dnf,'check-upgrade','update');
+    uptot:= 0;
+    ok:= exec(dnf,['check-upgrade']);
 
     If (not ok) Then
     Begin
@@ -635,17 +637,13 @@ Begin
       exit;
     End;
 
-    If ok Then
-    Begin
       uplst.Text:= OutP;
 
-      If uplst.Count > 2 Then
+      If uplst.Count > 0 Then
       Begin
         uptot:= uplst.Count;
         application.ProcessMessages;
       End;
-
-    End;
 
     notefrm.Close;
 End;

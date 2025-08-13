@@ -11,7 +11,7 @@ object aboutfrm: Taboutfrm
   Font.Name = 'Sans'
   Font.Style = [fsBold]
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object Panel1: TPanel
     Left = 0
@@ -311,7 +311,7 @@ object aboutfrm: Taboutfrm
         Lines.Strings = (
           'RPMgr'
           'RPM Management Software'
-          'Version 0.9.6'
+          'Version 0.9.8'
           ''
           'This is copyrighted software. See the file license.txt for rights and useage information.'
         )

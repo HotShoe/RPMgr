@@ -4,7 +4,7 @@ object repofrm: Trepofrm
   Top = 141
   Width = 1417
   HelpType = htKeyword
-  HelpKeyword = 'help/.Repos.htm'
+  HelpKeyword = 'help/Repos.htm'
   Caption = 'Repository Management'
   ClientHeight = 758
   ClientWidth = 1417
@@ -12,8 +12,9 @@ object repofrm: Trepofrm
   Font.Color = clBlack
   Font.Height = -19
   Font.Name = 'Sans'
+  HelpFile = '/usr/share/rpmgr/rpmgr.chm'
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object Panel1: TPanel
     Left = 0
@@ -31,7 +32,7 @@ object repofrm: Trepofrm
       Top = 1
       Width = 526
       HelpType = htKeyword
-      HelpKeyword = 'help/.Repos.htm'
+      HelpKeyword = 'help/Repos.htm'
       Align = alClient
       Color = clCream
       Columns = <      
@@ -118,7 +119,7 @@ object repofrm: Trepofrm
     Top = 49
     Width = 872
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'Name'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -182,7 +183,7 @@ object repofrm: Trepofrm
     Top = 504
     Width = 872
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     Color = clAqua
     DataField = 'Info'
     DataSource = dm.reposrc
@@ -196,7 +197,7 @@ object repofrm: Trepofrm
     Top = 264
     Width = 872
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'BaseURL'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -210,7 +211,7 @@ object repofrm: Trepofrm
     Top = 192
     Width = 872
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'Config'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -224,7 +225,7 @@ object repofrm: Trepofrm
     Top = 336
     Width = 872
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'MetaLink'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -238,7 +239,7 @@ object repofrm: Trepofrm
     Top = 408
     Width = 872
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'Keys'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -252,7 +253,7 @@ object repofrm: Trepofrm
     Top = 456
     Width = 80
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'VerifyRepo'
     DataSource = dm.reposrc
     Color = clWhite
@@ -265,7 +266,7 @@ object repofrm: Trepofrm
     Top = 456
     Width = 80
     HelpType = htKeyword
-    HelpKeyword = 'help/.Repos.htm'
+    HelpKeyword = 'help/Repos.htm'
     DataField = 'VerifyPkg'
     DataSource = dm.reposrc
     ReadOnly = True
@@ -1222,6 +1223,8 @@ object repofrm: Trepofrm
     Height = 29
     Top = 104
     Width = 98
+    HelpType = htKeyword
+    HelpKeyword = 'help/Repos.htm'
     Caption = 'Enabled'
     TabOrder = 9
     OnMouseDown = statboxMouseDown

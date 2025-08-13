@@ -110,6 +110,9 @@ begin
      instunall.Enabled:= false;
      end;
 
+     instshowfiles.Enabled:= true;
+     instuninst.Enabled:= true;
+
 end;
 
 procedure Tinstfrm.instshowfilesClick(Sender: TObject);

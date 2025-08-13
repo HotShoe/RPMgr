@@ -21,7 +21,7 @@ Interface
 Uses
     Classes,
     SysUtils,
-    fileutil,
+    fileutil, LazHelpCHM,
     Dialogs,
     forms,
     DB,
@@ -36,6 +36,8 @@ Type
     { Tdm }
 
     Tdm = Class(TDataModule)
+      CHMDB: TCHMHelpDatabase;
+      helpcon: TLHelpConnector;
       reposBaseURL : TZRawStringField;
       reposConfig : TZRawStringField;
       reposInfo : TZRawStringField;

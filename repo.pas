@@ -28,7 +28,7 @@ uses
     DBCtrls,
     ExtCtrls,
     DBGrids,
-    StdCtrls,
+    StdCtrls, LazHelpCHM,
     BCButton;
 
 type

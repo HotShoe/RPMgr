@@ -30,6 +30,7 @@ type
   applybtn: TBCButton;
   closebtn: TBCButton;
   MenuItem1: TMenuItem;
+  srchlist : TMenuItem;
   srchclose: TMenuItem;
   Separator1: TMenuItem;
   srchundo: TMenuItem;
@@ -46,6 +47,7 @@ type
   procedure FormShow(Sender: TObject);
   procedure srchcloseClick(Sender: TObject);
   procedure srchinstallClick(Sender: TObject);
+  procedure srchlistClick(Sender : TObject);
   procedure srchmnuPopup(Sender: TObject);
   procedure srchreinstClick(Sender: TObject);
   procedure srchundoallClick(Sender: TObject);
@@ -128,6 +130,11 @@ begin
 
 end;
 
+ procedure Tsrchfrm.srchlistClick(Sender : TObject);
+begin
+
+end;
+
 procedure Tsrchfrm.srchmnuPopup(Sender: TObject);
 begin
      if dm.pkgInstalled.AsBoolean then
@@ -135,12 +142,14 @@ begin
      srchinstall.Enabled:= false;
      srchreinst.Enabled:= true;
      srchuninstall.Enabled:= true;
+     srchlist.Enabled:= true;
      end
      else
      begin
      srchinstall.Enabled:= true;
      srchreinst.Enabled:= false;
      srchuninstall.Enabled:= false;
+     srchlist.Enabled:= false;
      end;
 
      if optot > 0 then

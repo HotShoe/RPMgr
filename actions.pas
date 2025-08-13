@@ -20,7 +20,7 @@ interface
 
 uses
  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
- Grids, Menus, BCButton, Types;
+ Grids, Menus, LazHelpCHM, BCButton, Types;
 
 type
 

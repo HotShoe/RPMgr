@@ -1,19 +1,19 @@
 object cfgfrm: Tcfgfrm
   Left = 451
-  Height = 492
+  Height = 535
   Top = 147
   Width = 442
   HelpType = htKeyword
-  HelpKeyword = 'help/.Config.htm'
+  HelpKeyword = 'help/Config.htm'
   Caption = 'Options'
-  ClientHeight = 492
+  ClientHeight = 535
   ClientWidth = 442
   Color = 12768223
   Font.Color = clBlack
   Font.Height = -19
   Font.Name = 'Sans'
   Font.Style = [fsBold]
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   object Label1: TLabel
     Left = 84
     Height = 27
@@ -76,7 +76,7 @@ object cfgfrm: Tcfgfrm
     Top = 78
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -88,7 +88,7 @@ object cfgfrm: Tcfgfrm
     Top = 124
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -100,7 +100,7 @@ object cfgfrm: Tcfgfrm
     Top = 170
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -111,7 +111,7 @@ object cfgfrm: Tcfgfrm
     Top = 216
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -123,7 +123,7 @@ object cfgfrm: Tcfgfrm
     Top = 262
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -135,7 +135,7 @@ object cfgfrm: Tcfgfrm
     Top = 308
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -147,7 +147,7 @@ object cfgfrm: Tcfgfrm
     Top = 354
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -159,7 +159,7 @@ object cfgfrm: Tcfgfrm
     Top = 400
     Width = 75
     HelpType = htKeyword
-    HelpKeyword = 'help/.Config.htm'
+    HelpKeyword = 'help/Config.htm'
     BorderWidth = 2
     ButtonColorSize = 16
     ButtonColor = clBlack
@@ -196,7 +196,7 @@ object cfgfrm: Tcfgfrm
     Left = 112
     Height = 41
     Hint = 'Save config and close'
-    Top = 440
+    Top = 488
     Width = 147
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -369,7 +369,7 @@ object cfgfrm: Tcfgfrm
     Left = 312
     Height = 41
     Hint = 'Close without saving'
-    Top = 440
+    Top = 488
     Width = 123
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -536,5 +536,24 @@ object cfgfrm: Tcfgfrm
     ShowHint = True
     TextApplyGlobalOpacity = False
     MemoryUsage = bmuHigh
+  end
+  object Label10: TLabel
+    Left = 133
+    Height = 27
+    Top = 443
+    Width = 171
+    Caption = 'Display DPI to use'
+  end
+  object dpitxt: TEdit
+    Left = 334
+    Height = 36
+    Top = 442
+    Width = 66
+    HelpType = htKeyword
+    HelpKeyword = 'help/Config.htm'
+    Alignment = taRightJustify
+    AutoSize = False
+    TabOrder = 1
+    Text = '96'
   end
 end

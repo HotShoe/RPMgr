@@ -23,7 +23,7 @@ Uses
     Math;
 
 Const
-    BUF_SIZE = 16364; // Buffer size for reading the output in chunks
+    BUF_SIZE = 16384; // Buffer size for reading the output in chunks
 
 Type
     opt = Array Of Shortstring;
@@ -267,7 +267,7 @@ Begin
 
     {If an error did occur, all output should have been written to your memo
     before getting here, so OutP will only contain a duplicate of that output.}
-    Result:= Errnum = 0;
+    Result:= (errnum = 0) or (outp > '');
 
 End;
 
@@ -311,7 +311,7 @@ Begin
     {Needed on fast systems. you can play with this value. 10 works well for
       many modern systems, but remember that the end user may have an older,
       slower machine than you do.}
-    //sleep(30);
+    sleep(30);
 
     Repeat // long repeat to ensure that we get all data
 
@@ -323,17 +323,16 @@ Begin
         If bytes > 0 Then
         Begin
           //Read each line of output from the command process
-          BytesRead:= Aproc.Output.Read(Buffer[1], min(bytes, buf_size));
+          BytesRead:= Aproc.Output.Read(Buffer[1], min(bytes, buf_size-1));
           OutP     := OutP + copy(buffer, 1, bytesread);
 
         End;
 
       Finally
-        errnum:= aproc.exitcode;
-        application.ProcessMessages
+
       End;
 
-        //sleep(30);
+        sleep(30);
       Until (Bytes = 0);
 
       //Clear the buffers so we don't keep old stuff
@@ -351,10 +350,9 @@ Begin
           If pos('sudo', errbuf) > 0 Then
             line:= stripto(errstr, ':');
 
-          application.ProcessMessages;
         End;
 
-        //sleep(30);
+        sleep(30);
       Until (cnt = 0);
 
       //Keep reading output until the process ends and there is no more output data to read
@@ -362,14 +360,15 @@ Begin
       (aproc.Running = False);
 
     //After the process has finished we clean up our mess
-    Errnum:= Aproc.exitcode;
+    Errnum:= Aproc.ExitCode;
     Aproc.Destroy;
     aproc:= nil;
+    application.ProcessMessages;
 
     {NOTE: It is very possible to get a process error and still have useful
     output in the OutP variable. if an exec call exits with an error code,
     check to see if OutP has data before reporting an error and aborting.}
-    Result:= errnum = 0;
+    Result:= (errnum = 0) or (outp > '');
 
 End;
 
@@ -527,7 +526,7 @@ Begin
 
     {If an error did occur, all output should have been written to your memo
     before getting here, so OutP will only contain a duplicate of that output.}
-    Result:= Errnum = 0;
+    Result:= (errnum = 0) or (outp > '');
 
 End;
 
@@ -666,7 +665,7 @@ Begin
     {NOTE: It is very possible to get a process error and still have useful
     output in the OutP variable. if an exec call exits with an error code,
     check to see if OutP has data before reporting an error and aborting.}
-    Result:= Errnum = 0;
+    Result:= (errnum = 0) or (outp > '');
 
 End;
 

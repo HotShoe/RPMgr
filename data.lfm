@@ -386,4 +386,17 @@ object dm: Tdm
       Size = 1000
     end
   end
+  object CHMDB: TCHMHelpDatabase
+    AutoRegister = True
+    Filename = '/usr/share/rpmgr/rpmgr.chm'
+    KeywordPrefix = 'help'
+    Left = 32
+    Top = 192
+  end
+  object helpcon: TLHelpConnector
+    LHelpPath = '/usr/bin/lhelp'
+    AutoRegister = True
+    Left = 128
+    Top = 192
+  end
 end

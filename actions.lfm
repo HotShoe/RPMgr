@@ -4,7 +4,7 @@ object actfrm: Tactfrm
   Top = 141
   Width = 452
   HelpType = htKeyword
-  HelpKeyword = 'help/.Actions.htm.htm'
+  HelpKeyword = 'help/Actions.htm'
   Anchors = [akLeft]
   Caption = 'Pending Actions'
   ClientHeight = 768
@@ -16,7 +16,7 @@ object actfrm: Tactfrm
   PopupMenu = actmnu
   SnapOptions.SnapFormTarget = False
   SnapOptions.Distance = 1
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnCreate = FormCreate
   object Panel1: TPanel
     Left = 0
@@ -303,7 +303,7 @@ object actfrm: Tactfrm
     Top = 0
     Width = 452
     HelpType = htKeyword
-    HelpKeyword = 'help/.Actions.htm'
+    HelpKeyword = 'help/Actions.htm'
     Align = alClient
     Color = clWhite
     ColCount = 2

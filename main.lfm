@@ -1,36 +1,38 @@
 object mainfrm: Tmainfrm
   Left = 271
-  Height = 800
+  Height = 768
   Top = 75
-  Width = 1587
+  Width = 1524
   HelpType = htKeyword
-  HelpKeyword = 'help/.Main.htm'
+  HelpKeyword = 'help/Main.htm'
   Anchors = []
-  Caption = 'RPMgr v 0.9.6'
-  ClientHeight = 800
-  ClientWidth = 1587
+  Caption = 'RPMgr v 1.0.0'
+  ClientHeight = 768
+  ClientWidth = 1524
   Color = 12768223
-  Constraints.MinHeight = 800
-  Constraints.MinWidth = 1464
+  Constraints.MinHeight = 768
+  Constraints.MinWidth = 1405
   DefaultMonitor = dmMainForm
   Font.Color = clBlack
-  Font.Height = -19
+  Font.Height = -18
   Font.Name = 'Sans'
+  HelpFile = '/usr/share/rpmgr/rpmgr.chm'
   Menu = mainmnu
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   object srchtxt: TEdit
     Left = 5
-    Height = 44
-    Top = 24
-    Width = 392
+    Height = 43
+    Top = 23
+    Width = 376
     HelpType = htKeyword
-    HelpKeyword = 'help/.Search.htm'
+    HelpKeyword = 'help/Search.htm'
     Color = clWhite
     Font.Color = clBlack
-    Font.Height = -19
+    Font.Height = -18
     Font.Name = 'Sans'
     ParentFont = False
     TabOrder = 0
@@ -38,12 +40,12 @@ object mainfrm: Tmainfrm
   end
   object Label1: TLabel
     Left = 8
-    Height = 27
+    Height = 26
     Top = 0
-    Width = 113
+    Width = 111
     Caption = 'Search term'
     Font.Color = clBlack
-    Font.Height = -19
+    Font.Height = -18
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -51,11 +53,11 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = grpgrid
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = provbtn
-    Left = 23
-    Height = 37
+    Left = 22
+    Height = 36
     Hint = 'Showall installed packages'
-    Top = 671
-    Width = 184
+    Top = 644
+    Width = 177
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -133,7 +135,7 @@ object mainfrm: Tmainfrm
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    BorderSpacing.Right = 48
+    BorderSpacing.Right = 46
     Caption = 'Installed'
     Color = clNone
     DropDownWidth = 16
@@ -154,11 +156,11 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Splitter1
     AnchorSideRight.Side = asrBottom
-    Left = 255
-    Height = 37
+    Left = 245
+    Height = 36
     Hint = 'Show the contents of the selected RPM package'
-    Top = 671
-    Width = 185
+    Top = 644
+    Width = 178
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -237,7 +239,7 @@ object mainfrm: Tmainfrm
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    BorderSpacing.Right = 15
+    BorderSpacing.Right = 14
     Caption = 'Provides'
     Color = clNone
     DropDownWidth = 16
@@ -257,11 +259,11 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = instbtn
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = updatebtn
-    Left = 23
-    Height = 37
+    Left = 22
+    Height = 36
     Hint = 'Show or edit repositories'
-    Top = 708
-    Width = 184
+    Top = 680
+    Width = 177
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -340,7 +342,7 @@ object mainfrm: Tmainfrm
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    BorderSpacing.Right = 48
+    BorderSpacing.Right = 46
     Caption = 'Repositories'
     Color = clNone
     DropDownWidth = 16
@@ -361,11 +363,11 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Splitter1
     AnchorSideRight.Side = asrBottom
-    Left = 255
-    Height = 37
+    Left = 245
+    Height = 36
     Hint = 'Show all updates available'
-    Top = 708
-    Width = 185
+    Top = 680
+    Width = 178
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -444,7 +446,7 @@ object mainfrm: Tmainfrm
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    BorderSpacing.Right = 15
+    BorderSpacing.Right = 14
     Caption = 'Updates'
     Color = clNone
     DropDownWidth = 16
@@ -464,11 +466,11 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = repbtn
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = applybtn
-    Left = 23
-    Height = 37
+    Left = 22
+    Height = 36
     Hint = 'Try to fix broken package dependencies'
-    Top = 745
-    Width = 184
+    Top = 716
+    Width = 177
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -547,7 +549,7 @@ object mainfrm: Tmainfrm
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    BorderSpacing.Right = 48
+    BorderSpacing.Right = 46
     Caption = 'Fix Broken'
     Color = clNone
     DropDownWidth = 16
@@ -565,20 +567,20 @@ object mainfrm: Tmainfrm
   end
   object Label2: TLabel
     Left = 8
-    Height = 27
-    Top = 64
-    Width = 177
+    Height = 26
+    Top = 61
+    Width = 168
     Caption = 'Categories/Groups'
     Font.Color = clBlack
-    Font.Height = -19
+    Font.Height = -18
     Font.Style = [fsBold]
     ParentFont = False
   end
   object srchbtn: TSpeedButton
-    Left = 395
-    Height = 40
-    Top = 24
-    Width = 40
+    Left = 379
+    Height = 38
+    Top = 23
+    Width = 38
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
       2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -664,53 +666,53 @@ object mainfrm: Tmainfrm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
-    Left = 455
-    Height = 800
+    Left = 437
+    Height = 768
     Top = 0
-    Width = 1132
+    Width = 1087
     HelpType = htKeyword
     HelpKeyword = 'help/.Packages.htm'
     Align = alRight
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 800
-    ClientWidth = 1132
+    ClientHeight = 768
+    ClientWidth = 1087
     ParentBackground = False
     TabOrder = 1
     object Label3: TLabel
       AnchorSideTop.Control = pkggrid
       AnchorSideTop.Side = asrBottom
       Left = 8
-      Height = 27
-      Top = 560
-      Width = 193
+      Height = 26
+      Top = 538
+      Width = 182
       Caption = 'Package Description'
       Font.Color = clBlack
-      Font.Height = -19
+      Font.Height = -18
       Font.Style = [fsBold]
       ParentFont = False
     end
     object instlbl: TLabel
       AnchorSideTop.Control = pkggrid
       AnchorSideTop.Side = asrBottom
-      Left = 816
-      Height = 27
-      Top = 560
-      Width = 189
+      Left = 783
+      Height = 26
+      Top = 538
+      Width = 178
       Caption = 'Installed packages = '
       Font.Color = clBlack
-      Font.Height = -19
+      Font.Height = -18
       ParentFont = False
     end
     object pkgcnt: TLabel
       AnchorSideTop.Control = pkggrid
       AnchorSideTop.Side = asrBottom
-      Left = 404
-      Height = 27
-      Top = 560
-      Width = 100
+      Left = 388
+      Height = 26
+      Top = 538
+      Width = 95
       Caption = 'Packages ='
       Font.Color = clBlack
-      Font.Height = -19
+      Font.Height = -18
       ParentFont = False
     end
     object desc: TDBMemo
@@ -720,11 +722,11 @@ object mainfrm: Tmainfrm
       AnchorSideRight.Control = pkgpan
       AnchorSideRight.Side = asrBottom
       Left = 6
-      Height = 157
-      Top = 587
-      Width = 1120
+      Height = 150
+      Top = 564
+      Width = 1075
       HelpType = htKeyword
-      HelpKeyword = 'help/.Descriptions'
+      HelpKeyword = 'help/Packages.htm'
       Anchors = [akTop, akLeft, akRight, akBottom]
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
@@ -732,7 +734,7 @@ object mainfrm: Tmainfrm
       DataField = 'desc'
       DataSource = dm.pkgsrc
       Font.Color = clBlack
-      Font.Height = -19
+      Font.Height = -18
       Font.Name = 'Sans'
       Font.Style = [fsBold]
       ParentFont = False
@@ -747,11 +749,11 @@ object mainfrm: Tmainfrm
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = pkgpan
       AnchorSideRight.Side = asrBottom
-      Left = 995
-      Height = 41
+      Left = 956
+      Height = 39
       Hint = 'Close RPMgr'
-      Top = 749
-      Width = 123
+      Top = 719
+      Width = 118
       Anchors = [akTop, akRight]
       StateClicked.Background.Gradient1.StartColor = 8404992
       StateClicked.Background.Gradient1.EndColor = 4194304
@@ -831,7 +833,7 @@ object mainfrm: Tmainfrm
       StateNormal.FontEx.ShadowOffsetY = 1
       StateNormal.FontEx.Style = [fsBold]
       BorderSpacing.Top = 5
-      BorderSpacing.Right = 13
+      BorderSpacing.Right = 12
       Caption = 'Close'
       Color = clNone
       DropDownWidth = 16
@@ -926,11 +928,11 @@ object mainfrm: Tmainfrm
     object integritybtn: TBCButton
       AnchorSideTop.Control = desc
       AnchorSideTop.Side = asrBottom
-      Left = 41
-      Height = 41
+      Left = 35
+      Height = 39
       Hint = 'Test the database integrity'
-      Top = 749
-      Width = 224
+      Top = 719
+      Width = 215
       Anchors = [akTop]
       StateClicked.Background.Gradient1.StartColor = 8404992
       StateClicked.Background.Gradient1.EndColor = 4194304
@@ -1107,11 +1109,11 @@ object mainfrm: Tmainfrm
       AnchorSideRight.Control = pkgpan
       AnchorSideRight.Side = asrBottom
       Left = 1
-      Height = 559
+      Height = 537
       Top = 1
-      Width = 1125
+      Width = 1080
       HelpType = htKeyword
-      HelpKeyword = 'help/.Packages.htm'
+      HelpKeyword = 'help/Packages.htm'
       Anchors = [akTop, akLeft, akRight]
       AutoEdit = False
       BorderSpacing.Right = 5
@@ -1120,17 +1122,17 @@ object mainfrm: Tmainfrm
         item
           Title.Alignment = taCenter
           Title.Caption = 'Inst.'
-          Width = 60
+          Width = 58
           FieldName = 'Installed'
         end      
         item
           Title.Caption = 'Name'
-          Width = 500
+          Width = 480
           FieldName = 'Name'
         end      
         item
           Title.Caption = 'Version'
-          Width = 350
+          Width = 336
           FieldName = 'Version'
         end      
         item
@@ -1152,7 +1154,7 @@ object mainfrm: Tmainfrm
         end      
         item
           Title.Caption = 'Size'
-          Width = 200
+          Width = 192
           FieldName = 'isize'
         end      
         item
@@ -1164,7 +1166,7 @@ object mainfrm: Tmainfrm
       DataSource = dm.pkgsrc
       FixedColor = 12768223
       Font.Color = clBlack
-      Font.Height = -19
+      Font.Height = -18
       Font.Name = 'Sans'
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       ParentFont = False
@@ -1173,18 +1175,18 @@ object mainfrm: Tmainfrm
       Scrollbars = ssAutoBoth
       TabOrder = 1
       TitleFont.Color = clBlack
-      TitleFont.Height = -19
+      TitleFont.Height = -18
       TitleFont.Name = 'Sans'
       TitleFont.Style = [fsBold]
     end
     object distbtn: TBCButton
       AnchorSideTop.Control = desc
       AnchorSideTop.Side = asrBottom
-      Left = 352
-      Height = 41
+      Left = 338
+      Height = 39
       Hint = 'Upgrade tolatest Fedora release'
-      Top = 749
-      Width = 212
+      Top = 719
+      Width = 204
       StateClicked.Background.Gradient1.StartColor = 8404992
       StateClicked.Background.Gradient1.EndColor = 4194304
       StateClicked.Background.Gradient1.GradientType = gtRadial
@@ -1355,13 +1357,13 @@ object mainfrm: Tmainfrm
       MemoryUsage = bmuHigh
     end
     object rootlbl: TLabel
-      Left = 648
-      Height = 27
-      Top = 759
-      Width = 209
+      Left = 622
+      Height = 26
+      Top = 729
+      Width = 200
       Caption = 'Your have Root access'
       Font.Color = clBlack
-      Font.Height = -19
+      Font.Height = -18
       Font.Name = 'Sans'
       Font.Style = [fsBold]
       ParentFont = False
@@ -1373,8 +1375,8 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = Owner
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 450
-    Height = 800
+    Left = 432
+    Height = 768
     Top = 0
     Width = 5
     Align = alNone
@@ -1387,11 +1389,11 @@ object mainfrm: Tmainfrm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
     Left = 5
-    Height = 583
-    Top = 88
-    Width = 440
+    Height = 560
+    Top = 84
+    Width = 422
     HelpType = htKeyword
-    HelpKeyword = 'help/.Groups.htm'
+    HelpKeyword = 'help/Groups.htm'
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoEdit = False
     BorderSpacing.Left = 5
@@ -1402,24 +1404,24 @@ object mainfrm: Tmainfrm
       item
         ButtonStyle = cbsCheckboxColumn
         Title.Caption = 'Inst.'
-        Width = 60
+        Width = 58
         FieldName = 'installed'
       end    
       item
         Title.Caption = 'Name'
-        Width = 340
+        Width = 326
         FieldName = 'name'
       end    
       item
         Title.Caption = 'Description'
-        Width = 400
+        Width = 384
         FieldName = 'desc'
       end>
-    Constraints.MinWidth = 433
+    Constraints.MinWidth = 416
     DataSource = dm.grpsrc
     FixedColor = 12768223
     Font.Color = clBlack
-    Font.Height = -19
+    Font.Height = -18
     Font.Name = 'Sans'
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     ParentFont = False
@@ -1427,7 +1429,7 @@ object mainfrm: Tmainfrm
     ReadOnly = True
     TabOrder = 3
     TitleFont.Color = clBlack
-    TitleFont.Height = -19
+    TitleFont.Height = -18
     TitleFont.Name = 'Sans'
     TitleFont.Style = [fsBold]
     OnMouseDown = grpgridMouseDown
@@ -1437,11 +1439,11 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Splitter1
     AnchorSideRight.Side = asrBottom
-    Left = 255
-    Height = 37
+    Left = 245
+    Height = 36
     Hint = 'Apply all actions'
-    Top = 745
-    Width = 185
+    Top = 716
+    Width = 178
     Anchors = [akTop, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -1520,7 +1522,7 @@ object mainfrm: Tmainfrm
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    BorderSpacing.Right = 15
+    BorderSpacing.Right = 14
     Caption = 'Apply Changes'
     Color = clNone
     DropDownWidth = 16
@@ -1537,8 +1539,8 @@ object mainfrm: Tmainfrm
     MemoryUsage = bmuHigh
   end
   object mainmnu: TMainMenu
-    Left = 1024
-    Top = 408
+    Left = 983
+    Top = 392
     object MenuItem1: TMenuItem
       Caption = 'Options'
       object mnucfg: TMenuItem
@@ -1605,8 +1607,8 @@ object mainfrm: Tmainfrm
   end
   object packmnu: TPopupMenu
     OnPopup = packmnuPopup
-    Left = 792
-    Top = 400
+    Left = 760
+    Top = 384
     object pkginstall: TMenuItem
       Caption = 'Install package'
       OnClick = pkginstallClick
@@ -1648,8 +1650,8 @@ object mainfrm: Tmainfrm
   end
   object grpmnu: TPopupMenu
     OnPopup = grpmnuPopup
-    Left = 512
-    Top = 384
+    Left = 492
+    Top = 369
     object grpinstall: TMenuItem
       Caption = 'Install group'
       OnClick = grpinstallClick
@@ -1672,18 +1674,5 @@ object mainfrm: Tmainfrm
       Caption = 'Quit'
       OnClick = grpquitClick
     end
-  end
-  object helpdb: THTMLHelpDatabase
-    BaseURL = 'file://help/'
-    AutoRegister = True
-    KeywordPrefix = 'help/.'
-    Left = 165
-    Top = 190
-  end
-  object helpbrowser: THTMLBrowserHelpViewer
-    BrowserParams = '%s'
-    AutoRegister = True
-    Left = 177
-    Top = 267
   end
 end

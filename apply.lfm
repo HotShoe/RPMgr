@@ -4,7 +4,7 @@ object applyfrm: Tapplyfrm
   Top = 123
   Width = 1195
   HelpType = htKeyword
-  HelpKeyword = 'help/.Apply.htm'
+  HelpKeyword = 'help/Apply.htm'
   Caption = 'Apply Changes'
   ClientHeight = 643
   ClientWidth = 1195
@@ -12,7 +12,7 @@ object applyfrm: Tapplyfrm
   Font.Height = -19
   Font.Name = 'Sans'
   Font.Style = [fsBold]
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object Panel1: TPanel
     Left = 0
@@ -468,7 +468,7 @@ object applyfrm: Tapplyfrm
     Top = 0
     Width = 1195
     HelpType = htKeyword
-    HelpKeyword = 'help/.Apply.htm'
+    HelpKeyword = 'help/Apply.htm'
     Align = alClient
     Color = clWhite
     Font.Color = clBlack

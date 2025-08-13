@@ -9,21 +9,22 @@ dbfile="/usr/share/rpmgr/rpmgr.db"
 
 /bin/rm -rf /usr/share/rpmgr
 
-/bin/mkdir -m 775 -p "$dbdir/doc"
+/bin/mkdir -m775 -p "$dbdir/doc"
 /bin/cp ./rpmgr.db1 "$dbfile"
 /bin/cp ./rpmgr.8.gz /usr/share/man/man8
 /bin/cp ./LICENSE "$dbdir"
-/bin/cp ./rpmgr "$dbdir"
+/bin/cp ./rpmgr /usr/bin
 /bin/cp ./rpmgr.png "$dbdir"
 /bin/cp *.txt "$dbdir/doc"
 /bin/cp *.pdf "$dbdir/doc"
+/bin/cp ./rpmgr.chm "$dbdir"
 
 /usr/bin/chown root:wheel "$dbfile"
 /usr/bin/chmod 774 "$dbfile"
 /usr/bin/chmod 644 "$dbdir/LICENSE"
 /usr/bin/chown root:wheel "$dbdir"
 /usr/bin/chmod 775 "$dbdir"
-/usr/bin/chown root:wheel "$dbdir/rpmgr"
-/usr/bin/chmod 774 "$dbdir/rpmgr"
+/usr/bin/chown root:wheel /usr/bin/rpmgr
+/usr/bin/chmod 774 /usr/bin/rpmgr
 /usr/bin/chmod 644 /usr/share/rpmgr/doc/*
-/usr/bin/ln -s "$dbdir/rpmgr" /usr/bin/rpmgr 
+/usr/bin/chmod 644 /usr/share/rpmgr/rpmgr.chm

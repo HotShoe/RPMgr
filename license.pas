@@ -53,7 +53,7 @@ end;
 
 procedure Tlicfrm.FormCreate(Sender: TObject);
 begin
-     memo1.Lines.LoadFromFile('/usr/share/rpmgr/LICENSE');
+     memo1.Lines.LoadFromFile('/usr/share/licenses/rpmgr/LICENSE');
 end;
 
 end.

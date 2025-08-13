@@ -1,9 +1,8 @@
-
+﻿.\" DO NOT MODIFY THIS FILE!
 .TH rpmgr "8" "Feb. 2025" "System Files"
 .SH NAME
 .B rpmgr
 \- graphical management of RPM software packages
-.SH SYNOPSIS
 .SH DESCRIPTION
 .B RPMgr
 is a frontend for the
@@ -12,23 +11,162 @@ and
 .B rpm
 package managent system. It allows you to perform most actions of the command line tool
 .B dnf5
-in a graphical environment. This includes installing, upgrading, downgrading  and removing of single packages or even upgrading your whole system.
+in a graphical environment. This includes installing, upgrading, downgrading  and removing of single packages or even upgrading your whole system. It features other useful functions as well, but that is its primary purpose. The operation and basic look and feel is based upon Debian’s Synaptic package manager.
+.B RPMgr
+does not offer the same functionality as Synaptic, but it is still a powerful addition to the Fedora family.
 .PP
 A manual with detailed instructions can be found in the help menu of
 .B RPMgr.
-.SH OPTIONS
-.B RPMgr
-accepts only an optional filname to install from the command line.  All other functions are handled internally.
-.SH AUTHORS
-.B RPMgr
-is written by Jem Miller <jem@mlsoft.org>.
 .PP
-This manual page was  written by Jem Miller
-.SH COPYRIGHT
-Copyright (C) 2025 by Jim Miller and Missing Link Software
+.SH How does it work?
+When run, you will see the
+.B RPMgr
+window. From here you can install, uninstall, update or search for packages or entire groups. The search routine will search for words, package names, or partial matches in packages and descriptions and show the results in the dialog below.
 .PP
-There is NO warranty.
+.SH First run
+When RPMgr is run for the first time, it must build it’s databases and configuration files. This will take some time depending upon the speed of your machine and storage drive type. SSD’s are much faster than hard drives, so the time this process takes will be somewhere between 20 seconds and 2 minutes as a guess. Don’t worry, this only needs to happen once and the average on my ryzen 7 laptop with an average speed SSD, and 16GB of memory, is about 35 seconds, and that is in a virtualbox VM. Once the initial files are created,
+.B RPMgr
+is ready to work.
+.PP
+.SH Searching
+The image below is the result of the search from the main screen above. We searched for gcc and RPMgr found a few dozen matches with gcc in the package name or the package description. The search is very fast, taking only tenths of a second to search through over 77 thousand entries. 
+.PP
+Packages can be installed or uninstalled from the search dialog from the popup menu. Also, highlighting a package shows it’s long description in the description box below the package list. The description includes the package size and the installed size on your system.
+.SH Updates
+.B RPMgr
+checks for updates each time the program starts. If updates are found, the Updates button below the Group list in the main window will be red and you will see a notice that updates are available. Clicking on the Update button will display this dialog. You can look through the list and decide to install the updates now by clicking the Install button. If something needs to be done before one or more updates are installed, you can delay the update by clicking the Quit button. The Quit button just closes the Update dialog and ignores the updates. It does not quit the program.
+.PP
+When an update is performed, a log of all operations in that update is written to the rpmgr config directory at :
+.PP
+/home/yourusername/update.txt
+.PP
+That file gets overwritten each time an update is performed.
+.PP
+.SH Installed packages
+This is the dialog that lists all installed packages on your system. Again, you can uninstall or re-install any packages listed here.
+.PP
+Each of the main dialogs including the main window, installed files, the search dialog, and the current actions dialog, all have popup menus. To display a popup menu, click on the dialog with the right mouse button.
+.PP
+The choices you will see depend on which dialog you are in, and the available menu items that are active, depend on whether the package is installed or not, and if any other actions have been placed on the actions list.
+.PP
+.SH Normal operations
+When you first install RPMgr, it creates a default config file for you. That config file is located in your home directory at:
+.PP
+/home/yourusername/.config/rpmgr/rpmgr.cfg
+.PP
+You can display the setup dialog by clicking the Options tab on the main menu (at the top of the main window). In that menu, click on the configure choice to get this dialog. You can change the look of RPMgr from here, as well as how installing packages and updates get handled. Each user can have their own config file, but only users that have root access can do anything meaningful inside
+.B RPMgr
+.
+.PP
+.SH Update types
+You can choose whether to install updates offline or immediately. Offline updates require the system to be rebooted so that the updates get applied in a minimal system during the first reboot. Then the system will reboot again into your full system configuration. This is the default behavior for a Fedora desktop installation, so it is the default in
+.B RPMgr
+as well.
+.PP
+Just uncheck the Offline Updates checkbox and updates will perform a normal update and reboot if it is needed. RPMgr will tell you if system files were updated that will require a reboot only if Offline updates is turned off, otherwise a reboot is always required to apply the updates.
+.PP
+Offline updates do offer a bit more safety against corrupting a running process. On the other hand, I have been using Linux since 1995, and have never until recently, done an offline update and have never had a problem. Ultimately, the choice is yours. For a server system, it is probably the safest choice. For a desktop system. I have no idea if there is an advantage or not except that it ensures everything gets loaded fresh.
+.PP
+.SH Installing, uninstalling, and re-installing
+.PP
+Each time you choose an action like install a package, uninstall, or re-install,
+.B RPMgr
+puts that action into an action list that keeps track of all actions you have done so far, and what packages or group(s) that you have selected.
+.PP
+.SH Packages and Groups
+Groups are a collection of packages that can be installed or removed all at once. They also serve as an “index” in 
+.B RPMgr
+so that when a group is selected, all packages that belong to that group are listed in the panel on the right. The Groups panel also has a popup menu that is activated by clicking with the right mouse button while the mouse pointer is inside of the Groups panel.
+.PP
+.SH Packages
+.PP
+The Packages panel lists all packages in the selected group. It has its own popup menu to perform various actions on the selected package. Only some items are active in the popup menu, depending upon the state of the selected package. For example, it doesn’t make sense to activate the Install package menu item if the selected package is already installed, so only the reinstall, Remove, List files, and Quit options are active. If there are pending tasks that you have already selected, then the Apply, Undo all, and Undo last options will be active as well.
+.PP
+.SH Actions
+When you select an action, the action list dialog is displayed at the left edge of you screen, and the main window is moved to the right and reduced in width slightly.
+.PP
+The action list will appear any time you have selected a task, from any of the interactive dialogs. The interactive dialogs are the ones that have their own popup menus. You can close the action list dialog, but it will re-appear if you choose another action.
+.PP
+You can apply the actions that are listed, cancel all actions, or undo individual actions from the action list dialog. Also notice that you can combine install, remove, or re-install operations in the same session. Only system updates are done individually. That would be applying updates, or doing a distribution upgrade. 
+.PP
+Those are always done as separate operations. But they do not clear the action list. That means that you can still apply any changes that you have already marked until the point that a reboot happens, or the program is closed.
+.PP
+.SH Security in RPMgr
+.B RPMgr
+requires you to enter your sudo password when it starts up. After that, all operations whether they require root access or not, are handled by the program. A user gets 3 chances to enter the correct password before rpmgr halts the program with an error number 1. It will also halt the program if the user clicks the Cancel button on the login dialog. Without valid credentials,
+.B RPMgr
+will not allow any user to do anything.
+.PP
+Actually, only a few of the operations in rpmgr require root access. Non root users can do more using
+.B dnf5
+or
+.B rpm
+directly than they can with
+.B RPMgr.
+That is in no way a slap at those tools, just a difference in the way that I decided to implement
+.B RPMgr.
+.PP
+.SH Marking packages
+To mark a package or group for some kind of action, the quickest way is to use the popup menus. This is done by right clicking inside of that dialog. That displays the popup menu for that particular dialog. These menus allow you to carry out all operations that make sense inside of that dialog. For example, inside of the Installed files dialog, it makes no sense to have an Install command since all files shown are already installed. That dialog does however show the Re-install command.
+.PP
+Just about everything that you do in
+.B RPMgr
+“marks” a package or group for some kind of action. Whether that is installing a new package, Uninstalling a package, or Re-installing a package, that operation gets tossed onto the action list. That list just keeps track of what you want to do to what package or group.
+.PP
+The action list is more or less free-form, meaning that you can mark packages for removal and others for installation without having to apply a set of actions in between. All actions get run in the order :
+.PP
+1> Package Installations
 .br
-You may redistribute this software under the terms of  the  License. For more information about these matters, see the file named
-.B license.txt.
-Or see the License in the help menu item.
+2> Package Removals
+.br
+3> Package Re-installs
+.br
+4> Group installs
+.br
+5> Group removals
+.PP
+There is no particular preference to that order, and it doesn’t really affect any of the operations, it is just the way the apply command was written. All actions can be done in that free-form manner in one or several group or search results. 
+.PP
+It doesn’t matter to rpmgr how packages get marked, or what group they may belong to, they all end up on the same action list. Since
+.B RPMgr
+knows what kind of operation each listing needs, and what kind of item each is (package or group), it sorts them into their own operations and carries out your wishes.
+.PP
+.SH Listing the contents of a package
+Sometimes you need to know where a file or set of files is installed from a given package. You can search for the package, or just find it’s group and highlight the package you need. Then right click and click the List Package Files command on the popup menu. Note that the file needs to be installed before its contents can be listed. If it isn’t installed, you’ll see a message telling you that rpmgr can’t list files for a package that isn’t installed. 
+.PP
+The file list is just that, a list of files and where they are stored on your system. Nothing can be done with the file list. It is for information purposes only.
+.PP
+.SH Repositories
+You can manage the package repositories that you want to use in rpmgr with the Repositories button on the main window. Here you can enable, disable, add, or remove repositories on your system. Highlight a repo in the left panel and then you can enable or disable it by clicking on the Enabled checkbox. You can also add a new repo manually by clicking on the Add Repository button. You will need at least the internet URL for the repo, or a .repo file on your system. You can give the repo a name, or dnf5 will use the one inside of the repo file.
+.PP
+Removing a repo does just that. It deletes the repo file from your system so that it cannot be used even by RPM or dnf5.
+.B RPMgr
+will warn you of this and require confirmation before it does anything destructive.
+.PP
+.SH RPMgr License
+.B RPMgr
+is copyrighted software, and by using it, you implicitly agree to the terms of the license granted by Missing Link Software. A copy of the license is installed at :
+.PP
+/usr/share/rpmgr/license.txt
+.PP
+The full license is also listed below.
+.PP
+                    Missing Link Software Free and Open Source License v2.1.0 - 2020
+.PP
+This software is copyright 2025 by Jem Miller and Missing Link Software. Jem Miller, DBA Missing Link Software hereby grants license of this software under the following conditions and usage.
+.PP
+1. Any modified form of this software must contain an attribution to the original author, and keep the list of contributors intact.
+.PP
+2. Contributors to this software will be credited in the About notice within the program, and in the documentation.
+.PP
+3. This software will not be sold as a stand-alone package. RPMgr is meant to be free and open source software. An exception to this clause is the inclusion of this software into an operating system that is sold as a compilation of many software packages, under a recognized business entity, and is in itself a self contained, stand alone system, required for the normal operation of a computer.
+.PP
+4. You may modify,  distribute on public or private servers, give away, or set fire to this software as you see fit as long as that action does not violate one or more of the requirements of this agreement.
+.PP
+5. Usage of this software must be terminated immediately if you (the user) do not agree with any of the terms of this license.
+.PP
+.SH Warranty and liability
+RPMgr is provided "as is", without warranty of any kind, expressed or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement. In no event shall  Jem Miller OR Missing Link Software be liable for any claim, damages or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with RPMgr, or the use of RPMgr, or it's separate parts.
+.PP
+The author may be contacted at jem@mlsoft.org
+.PP

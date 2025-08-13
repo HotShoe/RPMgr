@@ -4,7 +4,7 @@ object instfrm: Tinstfrm
   Top = 33
   Width = 1205
   HelpType = htKeyword
-  HelpKeyword = 'help/.installed.htm'
+  HelpKeyword = 'help/installed.htm'
   Caption = 'Installed Packages'
   ClientHeight = 886
   ClientWidth = 1205
@@ -13,7 +13,7 @@ object instfrm: Tinstfrm
   Font.Height = -19
   Font.Name = 'Sans'
   Position = poScreenCenter
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   OnShow = FormShow
   object ingrid: TDBGrid
     Left = 8
@@ -21,7 +21,7 @@ object instfrm: Tinstfrm
     Top = 8
     Width = 1192
     HelpType = htKeyword
-    HelpKeyword = 'help/.Installed-packages.htm'
+    HelpKeyword = 'help/Installed.htm'
     AutoEdit = False
     Color = clWhite
     Columns = <    
@@ -86,7 +86,7 @@ object instfrm: Tinstfrm
     Top = 664
     Width = 1192
     HelpType = htKeyword
-    HelpKeyword = 'help/.Descriptions.htm'
+    HelpKeyword = 'help/Installed.htm'
     Color = 16185007
     DataField = 'desc'
     DataSource = insrc

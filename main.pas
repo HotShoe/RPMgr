@@ -47,8 +47,6 @@ Type
       distbtn: TBCButton;
       closebtn: TBCButton;
       applybtn: TBCButton;
-      helpbrowser: THTMLBrowserHelpViewer;
-      helpdb: THTMLHelpDatabase;
       mnufixdb : TMenuItem;
       mnutextintegrity : TMenuItem;
       mnufixbroken : TMenuItem;
@@ -108,6 +106,7 @@ Type
       Procedure closebtnClick(Sender: TObject);
       Procedure applybtnClick(Sender: TObject);
       Procedure descChange(Sender: TObject);
+      procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
       Procedure grpapplyClick(Sender: TObject);
       Procedure grpgridMouseDown(Sender: TObject; Button: TMouseButton;
         Shift: TShiftState; X, Y: Integer);
@@ -244,6 +243,12 @@ Procedure Tmainfrm.descChange(Sender: TObject);
 Begin
 
 End;
+
+procedure Tmainfrm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+     if dm.helpcon <> nil then
+    dm.helpcon.Destroy;
+end;
 
 Procedure Tmainfrm.grpapplyClick(Sender: TObject);
 Begin
