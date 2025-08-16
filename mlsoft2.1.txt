@@ -1,0 +1,19 @@
+                                                             Missing Link Software Free and Open Source License v2.1.0 - 2020
+
+This software is copyright 2025 by Jim Miller and Missing Link Software. Jim Miller, DBA Missing Link Software hereby grants license of this software under the following conditions and useage.
+
+1. Any modified form of this software must contain an attribution to the original author, and keep the list of contributors intact.
+
+2. Contributors to this software will be credited in the About notice within the program, and in the documentation.
+
+3. This software will not be sold as a stand-alone package. RPMgr is meant to be free and open source software. An exception to this clause is the inclusion of this software into an operating system that is sold as a compilation of many software packages, under a recognised business entity, and is in itself a self contained, stand alone system, required for the normal operation of a computer.
+
+4. You may modify,  distribute on public or private servers, give away, or set fire to this software as you see fit as long as that action does not violate one or more of the requirements of this agreement.
+
+5. Useage of this software must be terminated immediatly if you (the user) do not agree with any of the terms of this license.
+
+Warranty and liability
+
+RPMgr is provided "as is", without warranty of any kind, expressed or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall  Jim Miller OR Missing Link Software be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of, or in connection with RPMgr, or the use of RPMgr, or it's seperate parts.
+
+The author may be contacted at jem@mlsoft.org
