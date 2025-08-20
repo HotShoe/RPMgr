@@ -1,15 +1,16 @@
 object mainfrm: Tmainfrm
-  Left = 271
+  Left = 283
   Height = 768
   Top = 75
-  Width = 1524
+  Width = 1512
   HelpType = htKeyword
   HelpKeyword = 'help/Main.htm'
   Anchors = []
   Caption = 'RPMgr v 1.0.0'
   ClientHeight = 768
-  ClientWidth = 1524
+  ClientWidth = 1512
   Color = 12768223
+  Constraints.MaxWidth = 1512
   Constraints.MinHeight = 768
   Constraints.MinWidth = 1405
   DefaultMonitor = dmMainForm
@@ -53,7 +54,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = grpgrid
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = provbtn
-    Left = 22
+    Left = 19
     Height = 36
     Hint = 'Showall installed packages'
     Top = 644
@@ -156,7 +157,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Splitter1
     AnchorSideRight.Side = asrBottom
-    Left = 245
+    Left = 242
     Height = 36
     Hint = 'Show the contents of the selected RPM package'
     Top = 644
@@ -259,7 +260,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = instbtn
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = updatebtn
-    Left = 22
+    Left = 19
     Height = 36
     Hint = 'Show or edit repositories'
     Top = 680
@@ -363,7 +364,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Splitter1
     AnchorSideRight.Side = asrBottom
-    Left = 245
+    Left = 242
     Height = 36
     Hint = 'Show all updates available'
     Top = 680
@@ -466,7 +467,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = repbtn
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = applybtn
-    Left = 22
+    Left = 19
     Height = 36
     Hint = 'Try to fix broken package dependencies'
     Top = 716
@@ -666,16 +667,16 @@ object mainfrm: Tmainfrm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
-    Left = 437
+    Left = 434
     Height = 768
     Top = 0
-    Width = 1087
+    Width = 1078
     HelpType = htKeyword
     HelpKeyword = 'help/.Packages.htm'
     Align = alRight
     Anchors = [akTop, akLeft, akRight, akBottom]
     ClientHeight = 768
-    ClientWidth = 1087
+    ClientWidth = 1078
     ParentBackground = False
     TabOrder = 1
     object Label3: TLabel
@@ -724,7 +725,7 @@ object mainfrm: Tmainfrm
       Left = 6
       Height = 150
       Top = 564
-      Width = 1075
+      Width = 1066
       HelpType = htKeyword
       HelpKeyword = 'help/Packages.htm'
       Anchors = [akTop, akLeft, akRight, akBottom]
@@ -749,7 +750,7 @@ object mainfrm: Tmainfrm
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = pkgpan
       AnchorSideRight.Side = asrBottom
-      Left = 956
+      Left = 947
       Height = 39
       Hint = 'Close RPMgr'
       Top = 719
@@ -928,7 +929,7 @@ object mainfrm: Tmainfrm
     object integritybtn: TBCButton
       AnchorSideTop.Control = desc
       AnchorSideTop.Side = asrBottom
-      Left = 35
+      Left = 34
       Height = 39
       Hint = 'Test the database integrity'
       Top = 719
@@ -1111,7 +1112,7 @@ object mainfrm: Tmainfrm
       Left = 1
       Height = 537
       Top = 1
-      Width = 1080
+      Width = 1071
       HelpType = htKeyword
       HelpKeyword = 'help/Packages.htm'
       Anchors = [akTop, akLeft, akRight]
@@ -1168,7 +1169,7 @@ object mainfrm: Tmainfrm
       Font.Color = clBlack
       Font.Height = -18
       Font.Name = 'Sans'
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert]
       ParentFont = False
       PopupMenu = packmnu
       ReadOnly = True
@@ -1375,7 +1376,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Control = Owner
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 432
+    Left = 429
     Height = 768
     Top = 0
     Width = 5
@@ -1391,7 +1392,7 @@ object mainfrm: Tmainfrm
     Left = 5
     Height = 560
     Top = 84
-    Width = 422
+    Width = 419
     HelpType = htKeyword
     HelpKeyword = 'help/Groups.htm'
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -1423,7 +1424,7 @@ object mainfrm: Tmainfrm
     Font.Color = clBlack
     Font.Height = -18
     Font.Name = 'Sans'
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert]
     ParentFont = False
     PopupMenu = grpmnu
     ReadOnly = True
@@ -1439,7 +1440,7 @@ object mainfrm: Tmainfrm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Splitter1
     AnchorSideRight.Side = asrBottom
-    Left = 245
+    Left = 242
     Height = 36
     Hint = 'Apply all actions'
     Top = 716

@@ -36,7 +36,8 @@ Uses
     DBGrids,
     ExtCtrls,
     BCButton,
-    Grids, LazHelpHTML,
+    Grids,
+    LazHelpHTML,
     Types;
 
 Type

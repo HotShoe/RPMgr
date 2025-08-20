@@ -1,0 +1,315 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: notes.error
+msgid "RPManger has expeienced a GTU (Going Tits Up) and will now close. The specific error will be displayed in the following information dialog. Please report this to : jem@mlsoft.org"
+msgstr ""
+
+#: notes.firstime
+msgid "RPManager needs to build its database when first run. This process may take up to 2 minutes to complete depending upon your computer speed. This process only needs to be done the first time RPManager is run. This dialog will close when the process is complete."
+msgstr ""
+
+#: notes.install
+msgid "The item(s) requested and their dependancies are being installed. This dialog will close when the operation is completed."
+msgstr ""
+
+#: notes.lists
+msgid "RPManager is gathering package and group lists. Please wait a moment. This dialog will close when the operation is completed."
+msgstr ""
+
+#: notes.misc
+msgid "The requested action is being completed. This dialog will close when it is completed."
+msgstr ""
+
+#: notes.remove
+msgid "The package(s) marked for removal are being removed from the system. This dialog will close when the operation is completed."
+msgstr ""
+
+#: notes.upgrade
+msgid "The system packages are being upgraded. This dialog will close when the process is completed."
+msgstr ""
+
+#: notes.upgrades
+msgid "Checking for upgraded packages. This will take a few moments."
+msgstr ""
+
+#: tmainfrm.applybtn.caption
+msgctxt "tmainfrm.applybtn.caption"
+msgid "Apply Changes"
+msgstr ""
+
+#: tmainfrm.applybtn.hint
+msgid "Apply all actions"
+msgstr ""
+
+#: tmainfrm.caption
+msgid "RPMgr v 1.0.0"
+msgstr ""
+
+#: tmainfrm.closebtn.caption
+msgid "Close"
+msgstr ""
+
+#: tmainfrm.closebtn.hint
+msgid "Close RPMgr"
+msgstr ""
+
+#: tmainfrm.distbtn.caption
+msgid "Dist. Upgrade"
+msgstr ""
+
+#: tmainfrm.distbtn.hint
+msgid "Upgrade tolatest Fedora release"
+msgstr ""
+
+#: tmainfrm.fixbtn.caption
+msgid "Fix Broken"
+msgstr ""
+
+#: tmainfrm.fixbtn.hint
+msgid "Try to fix broken package dependencies"
+msgstr ""
+
+#: tmainfrm.grpapply.caption
+msgid "Apply changes"
+msgstr ""
+
+#: tmainfrm.grpgrid.columns[0].title.caption
+msgctxt "tmainfrm.grpgrid.columns[0].title.caption"
+msgid "Inst."
+msgstr ""
+
+#: tmainfrm.grpgrid.columns[1].title.caption
+msgctxt "tmainfrm.grpgrid.columns[1].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tmainfrm.grpgrid.columns[2].title.caption
+msgid "Description"
+msgstr ""
+
+#: tmainfrm.grpinstall.caption
+msgid "Install group"
+msgstr ""
+
+#: tmainfrm.grpquit.caption
+msgctxt "tmainfrm.grpquit.caption"
+msgid "Quit"
+msgstr ""
+
+#: tmainfrm.grpremove.caption
+msgid "Remove group"
+msgstr ""
+
+#: tmainfrm.grpundo.caption
+msgctxt "tmainfrm.grpundo.caption"
+msgid "Undo last"
+msgstr ""
+
+#: tmainfrm.instbtn.caption
+msgid "Installed"
+msgstr ""
+
+#: tmainfrm.instbtn.hint
+msgid "Showall installed packages"
+msgstr ""
+
+#: tmainfrm.instlbl.caption
+msgid "Installed packages = "
+msgstr ""
+
+#: tmainfrm.integritybtn.caption
+msgid "Integrity test"
+msgstr ""
+
+#: tmainfrm.integritybtn.hint
+msgid "Test the database integrity"
+msgstr ""
+
+#: tmainfrm.label1.caption
+msgid "Search term"
+msgstr ""
+
+#: tmainfrm.label2.caption
+msgid "Categories/Groups"
+msgstr ""
+
+#: tmainfrm.label3.caption
+msgid "Package Description"
+msgstr ""
+
+#: tmainfrm.menuitem1.caption
+msgid "Options"
+msgstr ""
+
+#: tmainfrm.menuitem2.caption
+msgid "Tasks"
+msgstr ""
+
+#: tmainfrm.menuitem3.caption
+msgid "Help"
+msgstr ""
+
+#: tmainfrm.mnuabout.caption
+msgid "About"
+msgstr ""
+
+#: tmainfrm.mnuapply.caption
+msgctxt "tmainfrm.mnuapply.caption"
+msgid "Apply Changes"
+msgstr ""
+
+#: tmainfrm.mnucfg.caption
+msgid "Configure RPMgr"
+msgstr ""
+
+#: tmainfrm.mnudocs.caption
+msgid "Manual"
+msgstr ""
+
+#: tmainfrm.mnuexit.caption
+msgid "Exit"
+msgstr ""
+
+#: tmainfrm.mnufixbroken.caption
+msgid "Fix broken package(s)"
+msgstr ""
+
+#: tmainfrm.mnufixdb.caption
+msgid "Refresh databases"
+msgstr ""
+
+#: tmainfrm.mnusearch.caption
+msgid "Search"
+msgstr ""
+
+#: tmainfrm.mnutextintegrity.caption
+msgid "Test DB Integrity"
+msgstr ""
+
+#: tmainfrm.mnuundo.caption
+msgctxt "tmainfrm.mnuundo.caption"
+msgid "Undo last"
+msgstr ""
+
+#: tmainfrm.mnuundoall.caption
+msgid "Abort ALL actions"
+msgstr ""
+
+#: tmainfrm.mnuupdates.caption
+msgid "Check Updates"
+msgstr ""
+
+#: tmainfrm.pkgapply.caption
+msgctxt "tmainfrm.pkgapply.caption"
+msgid "Apply Changes"
+msgstr ""
+
+#: tmainfrm.pkgcnt.caption
+msgid "Packages ="
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[0].title.caption
+msgctxt "tmainfrm.pkggrid.columns[0].title.caption"
+msgid "Inst."
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[1].title.caption
+msgctxt "tmainfrm.pkggrid.columns[1].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[2].title.caption
+msgid "Version"
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[3].title.caption
+msgid "Desc"
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[4].title.caption
+msgid "Arch"
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[5].title.caption
+msgid "Group"
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[6].title.caption
+msgid "Size"
+msgstr ""
+
+#: tmainfrm.pkggrid.columns[7].title.caption
+msgid "psize"
+msgstr ""
+
+#: tmainfrm.pkginstall.caption
+msgid "Install package"
+msgstr ""
+
+#: tmainfrm.pkglist.caption
+msgid "List package files"
+msgstr ""
+
+#: tmainfrm.pkgquit.caption
+msgctxt "tmainfrm.pkgquit.caption"
+msgid "Quit"
+msgstr ""
+
+#: tmainfrm.pkgreinst.caption
+msgid "Re-Install package"
+msgstr ""
+
+#: tmainfrm.pkgremove.caption
+msgid "Remove Package"
+msgstr ""
+
+#: tmainfrm.pkgundo.caption
+msgctxt "tmainfrm.pkgundo.caption"
+msgid "Undo last"
+msgstr ""
+
+#: tmainfrm.pkgundoall.caption
+msgid "Undo ALL"
+msgstr ""
+
+#: tmainfrm.provbtn.caption
+msgid "Provides"
+msgstr ""
+
+#: tmainfrm.provbtn.hint
+msgid "Show the contents of the selected RPM package"
+msgstr ""
+
+#: tmainfrm.repbtn.caption
+msgid "Repositories"
+msgstr ""
+
+#: tmainfrm.repbtn.hint
+msgid "Show or edit repositories"
+msgstr ""
+
+#: tmainfrm.rootlbl.caption
+msgid "Your have Root access"
+msgstr ""
+
+#: tmainfrm.updatebtn.caption
+msgid "Updates"
+msgstr ""
+
+#: tmainfrm.updatebtn.hint
+msgid "Show all updates available"
+msgstr ""
+
+#: tnotefrm.caption
+msgid "Happening Now"
+msgstr ""
+
+#: tnotefrm.msg.caption
+msgid "Doing Stuff"
+msgstr ""
+
+#: tnotefrm.okbtn.caption
+msgid "OK"
+msgstr ""
+
