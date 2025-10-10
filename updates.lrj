@@ -1,0 +1,8 @@
+{"version":1,"strings":[
+{"hash":115900163,"name":"tupfrm.caption","sourcebytes":[85,112,103,114,97,100,101,115],"value":"Upgrades"},
+{"hash":230170062,"name":"tupfrm.label1.caption","sourcebytes":[85,112,103,114,97,100,101,115,32,97,114,101,32,114,101,97,100,121,32,116,111,32,98,101,32,105,110,115,116,97,108,108,101,100,32,102,111,114,32,116,104,101,115,101,32,112,97,99,107,97,103,101,115,46],"value":"Upgrades are ready to be installed for these packages."},
+{"hash":4863637,"name":"tupfrm.quitbtn.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":5941372,"name":"tupfrm.installbtn.caption","sourcebytes":[73,110,115,116,97,108,108],"value":"Install"},
+{"hash":108664709,"name":"tupfrm.upgrid.columns[0].title.caption","sourcebytes":[80,97,99,107,97,103,101],"value":"Package"},
+{"hash":214540302,"name":"tupfrm.upgrid.columns[1].title.caption","sourcebytes":[86,101,114,115,105,111,110],"value":"Version"}
+]}

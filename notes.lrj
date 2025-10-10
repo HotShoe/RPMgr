@@ -1,0 +1,5 @@
+{"version":1,"strings":[
+{"hash":47069543,"name":"tnotefrm.caption","sourcebytes":[72,97,112,112,101,110,105,110,103,32,78,111,119],"value":"Happening Now"},
+{"hash":152165254,"name":"tnotefrm.msg.caption","sourcebytes":[68,111,105,110,103,32,83,116,117,102,102],"value":"Doing Stuff"},
+{"hash":1339,"name":"tnotefrm.okbtn.caption","sourcebytes":[79,75],"value":"OK"}
+]}
