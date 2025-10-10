@@ -71,7 +71,7 @@ object instfrm: Tinstfrm
     FixedHotColor = 12768223
     Font.Color = clBlack
     Font.Height = -19
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgDblClickAutoSize]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert]
     ParentFont = False
     PopupMenu = instmnu
     ReadOnly = True

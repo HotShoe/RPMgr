@@ -28,7 +28,7 @@ Uses
     Dialogs;
 
 Const
-    ver = '0.9.8';
+    ver = '1.0.0';
 
 Type
     Titemrec = Class
@@ -667,11 +667,14 @@ Begin
     outp:= '';
     lx:= 0;
 
-    ok:= rootexec(dnf+' list --installed > '+cfgdir+'inst.lst',admin);
-    instlst.LoadFromFile(cfgdir+'inst.lst');
+    ok:= run('',dnf,'list --installed','inst');
+    //ok:= exec(dnf,['list', '--installed', '> '+cfgdir+'inst.lst']);
+
+    instlst.Text:= outp;;
+    //instlst.LoadFromFile(cfgdir+'inst.lst');
     insttot:= instlst.Count;
     instlst.Sorted:= True;
-    deletefile(cfgdir+'inst.lst');
+    //deletefile(cfgdir+'inst.lst');
 
     while lx < insttot do
     begin
@@ -797,13 +800,13 @@ Begin
     dm.grp.Active:= False;
     pkglst.Delimiter:= #10;
 
-    ok:= rootexec(dnf+' info --available > '+cfgdir+'pkg.lst',admin);
+    ok:= exec(dnf+' info --available > '+cfgdir+'pkg.lst',[], admin);
     pkglst.LoadFromFile(cfgdir+'pkg.lst');
     //pkglst.Text:= outp;
     //outp:= pkglst.Text;
     //pkglst.SaveToFile(mydir+'pkg.lst');
     pkgtot:= pkglst.Count;
-    deletefile(cfgdir+'pkg.lst');
+    //deletefile(cfgdir+'pkg.lst');
 
     If pkgtot < 1 Then
       exit;
@@ -962,12 +965,13 @@ Begin
 
     verlst.Delimiter:= #10;
 
-    ok:= rootexec(dnf+' list --available > '+cfgdir+'ver.lst',admin);
-    verlst.LoadFromFile(cfgdir+'ver.lst');
-    ////outp:= verlst.Text;
-    //verlst.SaveToFile(mydir+'ver.lst');
+    ok:= run('',dnf,' list --available','ver');
+    //ok:= exec(dnf+' list --available > '+cfgdir+'ver.lst',[], admin);
+    //verlst.LoadFromFile(cfgdir+'ver.lst');
+
+    verlst.Text:= outp;
     verlst.Delete(0);
-    deletefile(cfgdir+'ver.lst');
+    //deletefile(cfgdir+'ver.lst');
 
     x:= 0;
     r:= 1;
@@ -1043,13 +1047,15 @@ Begin
 
     leaflst.Clear;
 
-    ok:= rootexec(dnf+' leaves > '+cfgdir+'leaf.lst',admin);
-    leaflst.LoadFromFile(cfgdir+'leaf.lst');
-    //outp:= leaflst.Text;
+    ok:= run('',dnf,'leaves','leaf');
+    //ok:= exec(dnf+' leaves > '+cfgdir+'leaf.lst',[], admin);
+    //leaflst.LoadFromFile(cfgdir+'leaf.lst');
     //leaflst.SaveToFile(mydir+'leaf.lst');
+
+    leaflst.Text:= outp;
     lvtot:= leaflst.Count;
     leaflst.Sort;
-    deletefile(cfgdir+'leaf.lst');
+    //deletefile(cfgdir+'leaf.lst');
 
     x:= 0;
     i:= 0;
@@ -1130,12 +1136,13 @@ Begin
     grplst.Clear;
     grptot:= 0;
 
-    ok:= rootexec(dnf+' group info > '+cfgdir+'grp.lst',admin);
-    grplst.LoadFromFile(cfgdir+'grp.lst');
-    //grplst.Text:= outp;
+    ok:= run('',dnf,' group info','grp');
+    //ok:= exec(dnf+' group info > '+cfgdir+'grp.lst',[], admin);
+    //grplst.LoadFromFile(cfgdir+'grp.lst');
+    grplst.Text:= outp;
     //grplst.SaveToFile(mydir+'grp.lst');
     grptot:= grplst.Count;
-    deletefile(cfgdir+'grp.lst');
+    //deletefile(cfgdir+'grp.lst');
 
     If grptot < 1 Then
       exit;
@@ -1327,12 +1334,13 @@ Begin
 
     application.ProcessMessages;
 
-    ok:= rootexec(dnf+' repo info --all > '+cfgdir+'repo.lst',admin);
-    repolst.LoadFromFile(cfgdir+'repo.lst');
-    //repolst.Text:= outp;
+    ok:= run('',dnf,'repo info --all','repo');
+    //ok:= exec(dnf+' repo info --all > '+cfgdir+'repo.lst',[], admin);
+    //repolst.LoadFromFile(cfgdir+'repo.lst');
+    repolst.Text:= outp;
     //repolst.SaveToFile(mydir+'repo.lst');
     repotot:= repolst.Count;
-    deletefile(cfgdir+'repo.lst');
+    //deletefile(cfgdir+'repo.lst');
 
     If repotot < 1 Then
       exit;

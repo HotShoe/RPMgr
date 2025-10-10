@@ -1,10 +1,12 @@
 Changelog for RPMgr Beta
 ###########
-0.9.8.5 Beta
-o8-14-25 - .5 release
-08-13-25 - re-wrote setup file to include help file
+0.9.9 Beta
+08-19-25 - Finished installing i18n locale system for multi languages
+08-17-25 - Created .po file for english
+08-14-25 - Ceated RPM packages for src and binary
+08-13-25 - Re-wrote setup file to include help file
 08-13-25 - Help system connected and working for all pages
-08-12-25 - finished writing help pages and compiled chm file
+08-12-25 - Finished writing help pages and compiled chm file
 
 ###########
 0.9.8 Beta

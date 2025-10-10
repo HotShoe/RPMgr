@@ -218,7 +218,7 @@ begin
 
     if not directoryexists(dbdir) then
      begin
-      ok:= rootexec(cmd+'mkdir '+dbdir,admin);
+      ok:= exec(cmd+'mkdir '+dbdir,[], admin);
      end;
 
     if not ok then
@@ -245,7 +245,7 @@ initialization
     loginfrm.ShowModal;
 
     If not directoryexists(dbdir) Then
-    ok:= rootexec(cmd+'mkdir '+dbdir,admin);
+    ok:= exec(cmd+'mkdir '+dbdir,[], admin);
 
     if not fileexists(dbdir+'rpmgr.db') then
       dm.newdb;

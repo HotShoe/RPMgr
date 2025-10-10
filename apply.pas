@@ -116,35 +116,35 @@ begin
 
      if grpaddstr <> '' then
      begin
-     ok:= rootexec('/usr/bin/dnf5 group install -y '+grpaddstr,admin);
+     ok:= exec('dnf5 group install -y '+grpaddstr,[], admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if grpdelstr <> '' then
      begin
-     ok:= rootexec('/usr/bin/dnf5 group remove -y '+grpaddstr,admin);
+     ok:= exec('dnf5 group remove -y '+grpaddstr,[], admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if pkgaddstr <> '' then
      begin
-     ok:= rootexec('/usr/bin/dnf5 install -y '+pkgaddstr,admin);
+     ok:= exec('dnf5 install -y '+pkgaddstr,[], admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if pkgdelstr <> '' then
      begin
-     ok:= rootexec('/usr/bin/dnf5 remove -y '+pkgdelstr,admin);
+     ok:= exec('dnf5 remove -y '+pkgdelstr,[], admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if pkgrinstr <> '' then
      begin
-     ok:= rootexec('/usr/bin/dnf5 reinstall -y '+pkgrinstr,admin);
+     ok:= exec('dnf5 reinstall -y '+pkgrinstr,[], admin);
      info.Append(outp);
      application.ProcessMessages;
      end;

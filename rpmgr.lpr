@@ -19,6 +19,7 @@ Program rpmgr;
 Uses
     {$IFDEF UNIX}
       cthreads,
+      clocale,
     {$ENDIF}
     {$IFDEF HASAMIGA}
       athreads,
@@ -26,6 +27,7 @@ Uses
     Interfaces, // this includes the LCL widgetset
     Forms,
     lhelpcontrolpkg,
+    lcltranslator,
     main,
     Data,
     notes,

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>RPM Manager</title>
+  </head>
+  <body>
+    <div align="center">
+      <h1>RPMgr 0.9.8.6-Beta<br>
+      </h1>
+    </div>
+    &nbsp;<font size="+2">RPMgr (RPM Manager) is a graphical interface
+      for the RPM and DNF5 packages on Fedora 41 or higher. It is
+      designed to duplicate the functionality and ease of use of the
+      Debian Synaptic package closely. It is not a clone of Synaptic,
+      but is supposed to be Synaptic-like in it's look and feel. <br>
+      <br>
+      RPMgr is a work in progress and is now in wide beta release. This
+      is an update to show where the software stands today. Below are
+      current screen shots of the completed dialogs and functions so
+      far. I will keep this page updated to reflect the changes. If you
+      are interested in beta testing RPMgr, please contact me at <a
+        href="mailto:jem@mlsoft.org" moz-do-not-send="true">jem@mlsoft.org</a>.
+      <br>
+      <br>
+      Source code is available to beta testers, but be aware that RPMgr
+      is written entirely in object pascal. The source package comes
+      with the information needed to compile the source. If you have
+      experience in object pascal and wish to contribute to this
+      project, please contact me at the email above. A GIT repository
+      will be available when the package is released. For now I ask that
+      source not be distributed.<br>
+      <br>
+      RPMgr is nearing its initial release goal, and has now been
+      packaged in both binary and source RPM packages.<br>
+      <br>
+    </font><font size="+2"><font size="+2">The main Missing Link
+        Software website no longer exists since my retirement. </font>Going
+
+
+
+
+
+
+
+      to www.mlsoft.org just shows a humorous message now, and only
+      exists to serve files and some html pages like this.<br>
+      <br>
+      <b>Login</b><br>
+      <img src="login.png" alt="login" width="712" height="279"><br>
+      <br>
+      RPMgr requires a valid sudo user login. This is a 3 login chances
+      system before the program will halt. Clicking the Cancel button
+      will also halt the program. Authentication is only done when the
+      program opens. No login information is stored by RPMgr.<br>
+      <br>
+      Configuration<br>
+      <img src="config.png" alt="Config" width="574" height="690"><br>
+      The user can change the looks of RPMgr to their liking. RPMgr uses
+      the QT widget set for a better look and feel to the components.
+      The user can also choose between offline updates and standard real
+      time updates. If real time is chosen (unchecking the Offline
+      option), then a reboot notice is only shown if system files are
+      affected by the update.<br>
+      <br>
+      <b>Main screen display</b><br>
+    </font><img src="main.png" alt="main" width="1322" height="744"><br>
+    <font size="+2">If updates are available, you will see a message
+      when RPMgr is run, and the Updates button will be red instead of
+      navy.<br>
+      <br>
+      <b>Group window popup menu</b></font><br>
+    <br>
+    <img moz-do-not-send="true" src="grpmnu.png" alt="Group menu"
+      width="190" height="196"><br>
+    <br>
+    <font size="+2"><b>Package window popup menu</b></font><br>
+    <br>
+    <img moz-do-not-send="true" src="pkgmnu.png" alt="Package menu"
+      width="197" height="269"><br>
+    <br>
+    <font size="+2"><b>Installed Packages</b></font><br>
+    <img src="installed.png" alt="Installed" width="982" height="776"><br>
+    <b><font size="+2">Package contents</font></b><br>
+    <img moz-do-not-send="true" src="files.png" alt="Package contents"
+      width="674" height="745"><br>
+    <b><font size="+2">Search results</font></b><br>
+    <img src="searchdialog.png" alt="search" width="1146" height="733"><br>
+    <font size="+2">This is the result of a search for "gcc"</font><b><font
+        size="+2"><br>
+        <br>
+        Updates dialog</font></b><br>
+    <img moz-do-not-send="true" src="updates.png" alt="Update list"
+      width="1132" height="772"><br>
+    <font size="+2"><b>After Update<br>
+        <img src="afterupdate.png" alt="After" width="1132" height="941"><br>
+        Manage Repositories</b></font><br>
+    <font size="+2"><img src="repos.png" alt="Repos" width="1171"
+        height="702"><br>
+      RPMgr can add, remove, enable, and disable repositories.<b><br>
+        <br>
+        Selecting Actions</b><br>
+      <img src="action.png" alt="actions" width="584" height="947"><br>
+      Marking packages for various actions (install, remove, or
+      reinstall)<br>
+      <br>
+      <b>Applying Actions</b><br>
+      <img src="apply.png" alt="Apply" width="1080" height="662"><br>
+      RPMgr uses a freeform style of marking and applying selected
+      changes so that installing, removing and reinstalling packages can
+      be done in one session.<br>
+      <br>
+      <b>Current Status</b><br>
+      The above examples are working in the current version (0.9.8.6).
+      The software has been through our normal beta testing channels and
+      is now in wide beta testing. RPMgr is written in Object Pascal.
+      This is because I am not good with C++ or Rust, and I am not
+      nearly as comfortable in C as I am in FPC and Lazarus. Questions
+      or comments are always welcome at the email link above.<br>
+      <br>
+      --- Jem</font><br>
+    <br>
+  </body>
+</html>

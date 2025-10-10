@@ -33,6 +33,35 @@ msgstr ""
 msgid "Checking for upgraded packages. This will take a few moments."
 msgstr ""
 
+#: tloginfrm.cancelbtn.caption
+msgid "Cancel"
+msgstr ""
+
+#: tloginfrm.caption
+msgid "Authentication Required"
+msgstr ""
+
+#: tloginfrm.label1.caption
+msgid "Authentication is required to run the RPMgr package Manager"
+msgstr ""
+
+#: tloginfrm.label2.caption
+msgid "You are logged in as "
+msgstr ""
+
+#: tloginfrm.logtxt.caption
+msgid "logtxt"
+msgstr ""
+
+#: tloginfrm.okbtn.caption
+msgctxt "tloginfrm.okbtn.caption"
+msgid "OK"
+msgstr ""
+
+#: tloginfrm.pwtxt.hint
+msgid "Type in your administrator password. This is CASE DEPENDENT."
+msgstr ""
+
 #: tmainfrm.applybtn.caption
 msgctxt "tmainfrm.applybtn.caption"
 msgid "Apply Changes"
@@ -47,6 +76,7 @@ msgid "RPMgr v 1.0.0"
 msgstr ""
 
 #: tmainfrm.closebtn.caption
+msgctxt "tmainfrm.closebtn.caption"
 msgid "Close"
 msgstr ""
 
@@ -220,6 +250,7 @@ msgid "Name"
 msgstr ""
 
 #: tmainfrm.pkggrid.columns[2].title.caption
+msgctxt "tmainfrm.pkggrid.columns[2].title.caption"
 msgid "Version"
 msgstr ""
 
@@ -232,7 +263,7 @@ msgid "Arch"
 msgstr ""
 
 #: tmainfrm.pkggrid.columns[5].title.caption
-msgid "Group"
+msgid "Grp"
 msgstr ""
 
 #: tmainfrm.pkggrid.columns[6].title.caption
@@ -310,6 +341,33 @@ msgid "Doing Stuff"
 msgstr ""
 
 #: tnotefrm.okbtn.caption
+msgctxt "tnotefrm.okbtn.caption"
 msgid "OK"
+msgstr ""
+
+#: tupfrm.caption
+msgid "Upgrades"
+msgstr ""
+
+#: tupfrm.installbtn.caption
+msgid "Install"
+msgstr ""
+
+#: tupfrm.label1.caption
+msgid "Upgrades are ready to be installed for these packages."
+msgstr ""
+
+#: tupfrm.quitbtn.caption
+msgctxt "tupfrm.quitbtn.caption"
+msgid "Close"
+msgstr ""
+
+#: tupfrm.upgrid.columns[0].title.caption
+msgid "Package"
+msgstr ""
+
+#: tupfrm.upgrid.columns[1].title.caption
+msgctxt "tupfrm.upgrid.columns[1].title.caption"
+msgid "Version"
 msgstr ""
 

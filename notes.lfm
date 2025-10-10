@@ -9,7 +9,7 @@ object notefrm: Tnotefrm
   Font.Height = -19
   Font.Name = 'Sans'
   Font.Style = [fsBold]
-  LCLVersion = '4.1.0.0'
+  LCLVersion = '4.3.0.0'
   object Label1: TLabel
     Left = 0
     Height = 213

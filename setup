@@ -5,26 +5,35 @@
 # Once packaged, the RPM will do all of this for us. 
 
 dbdir="/usr/share/rpmgr"
+_datadir="/usr/share"
+_bindir="/usr/bin"
 dbfile="/usr/share/rpmgr/rpmgr.db"
 
 /bin/rm -rf /usr/share/rpmgr
 
-/bin/mkdir -m775 -p "$dbdir/doc"
-/bin/cp ./rpmgr.db1 "$dbfile"
-/bin/cp ./rpmgr.8.gz /usr/share/man/man8
-/bin/cp ./LICENSE "$dbdir"
-/bin/cp ./rpmgr /usr/bin
-/bin/cp ./rpmgr.png "$dbdir"
-/bin/cp *.txt "$dbdir/doc"
-/bin/cp *.pdf "$dbdir/doc"
-/bin/cp ./rpmgr.chm "$dbdir"
+install -D -m755    rpmgr              "{$_datadir}/rpmgr"
+install -D -m755    lhelp              "{$_bindir}/lhelp"
+install -D -m644    rpmgr.desktop      "{$_datadir}/applications/rpmgr.desktop"
+install -D -m644    rpmgr.png          "{$_datadir}/pixmaps/rpmgr.png"
+install -D -m644    rpmgr.8.gz         "{$_datadir}/man/man8/rpmgr.8.gz"
 
-/usr/bin/chown root:wheel "$dbfile"
-/usr/bin/chmod 774 "$dbfile"
-/usr/bin/chmod 644 "$dbdir/LICENSE"
+if [ ! -f "{$dbfile}" ]; then
+install -D -m774    rpmgr.db           "{$dbfile}"
+fi;
+
+install -D -m644    rpmgr.chm          "{$_dbdir}/rpmgr.chm"
+
+/bin/mkdir -m=775 -p /usr/share/doc/rpmgr
+/bin/mkdir -m=775 -p /usr/share/licenses/rpmgr
+
+install -D -m644 LICENSE /usr/share/licenses/rpmgr
+install -D -m644 mlsoft2.1.txt /usr/share/licenses/rpmgr
+
 /usr/bin/chown root:wheel "$dbdir"
 /usr/bin/chmod 775 "$dbdir"
+/usr/bin/ln -s /usr/bin/rpmgr /usr/share/rpmgr/rpmgr
 /usr/bin/chown root:wheel /usr/bin/rpmgr
-/usr/bin/chmod 774 /usr/bin/rpmgr
-/usr/bin/chmod 644 /usr/share/rpmgr/doc/*
+/usr/bin/chmod 754 /usr/bin/rpmgr
+/usr/bin/chmod 755 /usr/bin/lhelp
+/usr/bin/chmod 644 /usr/share/doc/rpmgr/*
 /usr/bin/chmod 644 /usr/share/rpmgr/rpmgr.chm

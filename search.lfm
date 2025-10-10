@@ -57,7 +57,7 @@ object srchfrm: Tsrchfrm
     Font.Color = clBlack
     Font.Height = -19
     Font.Style = [fsBold]
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert]
     ParentFont = False
     PopupMenu = srchmnu
     ReadOnly = True

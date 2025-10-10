@@ -98,6 +98,7 @@ object repofrm: Trepofrm
       Font.Height = -19
       Font.Name = 'Sans'
       Font.Style = [fsBold]
+      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAnyButtonCanSelect, dgDisableDelete, dgDisableInsert]
       ParentFont = False
       ReadOnly = True
       TabOrder = 0

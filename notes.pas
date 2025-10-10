@@ -26,7 +26,7 @@ uses
     StdCtrls,
     BCButton;
 
-const
+resourcestring
      firstime = 'RPManager needs to build its database when first run. This process may take up to 2 minutes to complete depending upon your computer speed. This process only needs to be done the first time RPManager is run. This dialog will close when the process is complete.';
      misc = 'The requested action is being completed. This dialog will close when it is completed.';
      upgrade = 'The system packages are being upgraded. This dialog will close when the process is completed.';

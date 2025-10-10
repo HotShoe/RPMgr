@@ -568,6 +568,7 @@ object loginfrm: Tloginfrm
     Top = 185
     Width = 99
     Caption = 'OK'
+    Default = True
     Font.Height = -27
     Font.Style = [fsBold]
     ModalResult = 1

@@ -120,9 +120,9 @@ Begin
     application.ProcessMessages;
 
     If offline Then
-      ok:= rootexec('dnf5 upgrade --offline -y', admin, upmem)
+      ok:= exec('dnf5 upgrade --offline -y', [], admin, upmem)
     Else
-      ok:= rootexec('dnf5 upgrade -y', admin, upmem);
+      ok:= exec('dnf5 upgrade -y', [], admin, upmem);
 
     If not ok Then
     Begin
@@ -173,14 +173,14 @@ Begin
             mtConfirmation, [mbYes, mbNo], 0) = mrYes Then
           Begin
             dm.closedb;
-            rootexec(cmd+'reboot', admin);
+            exec(cmd+'reboot', [], admin);
           End
           Else
           If messagedlg('Question',
             'A reboot is NOT required for these updates, but WILL be required before some of the new updates will take effect. would you like to reboot the system now anyway?', mtConfirmation, [mbYes, mbNo], 0) = mrYes Then
           Begin
             dm.closedb;
-            rootexec(cmd+'reboot', admin);
+            exec(cmd+'reboot', [], admin);
           End;
 
       End
@@ -190,7 +190,7 @@ Begin
         mtConfirmation, [mbok], 0) = mrok Then
       Begin
         dm.closedb;
-        rootexec(dnf+' offline reboot -y', admin);
+        exec('dnf5 offline reboot -y', [], admin);
       End;
 
 End;

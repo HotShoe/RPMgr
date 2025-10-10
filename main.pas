@@ -224,14 +224,14 @@ Var
 Begin
     notefrm.info('Upgrading Fedora. This process will happen in 3 steps: Updating your current system, Upgrading all packages to the newest version of Fedora, and rebooting your system. This dialog will close and your computer will rebot when the process is complete.');
 
-    ok:= rootexec(dnf+' --refresh upgrade', admin);
-    ok:= rootexec(dnf+' system-upgrade download --allowerasing', admin);
+    ok:= exec(dnf+' --refresh upgrade', [], admin);
+    ok:= exec(dnf+' system-upgrade download --allowerasing', [], admin);
 
     assignfile(t, mydir + 'newsys');
     rewrite(t);
     closefile(t);
 
-    ok:= rootexec(dnf+ 'system-upgrade reboot',admin);
+    ok:= exec(dnf+ 'system-upgrade reboot',[], admin);
 
 End;
 
@@ -368,7 +368,7 @@ Procedure Tmainfrm.integritybtnClick(Sender: TObject);
 Begin
     notefrm.info('checking package database. this process will take a while. This dialog will close when the process is completed.');
 
-    ok:= rootexec(dnf+' check check', admin);
+    ok:= exec(dnf+' check check', [], admin);
     notefrm.Close;
 
     If not ok Then
@@ -382,7 +382,7 @@ End;
 begin
      notefrm.info('Repairing databases, standby...');
 
-     rootexec(dnf+' repair fix', admin);
+     exec(dnf+' repair fix', [], admin);
      notefrm.Close;
 end;
 
@@ -653,7 +653,7 @@ Procedure Tmainfrm.fixbtnClick(Sender: TObject);
 Begin
     notefrm.info('Repairing databases, standby...');
 
-    rootexec(dnf+' repair fix', admin);
+    exec(dnf+' repair fix', [], admin);
     notefrm.Close;
 End;
 
@@ -687,7 +687,7 @@ Begin
       {quick tests}
       //import_pkg;
       //import_grp;
-      //import_repos;
+      import_repos;
       //halt;
 
       If fileexists(cfgdir + 'newsys') Then
