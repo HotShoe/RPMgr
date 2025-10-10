@@ -1,5 +1,10 @@
 Changelog for RPMgr Beta
 ###########
+1.0.0 Initial Release
+10-09-25 - fixed enable/disable repository
+10-09-25 - created sudoers file
+
+###########
 0.9.9 Beta
 08-19-25 - Finished installing i18n locale system for multi languages
 08-17-25 - Created .po file for english
