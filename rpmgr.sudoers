@@ -1,1 +1,1 @@
-﻿%wheel ALL=(ALL) NOPASSWD: /usr/bin/dn5
+﻿%wheel ALL=(ALL) NOPASSWD: /usr/bin/dnf5
