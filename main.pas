@@ -224,14 +224,14 @@ Var
 Begin
     notefrm.info('Upgrading Fedora. This process will happen in 3 steps: Updating your current system, Upgrading all packages to the newest version of Fedora, and rebooting your system. This dialog will close and your computer will rebot when the process is complete.');
 
-    ok:= exec(dnf+' --refresh upgrade', [], admin);
-    ok:= exec(dnf+' system-upgrade download --allowerasing', [], admin);
+    ok:= exec('',dnf+' --refresh upgrade', '', 1000, admin);
+    ok:= exec('',dnf+' system-upgrade download --allowerasing', '', 1090, admin);
 
     assignfile(t, mydir + 'newsys');
     rewrite(t);
     closefile(t);
 
-    ok:= exec(dnf+ 'system-upgrade reboot',[], admin);
+    ok:= exec('',dnf+ 'system-upgrade reboot','', 1000, admin);
 
 End;
 
@@ -368,7 +368,7 @@ Procedure Tmainfrm.integritybtnClick(Sender: TObject);
 Begin
     notefrm.info('checking package database. this process will take a while. This dialog will close when the process is completed.');
 
-    ok:= exec(dnf+' check check', [], admin);
+    ok:= exec('',dnf+' check check', '', 1000, admin);
     notefrm.Close;
 
     If not ok Then
@@ -382,7 +382,7 @@ End;
 begin
      notefrm.info('Repairing databases, standby...');
 
-     exec(dnf+' repair fix', [], admin);
+     exec('',dnf+' repair fix', '', 1000, admin);
      notefrm.Close;
 end;
 
@@ -393,8 +393,8 @@ end;
 
  procedure Tmainfrm.mnufixdbClick(Sender : TObject);
 begin
-      notefrm.info('Synchronizing databases with repositories. This will take a few ' +
-               	'moments. This dialog will close when the task is completed.');
+      //notefrm.info('Synchronizing databases with repositories. This will take a few ' +
+               	//'moments. This dialog will close when the task is completed.');
       import_pkg;
       import_grp;
       import_repos;
@@ -653,24 +653,28 @@ Procedure Tmainfrm.fixbtnClick(Sender: TObject);
 Begin
     notefrm.info('Repairing databases, standby...');
 
-    exec(dnf+' repair fix', [], admin);
+    exec('',dnf+' repair fix', '', 1000, admin);
     notefrm.Close;
 End;
 
 Procedure Tmainfrm.FormShow(Sender: TObject);
 Begin
-    dm.initdb;
 
     Try
+    dm.initdb;
+
       if not root then
       loginfrm.showmodal;
 
       notefrm.info('setting up repos and lists');
       getcfg;
 
-      ok:= exec(cmd+'arch',['']);
-      myarch:= outp;
-      myarch:= trim(myarch);
+      ok:= exec('',cmd+'arch','');
+
+      if ok then
+        myarch := trim(outp)
+      else
+        myarch := 'unknown';
 
       If root Then
         rootlbl.Caption:= 'You have Root access'
@@ -696,6 +700,7 @@ Begin
 
         do_version;
         deletefile(cfgdir + 'newsys');
+        notefrm.close;
       End;
 
       Caption:= 'RPMgr v.' + ver;
@@ -708,7 +713,6 @@ Begin
         import_pkg;
         import_grp;
         import_repos;
-        notefrm.Close;
       End;
 
       //import_pkg; //test line
@@ -726,7 +730,7 @@ Begin
 
       checkup;
 
-      If uptot > 0 Then
+      If uptot > 2 Then
       Begin
         //upfrm.updatelist.Text:= outp;
         updatebtn.StateNormal.Background.Color:= clred;

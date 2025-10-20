@@ -76,13 +76,13 @@ Begin
     upgrid.Clean([gznormal]);
     installbtn.Enabled:= True;
 
-    If uptot = 0 Then
+    If uptot < 3 Then
     Begin
       upgrid.Cells[0, 1]:= 'No updates found.';
       exit;
     End;
 
-    rc:= 0;
+    rc:= 2;
     r:= 1;
     upgrid.RowCount:= uptot + 1;
 
@@ -120,9 +120,9 @@ Begin
     application.ProcessMessages;
 
     If offline Then
-      ok:= exec('dnf5 upgrade --offline -y', [], admin, upmem)
+      ok:= exec('Applying changes',dnf, 'upgrade --offline -y',2000, admin, upmem)
     Else
-      ok:= exec('dnf5 upgrade -y', [], admin, upmem);
+      ok:= exec('Applying changes',dnf, 'upgrade -y', 2000, admin, upmem);
 
     If not ok Then
     Begin
@@ -156,16 +156,16 @@ Begin
     upgrid.Clean;
     upgrid.RowCount:= 2;
     upmem.Append(i2str(z) + 'transactions completed' + #10);
-    upmem.Append(#10 + 'Updating databases complete' + #10);
+    upmem.Append('Updating databases complete' + #10);
     application.ProcessMessages;
 
-    upmem.Lines.SaveToFile(homedir+'update.log');
+    upmem.Lines.SaveToFile(mydir+'update.log');
     outp:= '';
 
     If uptot > 0 Then
       If (offline = False) Then
       Begin
-        ok:= run('',dnf, 'needs-restarting','');
+        ok:= exec('',dnf,'needs-restarting',200, admin);
 
         If pos('reboot is required', outp) > 0 Then
           If messagedlg('Question',
@@ -173,14 +173,14 @@ Begin
             mtConfirmation, [mbYes, mbNo], 0) = mrYes Then
           Begin
             dm.closedb;
-            exec(cmd+'reboot', [], admin);
+            exec('',cmd+'reboot','',200, admin);
           End
           Else
           If messagedlg('Question',
             'A reboot is NOT required for these updates, but WILL be required before some of the new updates will take effect. would you like to reboot the system now anyway?', mtConfirmation, [mbYes, mbNo], 0) = mrYes Then
           Begin
             dm.closedb;
-            exec(cmd+'reboot', [], admin);
+            exec('',cmd+'reboot','', 200, admin);
           End;
 
       End
@@ -190,7 +190,7 @@ Begin
         mtConfirmation, [mbok], 0) = mrok Then
       Begin
         dm.closedb;
-        exec('dnf5 offline reboot -y', [], admin);
+        exec('',dnf, 'offline reboot -y', 200, admin);
       End;
 
 End;

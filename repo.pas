@@ -104,7 +104,7 @@ begin
      if statbox.Checked then
      begin
      repoid:= repoid+'.enabled=1';
-     ok:= exec(dnf+' config-manager setopt '+ repoid,[], admin);
+     ok:= exec('',dnf,'config-manager setopt '+ repoid, 500, admin);
 
      if ok then
      changebtn.visible:= false;
@@ -112,7 +112,7 @@ begin
      else
      begin
      repoid:= repoid+'.enabled=0';
-     ok:= exec(dnf+' config-manager setopt '+ repoid,[], admin);
+     ok:= exec('',dnf,'config-manager setopt '+ repoid, 500, admin);
 
      if ok then
      changebtn.visible:= false;
@@ -161,7 +161,7 @@ begin
 
      if questiondlg('WARNING!','Permanaently remove the repository ' + repoid + '?',mtwarning,[mbyes,mbno],0) = mryes then
      begin
-     exec(cmd+'rm /etc/yum.repos.d/'+repoid + '.repo',[], admin);
+     exec('',cmd+'rm', '/etc/yum.repos.d/'+repoid + '.repo', 1000, admin);
      repochanged:= true;
      end;
 

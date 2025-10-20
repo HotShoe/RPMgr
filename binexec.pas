@@ -92,7 +92,7 @@ Var
 
 {exec is a synchronous, blocking function. It is suitable for short-lived
 processes where you want to wait for the result before proceeding, like a login check.}
-Function Exec(Pname : String; opts : opt; RootPw : Shortstring = ''; outmem : Tmemo = nil) : Boolean;
+Function Exec(msg : string; Pname : String; cmdln : string; delay : word = 500; RootPw : Shortstring = ''; outmem : Tmemo = nil) : Boolean;
 
 {RootExecAsync is an asynchronous, non-blocking procedure. It is the preferred method
 for most external process calls, as it keeps the UI responsive. It does not return
@@ -103,6 +103,7 @@ Procedure ExecAsync(Pname : String; opts : opt; RootPw : Shortstring = ''; outme
 Implementation
 
 Uses
+  notes,
   mlstr;
 
 {$R *.lfm}
@@ -131,7 +132,7 @@ Begin
   admin := pwtxt.Text;
 
   // Use the synchronous function for the login check
-  ok := exec('ls', ['/root'], admin);
+  ok := exec('','ls', '/root', 100, admin);
 
   If Not ok Then
   Begin
@@ -155,7 +156,7 @@ End;
 Procedure Tloginfrm.FormShow(Sender : TObject);
 Begin
   // Use the synchronous function for a quick check of the current user
-  ok := exec('env', ['whoami']);
+  ok := exec('','whoami','');
   OutP := trim(OutP);
   user := OutP;
 
@@ -306,7 +307,7 @@ End;
 // RootExec routines
 //-------------------------------------------------------------
 
-Function Exec(Pname : String; opts : opt; RootPw : Shortstring = ''; outmem : Tmemo = nil) : Boolean;
+Function Exec(msg : string; Pname : String; cmdln : string; delay : word = 500; RootPw : Shortstring = ''; outmem : Tmemo = nil) : Boolean;
 Var
   AProc: TProcess;
   Tmp: AnsiString;
@@ -315,6 +316,7 @@ Var
   ErrCnt: Longint;
   Buffer: array[1..BUF_SIZE] of Char;
   ErrBuf: array[1..BUF_SIZE] of Char;
+  prm,
   line : string;
 
 Begin
@@ -322,40 +324,38 @@ Begin
   ErrStr := '';
   errnum := 0;
 
+  if (notefrm <> nil) and (notefrm.Showing) then
+  notefrm.Close;
+
+  if msg <> '' then
+  notefrm.info(msg);
+
   AProc := TProcess.Create(nil);
+
   try
     AProc.Options := [poUsePipes];
 
     // Safer approach for sudo using TProcess's STDIN
+    Aproc.Executable := '/bin/sh';
+    Aproc.Parameters.Add('-c');
+
     if RootPw <> '' then
-    begin
-      Aproc.Executable := '/bin/sh';
-      Aproc.Parameters.Add('-c');
-      AProc.Parameters.Add('sudo -S ' + pname);
-      //AProc.Parameters.Add('-S');
-      //AProc.Parameters.Add(Pname);
-
-      for Tmp In opts do
-        AProc.Parameters.Add(Tmp);
-    end
+    prm:= 'sudo -S ' + pname + ' ' + cmdln
     else
-    begin
-      AProc.Executable := Pname;
+    prm:= pname + ' ' + cmdln;
 
-      for Tmp In opts do
-        AProc.Parameters.Add(Tmp);
-    end;
+    prm:= trim(prm);
 
+    AProc.Parameters.Add(prm);
     AProc.Execute;
 
     if RootPw <> '' then
     begin
       RootPw:= RootPw + #10;
       AProc.Input.Write(RootPw[1], Length(RootPw));
-      sleep(1000);
     end;
 
-    sleep(30);
+    sleep(delay);
 
     repeat
       // Read standard output
@@ -368,7 +368,10 @@ Begin
         OutP := OutP + Tmp;
 
         if Assigned(outmem) then
+        begin
           outmem.Append(Tmp);
+          application.ProcessMessages;
+        end;
       end;
 
       until (bytes < 1);
@@ -389,7 +392,10 @@ Begin
         outp:= outp + errstr;
 
         if Assigned(outmem) then
+        begin
           outmem.Append(Tmp);
+          application.ProcessMessages;
+        end;
       end;
 
       until (errcnt < 1);

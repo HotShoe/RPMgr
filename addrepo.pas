@@ -67,9 +67,9 @@ begin
      else
      enb:= '0';
 
-     ok:= exec(dnf+' config-manager addrepo --set=baseurl='+
+     ok:= exec('',dnf,'config-manager addrepo --set=baseurl='+
                basetxt.Text + ' --set=id=' + repotxt.Text +
-               ' --set=enabled=' + enb, [], admin);
+               ' --set=enabled=' + enb, 1000, admin);
 
      if ok then
      begin

@@ -14,7 +14,7 @@ object dm: Tdm
     )
     DisableSavepoints = False
     Port = 0
-    Database = '/usr/share/rpmgr/rpmgr.db'
+    Database = '/var/lib/rpmgr/rpmgr.db'
     Protocol = 'sqlite'
     Left = 32
     Top = 20
@@ -397,6 +397,15 @@ object dm: Tdm
     LHelpPath = '/usr/bin/lhelp'
     AutoRegister = True
     Left = 128
+    Top = 192
+  end
+  object makeit: TSQLConnector
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = '/var/lib/rpmgr/rpmgr.db'
+    KeepConnection = False
+    ConnectorType = 'SQLite3'
+    Left = 224
     Top = 192
   end
 end

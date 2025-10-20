@@ -19,6 +19,7 @@ Interface
 Uses
     Classes,
     SysUtils,
+    strutils,
     unix,
     process,
     DB,
@@ -72,7 +73,6 @@ Var
     grpaddstr,
     grpdelstr,
     myarch,
-    homedir,
     mydir,
     me,
     dnf,
@@ -115,7 +115,6 @@ Var
 Procedure getcfg;
 Procedure savecfg;
 Function run(what, prog, cmdln, lname : String) : Boolean;
-//Function pkrun(what, cmdln, lname : String) : Boolean;
 Procedure checkup;
 Procedure gtu(e : Exception);
 Procedure getinstalled;
@@ -133,7 +132,6 @@ procedure markinstalled;
 procedure markremoved;
 Procedure undolast;
 Procedure undoall;
-Procedure loadoutp(fname : String);
 
 Implementation
 
@@ -173,13 +171,13 @@ Begin
         hdgfc:= clblack;
         offline:= True;
 
-        ok:= exec('which',['cp']);
+        ok:= exec('','which','cp');
         cmd:= copy(outp,1,lastpos('/',outp));
 
-        ok:= exec('which',['rpm']);
+        ok:= exec('','which','rpm');
         rpm:= trim(outp);
 
-        ok:= exec('which',['dnf5']);
+        ok:= exec('','which','dnf5');
         dnf:= trim(outp);
 
       End;
@@ -277,11 +275,11 @@ var
     ver : string;
 
 begin
-	if not fileexists(homedir+'apply.log') then
+	if not fileexists(mydir+'apply.log') then
       exit;
 
     mlst:= tstringlist.Create;
-	mlst.LoadFromFile(homedir+'apply.log');
+	mlst.LoadFromFile(mydir+'apply.log');
 
     num:= mlst.Count;
     i:= -1;
@@ -400,11 +398,11 @@ var
     ver : string;
 
 begin
-	if not fileexists(homedir+'apply.log') then
+	if not fileexists(mydir+'apply.log') then
       exit;
 
     mlst:= tstringlist.Create;
-	mlst.LoadFromFile(homedir+'apply.log');
+	mlst.LoadFromFile(mydir+'apply.log');
 
     num:= mlst.Count;
     i:= -1;
@@ -518,36 +516,6 @@ Begin
 
 End;
 
-{Loads a file from disk}
-Procedure loadoutp(fname : String);
-Var
-    f: file;
-    bytes : longint;
-    buf : array[1.. 16385] of char;
-
-Begin
-    assignfile(f, fname);
-    outp:= '';
-    bytes:= 0;
-    fillchar(buf,sizeof(buf),#0);
-
-    Try
-      reset(f,1);
-
-      repeat
-      blockRead(f, buf[1],16385,bytes);
-      outp:= outp + copy(buf,1,bytes);
-      until bytes = 0;
-
-      closefile(f);
-    Except
-      outp:= '';
-    End;
-
-    deletefile(fname);
-
-End;
-
 Function run(what, prog, cmdln, lname : String) : Boolean;
 Var
     cmd: String;
@@ -563,10 +531,9 @@ Begin
       lname:= cfgdir + lname + '.lst';
       outp:= '';
 
-      cmd:= prog + ' ' + cmdln + ' > ' + lname;
+      cmd:= '/bin/sh -c ' + prog + ' ' + cmdln + ' > ' + lname;
       errnum:= fpsystem(cmd);
 
-      loadoutp(lname);
     end
     else
     begin
@@ -584,43 +551,40 @@ Begin
 
 End;
 
-//Function pkrun(what, cmdln, lname : String) : Boolean;
-//Var
-//    e: Integer;
-//Begin
-//
-//    If what <> '' Then
-//    Begin
-//      notefrm.info(what);
-//      notefrm.Show;
-//      application.ProcessMessages;
-//    End;
-//
-//    If lname <> '' Then
-//      lname:= ' > ' + mydir + lname + '.lst';
-//
-//    outp:= '';
-//    application.ProcessMessages;
-//
-//    e:= fpsystem('/usr/bin/pkexec ' + cmdln + lname);
-//    loadoutp(lname);
-//
-//    //ok:= runcommand('/usr/bin/pkexec',cmdln,outp);
-//
-//    Result:= e = 0;
-//
-//    If notefrm.Showing Then
-//      notefrm.Close;
-//End;
+procedure log(lstr : string);
+var
+    t : textfile;
+    logfile : string;
+
+begin
+    logfile:= mydir+'rpmgr.log';
+
+    assignfile(t,logfile);
+
+    if fileexists(logfile) then
+    reset(t)
+    else
+    rewrite(t);
+
+    writeln(t,lstr);
+
+    closefile(t);
+
+end;
 
 {GTU error (Going Tits Up) - always fatal}
 Procedure gtu(e : Exception);
-Begin
-    notefrm.error('RPManager has caused a GTU error and will now close. ' +
-      'The error is:' + #10 + e.Message);
+var
+  err : string;
 
-    application.ProcessMessages;
-    sleep(300);
+Begin
+  err:= 'RPManager has caused a GTU error and will now close. ' +
+      'The error is:' + #10 + e.Message;
+
+    notefrm.error(err);
+
+    //log(err);
+
     application.ProcessMessages;
     halt(stat);
 End;
@@ -629,15 +593,17 @@ End;
 Procedure checkup;
 Begin
     uptot:= 0;
-    ok:= exec(dnf,['check-upgrade']);
+    ok:= exec('Checking for updates.',dnf+' check-upgrade','',2000);
 
-    If (not ok) Then
+    If (outp = '') Then
     Begin
       ShowMessage('An error occured whiled checking for updates. ' + errstr);
       exit;
     End;
 
-      uplst.Text:= OutP;
+      uplst.Text:= outp;
+
+      //deletefile(cfgdir+'up.lst');
 
       If uplst.Count > 0 Then
       Begin
@@ -667,11 +633,9 @@ Begin
     outp:= '';
     lx:= 0;
 
-    ok:= run('',dnf,'list --installed','inst');
+    ok:= exec('Checking installed packages',dnf+' list --installed','',1000);
     //ok:= exec(dnf,['list', '--installed', '> '+cfgdir+'inst.lst']);
-
-    instlst.Text:= outp;;
-    //instlst.LoadFromFile(cfgdir+'inst.lst');
+    instlst.text:= outp;
     insttot:= instlst.Count;
     instlst.Sorted:= True;
     //deletefile(cfgdir+'inst.lst');
@@ -688,7 +652,7 @@ Begin
     instlst.Clear;
     instlst.Text:= outp;
     insttot:= instlst.Count;
-    instlst.SaveToFile(homedir+'inst.lst');
+    instlst.SaveToFile(mydir+'inst.lst');
 
 End;
 
@@ -763,7 +727,7 @@ Begin
       filelst:= TStringList.Create;
 
     ok:= run('',rpm, '-ql ' + pname,'flist');
-    filelst.Text:= outp;
+    filelst.LoadFromFile(cfgdir+'flist.lst');
 
     Result:= ok;
 End;
@@ -771,66 +735,237 @@ End;
 {Retrieves a list of all packages in all current repos. Then compiles that list
 nto the rpmgr database. this is why it takes a while to run rpmgr the first
 time.}
-Procedure import_pkg;
-Var
-    pnum,
-    xl,
-    r: Longint;
-    sql,
-    dl,
-    sz,
-    arch,
-    pname,
-    ins,
-    ver,
-    epoch,
-    isz,
-    dlsz,
-    desc: String;
+//Procedure import_pkg;
+//Var
+//    pnum,
+//    xl,
+//    r: Longint;
+//    sql,
+//    dl,
+//    sz,
+//    arch,
+//    pname,
+//    ins,
+//    ver,
+//    epoch,
+//    isz,
+//    dlsz,
+//    desc: String;
+//
+//Begin
+//    if pkglst = nil then
+//    pkglst:= TStringList.Create;
+//
+//    pkglst.Clear;
+//    pkgtot:= 0;
+//    pnum:= 0;
+//
+//    dm.pkg.DisableControls;
+//    dm.grp.Active:= False;
+//    pkglst.Delimiter:= #10;
+//
+//    ok:= run('Importing Package list. This will take several moments.',dnf,'info --available','pkg');
+//    //ok:= exec(dnf+' info --available > '+cfgdir+'pkg.lst',[], admin);
+//    //pkglst.LoadFromFile(cfgdir+'pkg.lst');
+//    pkglst.Text:= outp;
+//    //outp:= pkglst.Text;
+//    //pkglst.SaveToFile(mydir+'pkg.lst');
+//    pkgtot:= pkglst.Count;
+//    //deletefile(cfgdir+'pkg.lst');
+//
+//    If pkgtot < 1 Then
+//      exit;
+//
+//    dm.query.Close;
+//    dm.query.SQL.Clear;
+//    dm.query.SQL.Text:= 'delete from packages;';
+//    dm.query.ExecSQL;
+//
+//    xl:= 1;
+//    r:= 1;
+//    dm.rcon.AutoCommit:= False;
+//    dm.rcon.ExecuteDirect('end transaction;');
+//
+//    dm.rcon.ExecuteDirect('PRAGMA journal_mode = off');
+//    dm.rcon.ExecuteDirect('PRAGMA synchronous = 0;');
+//    dm.rcon.ExecuteDirect('PRAGMA cache_size = -204800;');
+//    dm.rcon.ExecuteDirect('PRAGMA locking_mode = EXCLUSIVE;');
+//    dm.rcon.ExecuteDirect('PRAGMA temp_store = MEMORY;');
+//
+//    dm.rcon.ExecuteDirect('begin transaction;');
+//
+//    While xl < pkgtot - 4 Do
+//    Begin
+//      line:= pkglst[xl];
+//      line:= stripto(line, ':');
+//      st:= remainder;
+//      st:= strip(st, ' ');
+//      pname:= st;
+//
+//      Inc(xl);
+//      line:= pkglst[xl];
+//      line:= stripto(line, ':');
+//      epoch:= remainder;
+//      epoch:= strip(epoch, ' ');
+//
+//      Inc(xl);
+//      line:= pkglst[xl];
+//      line:= stripto(line, ':');
+//      ver:= remainder;
+//      ver:= strip(ver, ' ');
+//
+//      Inc(xl);
+//      line:= pkglst[xl];
+//      line:= stripto(line, ':');
+//      ver:= ver + '-' + remainder;
+//      ver:= strip(ver, ' ');
+//
+//      Inc(xl);
+//      line:= pkglst[xl];
+//      line:= stripto(line, ':');
+//      arch:= remainder;
+//      arch:= strip(arch, ' ');
+//
+//      Inc(xl);
+//      line:= pkglst[xl];
+//      dl:= line;
+//      dlsz:= stripto(line, ':');
+//      line:= trimleft(line);
+//      dlsz:= line;
+//      dlsz:= trim(dlsz);
+//
+//      Inc(xl);
+//      line:= pkglst[xl];
+//      sz:= line;
+//      isz:= stripto(line, ':');
+//      line:= trimleft(line);
+//      isz:= line;
+//      isz:= trim(isz);
+//
+//      If pname = '' Then
+//        break;
+//
+//      Inc(xl, 6);
+//
+//      desc:= getdesc(xl);
+//      tmp:= sz + #10 + dl + #10;
+//      desc:= tmp + desc;
+//      desc:= quotedstr(desc);
+//      Inc(xl);
+//
+//      pname:= pname + '.' + arch;
+//
+//      ln2:= installed(pname);
+//
+//      If ok Then
+//        ins:= 'True'
+//      Else
+//        ins:= 'False';
+//        tmp:= 'none';
+//
+//      Try
+//        sql:= 'insert into packages values(' +
+//          #39 + ins + #39 + ',' +
+//          #39 + pname + #39 + ',' +
+//          #39 + ver + #39 + ',' +
+//          desc + ',' +
+//          #39 + arch + #39 + ',' +
+//          #39 + tmp + #39 + ',' +
+//          #39 + isz + #39 + ',' +
+//          #39 + dlsz + #39 + ');';
+//
+//        dm.rcon.ExecuteDirect(sql);
+//
+//      Except
+//        on e : exception do
+//        begin
+//        showmessage(e.Message);
+//
+//        Inc(xl);
+//        continue;
+//        end;
+//
+//      End;
+//
+//      If r > 2000 Then
+//      Begin
+//        dm.rcon.Commit;
+//        r:= 1;
+//        application.ProcessMessages;
+//
+//      End;
+//
+//      Inc(pnum);
+//      Inc(xl);
+//      Inc(r);
+//    End;
+//
+//    dm.rcon.AutoCommit:= True;
+//    dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
+//    dm.rcon.ExecuteDirect('PRAGMA synchronous = NORMAL;');
+//    dm.rcon.ExecuteDirect('PRAGMA cache_size = 1024000;');
+//    dm.rcon.ExecuteDirect('PRAGMA locking_mode = NORMAL;');
+//    dm.rcon.ExecuteDirect('PRAGMA temp_store = DEFAULT;');
+//
+//    pkglst.Free;
+//    dm.grp.Active:= True;
+//    dm.pkg.EnableControls;
+//
+//End;
 
-Begin
-    if pkglst = nil then
-    pkglst:= TStringList.Create;
+procedure import_pkg;
+var
+  pnum, xl, r: Longint;
+  sql, dl, sz, arch, pname, ins, ver, epoch, isz, dlsz, desc: string;
+begin
+  if pkglst = nil then
+    pkglst := TStringList.Create;
 
-    pkglst.Clear;
-    pkgtot:= 0;
-    pnum:= 0;
+  pkglst.Clear;
+  pkgtot := 0;
+  pnum := 0;
 
-    dm.pkg.DisableControls;
-    dm.grp.Active:= False;
-    pkglst.Delimiter:= #10;
+  dm.pkg.DisableControls;
+  dm.grp.Active := False;
+  pkglst.Delimiter := #10;
 
-    ok:= exec(dnf+' info --available > '+cfgdir+'pkg.lst',[], admin);
-    pkglst.LoadFromFile(cfgdir+'pkg.lst');
-    //pkglst.Text:= outp;
-    //outp:= pkglst.Text;
-    //pkglst.SaveToFile(mydir+'pkg.lst');
-    pkgtot:= pkglst.Count;
-    //deletefile(cfgdir+'pkg.lst');
+  ok := exec('Importing packages. This may take some time.', dnf, 'info --available',1000);
+  //pkglst.LoadFromFile(cfgdir+'pkg.lst');
+  pkglst.Text:= outp;
+  pkgtot := pkglst.Count;
 
-    If pkgtot < 1 Then
-      exit;
+  if pkgtot < 1 then
+  exit;
 
-    dm.query.Close;
-    dm.query.SQL.Clear;
-    dm.query.SQL.Text:= 'delete from packages;';
-    dm.query.ExecSQL;
+  // Drop indexes for speed
+  dm.rcon.ExecuteDirect('DROP INDEX IF EXISTS idx_packages_version;');
+  dm.rcon.ExecuteDirect('DROP INDEX IF EXISTS idx_packages_arch;');
+  dm.rcon.ExecuteDirect('DROP INDEX IF EXISTS idx_packages_name_version;');
 
-    xl:= 1;
-    r:= 1;
-    dm.rcon.AutoCommit:= False;
-    dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
-    dm.rcon.ExecuteDirect('PRAGMA cache_size = 20480000;');
-    dm.rcon.ExecuteDirect('PRAGMA locking_mode = EXCLUSIVE;');
-    dm.rcon.ExecuteDirect('PRAGMA temp_store = MEMORY;');
+  dm.query.Close;
+  dm.query.SQL.Text := 'DELETE FROM packages;';
+  dm.query.ExecSQL;
 
-    dm.rcon.ExecuteDirect('end transaction;');
-    dm.rcon.ExecuteDirect('begin transaction;');
+  dm.rcon.AutoCommit := False;
+  dm.rcon.ExecuteDirect('END TRANSACTION;');
+  dm.rcon.ExecuteDirect('PRAGMA journal_mode = OFF;');
+  dm.rcon.ExecuteDirect('PRAGMA synchronous = 0;');
+  dm.rcon.ExecuteDirect('PRAGMA cache_size = -204800;');
+  dm.rcon.ExecuteDirect('PRAGMA locking_mode = EXCLUSIVE;');
+  dm.rcon.ExecuteDirect('PRAGMA temp_store = MEMORY;');
+  dm.rcon.ExecuteDirect('BEGIN TRANSACTION;');
 
-    While xl < pkgtot - 4 Do
-    Begin
-      line:= pkglst[xl];
+  dm.query.SQL.Text :=
+    'INSERT INTO packages (installed, name, version, desc, arch, grp, isize, psize) ' +
+    'VALUES (:ins, :pname, :ver, :desc, :arch, :src, :isz, :dlsz);';
+  dm.query.Prepare;
+
+  xl := 1;
+  r := 1;
+
+  while xl < pkgtot - 4 do
+  begin
+  line:= pkglst[xl];
       line:= stripto(line, ':');
       st:= remainder;
       st:= strip(st, ' ');
@@ -876,76 +1011,68 @@ Begin
       isz:= line;
       isz:= trim(isz);
 
-      If pname = '' Then
-        break;
+    if pname = '' then break;
+    Inc(xl, 6);
 
-      Inc(xl, 6);
+    desc := getdesc(xl);
+    desc := quotedstr(sz + #10 + dl + #10 + desc);
+    Inc(xl);
 
-      desc:= getdesc(xl);
-      tmp:= sz + #10 + dl + #10;
-      desc:= tmp + desc;
-      desc:= quotedstr(desc);
-      Inc(xl);
+    pname := pname + '.' + arch;
+    ln2 := installed(pname);
+    ins := ifthen(ok, 'True', 'False');
+    tmp := 'none';
 
-      pname:= pname + '.' + arch;
-
-      ln2:= installed(pname);
-
-      If ok Then
-        ins:= 'True'
-      Else
-        ins:= 'False';
-        tmp:= 'none';
-
-      Try
-        sql:= 'insert into packages values(' +
-          #39 + ins + #39 + ',' +
-          #39 + pname + #39 + ',' +
-          #39 + ver + #39 + ',' +
-          desc + ',' +
-          #39 + arch + #39 + ',' +
-          #39 + tmp + #39 + ',' +
-          #39 + isz + #39 + ',' +
-          #39 + dlsz + #39 + ');';
-
-        dm.rcon.ExecuteDirect(sql);
-
-      Except
-        on e : exception do
-        begin
-        showmessage(e.Message);
-
+    try
+      dm.query.ParamByName('ins').AsString := ins;
+      dm.query.ParamByName('pname').AsString := pname;
+      dm.query.ParamByName('ver').AsString := ver;
+      dm.query.ParamByName('desc').AsString := desc;
+      dm.query.ParamByName('arch').AsString := arch;
+      dm.query.ParamByName('src').AsString := tmp;
+      dm.query.ParamByName('isz').AsString := isz;
+      dm.query.ParamByName('dlsz').AsString := dlsz;
+      dm.query.ExecSQL;
+    except
+      on e: Exception do
+      begin
+        ShowMessage(e.Message);
         Inc(xl);
-        continue;
-        end;
+        Continue;
+      end;
+    end;
 
-      End;
+    if r > 2000 then
+    begin
+      dm.rcon.Commit;
+      r := 1;
+      Application.ProcessMessages;
+    end;
 
-      If r > 2000 Then
-      Begin
-        dm.rcon.Commit;
-        r:= 1;
-        application.ProcessMessages;
+    Inc(pnum);
+    Inc(xl);
+    Inc(r);
+  end;
 
-      End;
+  dm.rcon.Commit;
+  dm.rcon.AutoCommit := True;
 
-      Inc(pnum);
-      Inc(xl);
-      Inc(r);
-    End;
+  // Restore PRAGMA and indexes
+  dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL;');
+  dm.rcon.ExecuteDirect('PRAGMA synchronous = NORMAL;');
+  dm.rcon.ExecuteDirect('PRAGMA cache_size = 1024000;');
+  dm.rcon.ExecuteDirect('PRAGMA locking_mode = NORMAL;');
+  dm.rcon.ExecuteDirect('PRAGMA temp_store = DEFAULT;');
 
-    dm.rcon.AutoCommit:= True;
-    dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
-    dm.rcon.ExecuteDirect('PRAGMA cache_size = 1024000;');
-    dm.rcon.ExecuteDirect('PRAGMA locking_mode = NORMAL;');
-    dm.rcon.ExecuteDirect('PRAGMA temp_store = DEFAULT;');
+  dm.rcon.ExecuteDirect('CREATE INDEX idx_packages_version ON packages(version);');
+  dm.rcon.ExecuteDirect('CREATE INDEX idx_packages_arch ON packages(arch);');
+  dm.rcon.ExecuteDirect('CREATE INDEX idx_packages_name_version ON packages(name, version);');
 
-    pkglst.Free;
-    dm.grp.Active:= True;
-    dm.pkg.EnableControls;
+  pkglst.Free;
+  dm.grp.Active := True;
+  dm.pkg.EnableControls;
+end;
 
-End;
 
 {Update package versions}
 Procedure do_version;
@@ -965,24 +1092,23 @@ Begin
 
     verlst.Delimiter:= #10;
 
-    ok:= run('',dnf,' list --available','ver');
-    //ok:= exec(dnf+' list --available > '+cfgdir+'ver.lst',[], admin);
-    //verlst.LoadFromFile(cfgdir+'ver.lst');
-
+    ok:= exec('Updating package versions',dnf,' list --available',1000);
     verlst.Text:= outp;
+
     verlst.Delete(0);
     //deletefile(cfgdir+'ver.lst');
 
     x:= 0;
     r:= 1;
     dm.rcon.AutoCommit:= False;
-    dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
-    dm.rcon.ExecuteDirect('PRAGMA cache_size = 20480000;');
+    dm.rcon.ExecuteDirect('end transaction;');
+
+    dm.rcon.ExecuteDirect('PRAGMA journal_mode = off');
+    dm.rcon.ExecuteDirect('PRAGMA synchronous = 0;');
+    dm.rcon.ExecuteDirect('PRAGMA cache_size = -204800;');
     dm.rcon.ExecuteDirect('PRAGMA locking_mode = EXCLUSIVE;');
     dm.rcon.ExecuteDirect('PRAGMA temp_store = MEMORY;');
 
-    dm.rcon.ExecuteDirect('end transaction;');
     dm.rcon.ExecuteDirect('begin transaction;');
 
     cnt:= verlst.Count;
@@ -1026,7 +1152,7 @@ Begin
 
     dm.rcon.AutoCommit:= True;
     dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
+    dm.rcon.ExecuteDirect('PRAGMA synchronous = NORMAL;');
     dm.rcon.ExecuteDirect('PRAGMA cache_size = 1024000;');
     dm.rcon.ExecuteDirect('PRAGMA locking_mode = NORMAL;');
     dm.rcon.ExecuteDirect('PRAGMA temp_store = DEFAULT;');
@@ -1047,11 +1173,7 @@ Begin
 
     leaflst.Clear;
 
-    ok:= run('',dnf,'leaves','leaf');
-    //ok:= exec(dnf+' leaves > '+cfgdir+'leaf.lst',[], admin);
-    //leaflst.LoadFromFile(cfgdir+'leaf.lst');
-    //leaflst.SaveToFile(mydir+'leaf.lst');
-
+    ok:= exec('Gathering Leaves',dnf,'leaves',1000);
     leaflst.Text:= outp;
     lvtot:= leaflst.Count;
     leaflst.Sort;
@@ -1061,14 +1183,15 @@ Begin
     i:= 0;
     //dm.rcon.Connected:= false;
     dm.rcon.AutoCommit:= False;
-    dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
-    dm.rcon.ExecuteDirect('PRAGMA cache_size = 20480000;');
+    dm.rcon.ExecuteDirect('end transaction;');
+
+    dm.rcon.ExecuteDirect('PRAGMA journal_mode = off');
+    dm.rcon.ExecuteDirect('PRAGMA synchronous = 0;');
+    dm.rcon.ExecuteDirect('PRAGMA cache_size = -204800;');
     dm.rcon.ExecuteDirect('PRAGMA locking_mode = EXCLUSIVE;');
     dm.rcon.ExecuteDirect('PRAGMA temp_store = MEMORY;');
 
     //dm.rcon.Connected:= true;
-    dm.rcon.ExecuteDirect('end transaction;');
     dm.rcon.ExecuteDirect('begin transaction;');
     dm.pkg.DisableControls;
 
@@ -1109,7 +1232,7 @@ Begin
 
     dm.rcon.AutoCommit:= True;
     dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
+    dm.rcon.ExecuteDirect('PRAGMA synchronous = NORMAL;');
     dm.rcon.ExecuteDirect('PRAGMA cache_size = 1024000;');
     dm.rcon.ExecuteDirect('PRAGMA locking_mode = NORMAL;');
     dm.rcon.ExecuteDirect('PRAGMA temp_store = DEFAULT;');
@@ -1136,11 +1259,9 @@ Begin
     grplst.Clear;
     grptot:= 0;
 
-    ok:= run('',dnf,' group info','grp');
-    //ok:= exec(dnf+' group info > '+cfgdir+'grp.lst',[], admin);
+    ok:= exec('Importing Group list. This will take several moments.',dnf,' group info',1000);
     //grplst.LoadFromFile(cfgdir+'grp.lst');
     grplst.Text:= outp;
-    //grplst.SaveToFile(mydir+'grp.lst');
     grptot:= grplst.Count;
     //deletefile(cfgdir+'grp.lst');
 
@@ -1155,17 +1276,21 @@ Begin
     dm.grp.DisableControls;
 
     dm.rcon.AutoCommit:= False;
-    dm.rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    dm.rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
-    dm.rcon.ExecuteDirect('PRAGMA cache_size = 20480000;');
+    dm.rcon.ExecuteDirect('end transaction;');
+
+    dm.rcon.ExecuteDirect('PRAGMA journal_mode = off');
+    dm.rcon.ExecuteDirect('PRAGMA synchronous = 0;');
+    dm.rcon.ExecuteDirect('PRAGMA cache_size = -204800;');
     dm.rcon.ExecuteDirect('PRAGMA locking_mode = EXCLUSIVE;');
     dm.rcon.ExecuteDirect('PRAGMA temp_store = MEMORY;');
 
-    dm.rcon.ExecuteDirect('end transaction;');
     dm.rcon.ExecuteDirect('begin transaction;');
 
     x:= 1;
     r:= 1;
+
+    if not dm.grp.Active then
+    dm.grp.Active:= true;;
 
     While x < grptot - 4 Do
     Begin
@@ -1334,11 +1459,9 @@ Begin
 
     application.ProcessMessages;
 
-    ok:= run('',dnf,'repo info --all','repo');
-    //ok:= exec(dnf+' repo info --all > '+cfgdir+'repo.lst',[], admin);
+    ok:= exec('Getting Repository list',dnf,'repo info --all',2000);
     //repolst.LoadFromFile(cfgdir+'repo.lst');
     repolst.Text:= outp;
-    //repolst.SaveToFile(mydir+'repo.lst');
     repotot:= repolst.Count;
     //deletefile(cfgdir+'repo.lst');
 

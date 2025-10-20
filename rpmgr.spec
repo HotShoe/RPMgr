@@ -3,7 +3,7 @@
 
 Name:           rpmgr
 Version:        1.0.0
-Release:        0%{?dist}
+Release:        2%{?dist}
 Summary:        Graphical desktop interface to the Fedora 41+ DNF5 and RPM package managers
 
 License:        Apache2.0 and MLsoft2.1
@@ -48,19 +48,16 @@ install -D -m755    rpmgr              %{buildroot}%{_bindir}/rpmgr
 install -D -m755    lhelp              %{buildroot}%{_bindir}/lhelp
 install -D -m644    rpmgr.png          %{buildroot}%{_datadir}/pixmaps/rpmgr.png
 install -D -m644    rpmgr.8.gz         %{buildroot}%{_datadir}/man/man8/rpmgr.8.gz
-install -D -m774 rpmgr.db %{buildroot}/var/lib/rpmgr/rpmgr.db
-install -D -m644 rpmgr.chm %{buildroot}%{_datadir}/rpmgr/rpmgr.chm
-install -m 755 -d %{buildroot}/etc/sudoers.d/
-install -m 440 %{_sourcedir}/rpmgr.sudoers %{buildroot}/etc/sudoers.d/
+install -D -m664 rpmgr.db1             %{buildroot}/etc/rpmgr.db1
+install -D -m644 rpmgr.chm             %{buildroot}%{_datadir}/rpmgr/rpmgr.chm
+install -m 775 -d                      %{buildroot}/var/lib/rpmgr
+install -m 755 -d                      %{buildroot}/etc/sudoers.d/
+install -m 440 rpmgr.sudoers           %{buildroot}/etc/sudoers.d/
 install -D -m644 locale/en/LC_MESSAGES/rpmgr.mo %{buildroot}%{_datadir}/locale/en/LC_MESSAGES/rpmgr.mo
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications rpmgr.desktop
 
-
 %post
-# rpmgr.db must be writable by wheel group for update operations via RPMgr interface
 chown root:root %{_datadir}/rpmgr
-chown root:wheel /var/lib/rpmgr
-chmod 774 /var/lib/rpmgr/rpmgr.db
 chmod 755  %{_datadir}/rpmgr
 chmod 644  %{_datadir}/rpmgr/rpmgr.chm
 
@@ -79,18 +76,18 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/rpmgr.desktop ||:
 %doc  rpmgr.pdf
 
 %config(noreplace) /etc/sudoers.d/%{sudoers_file}
-%config(noreplace) /var/lib/rpmgr/rpmgr.db
+/etc/rpmgr.db1
+%dir %attr(775,root,wheel) /var/lib/rpmgr
 %{_datadir}/rpmgr/rpmgr.chm
 %{_bindir}/rpmgr
 %{_bindir}/lhelp
 %{_datadir}/applications/rpmgr.desktop
 %{_datadir}/pixmaps/rpmgr.png
 %{_datadir}/man/man8/rpmgr.8.gz
-%{_datadir}/rpmgr/rpmgr
 %{_datadir}/locale/en/LC_MESSAGES/rpmgr.mo
 
 %changelog
-* Thu Oct 17 2025 Jem Miller <jem@mlsoft.org> - 1.0.0-0
+* Fri Oct 17 2025 Jem Miller <jem@mlsoft.org> - 1.0.0-0
 - Update to 1.0.0
 
 * Thu Aug 14 2025 Jem Miller <jem@mlsoft.org> - 0.9.9.6-0

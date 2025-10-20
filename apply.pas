@@ -116,40 +116,40 @@ begin
 
      if grpaddstr <> '' then
      begin
-     ok:= exec('dnf5 group install -y '+grpaddstr,[], admin);
+     ok:= exec('',dnf, 'group install -y '+grpaddstr, 1000, admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if grpdelstr <> '' then
      begin
-     ok:= exec('dnf5 group remove -y '+grpaddstr,[], admin);
+     ok:= exec('',dnf, 'group remove -y '+grpaddstr, 1000, admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if pkgaddstr <> '' then
      begin
-     ok:= exec('dnf5 install -y '+pkgaddstr,[], admin);
+     ok:= exec('',dnf, 'install -y '+pkgaddstr, 1000, admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if pkgdelstr <> '' then
      begin
-     ok:= exec('dnf5 remove -y '+pkgdelstr,[], admin);
+     ok:= exec('',dnf, 'remove -y '+pkgdelstr, 1000, admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
      if pkgrinstr <> '' then
      begin
-     ok:= exec('dnf5 reinstall -y '+pkgrinstr,[], admin);
+     ok:= exec('',dnf,'reinstall -y '+pkgrinstr, 1000, admin);
      info.Append(outp);
      application.ProcessMessages;
      end;
 
-     info.Lines.SaveToFile(homedir+'apply.log');
+     info.Lines.SaveToFile(mydir+'apply.log');
 
      for i:= 0 to optot - 1 do
      begin

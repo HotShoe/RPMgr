@@ -25,7 +25,7 @@ Uses
     Dialogs,
     forms,
     DB,
-    SQLite3Conn,
+    SQLite3Conn, SQLDB,
     ZConnection,
     ZDataset,
     ZAbstractRODataset,
@@ -66,6 +66,7 @@ Type
       reposType : TZRawStringField;
       reposVerifyPkg : TZBooleanField;
       reposVerifyRepo : TZBooleanField;
+      makeit: TSQLConnector;
       ssrc :    TDataSource;
       qs :      TDataSource;
       grpdesc : TZRawStringField;
@@ -114,18 +115,24 @@ End;
 
 procedure Tdm.initdb;
 begin
-    if not directoryexists(dbdir) then
-     newdb;
 
+    if not fileexists(dbdir+'rpmgr.db') then
+    newdb;
+
+
+    //try
      rcon.Database:= dbdir+'rpmgr.db';
      rcon.DesignConnection:= false;
      rcon.Connect;
+    // except
+    // newdb
+    //end;
 
     rcon.ExecuteDirect('PRAGMA journal_mode = WAL');
-    rcon.ExecuteDirect('PRAGMA syncronous = NORMAL;');
-    rcon.ExecuteDirect('PRAGMA cache_size = 1024000;');
+    rcon.ExecuteDirect('PRAGMA cache_size = -102400;');
     rcon.ExecuteDirect('PRAGMA locking_mode = NORMAL;');
-    rcon.ExecuteDirect('PRAGMA temp_store = DAFAULT;');
+    rcon.ExecuteDirect('PRAGMA synchronous = NORMAL;');
+    rcon.ExecuteDirect('PRAGMA temp_store = DEFAULT;');
 
     pkg.Active:= True;
     tot:= pkg.RecordCount;
@@ -170,12 +177,26 @@ End;
 
 procedure Tdm.newdb;
 var
-    dbfile,
-    dropsql,
-    tblsql : ansistring;
+    dbfile : string;
+    //dropsql,
+    //tblsql : ansistring;
 
 begin
-    //dbfile:= '/usr/share/rpmgr/rpmgr.db';
+    if not directoryexists(dbdir) then
+    begin
+      ok:= exec('','mkdir '+dbdir,'', 100, admin);
+      ok:= exec('','chown root:wheel ' + dbdir,'',100, admin);
+      ok:= exec('','chmod 775 ' + dbdir,'',100, admin);
+    end;
+
+    dbfile:= dbdir+'rpmgr.db';
+    ok:= exec('','cp /etc/rpmgr.db1 '+dbfile,'',100, admin);
+    ok:= exec('','chown root:wheel ' + dbfile,'',100, admin);
+    ok:= exec('','chmod 774 ' + dbfile,'',100, admin);
+
+    //ok:= true;
+    //
+    //dbfile:= '/var/lib/rpmgr/rpmgr.db';
     //dropsql:= 'BEGIN TRANSACTION' +
     //'DROP TABLE "groups";' +
     //'DROP TABLE "packages";' +
@@ -215,18 +236,45 @@ begin
     //	'PRIMARY KEY("Name","RepoID")' +
     //');' +
     //'COMMIT;';
-
-    if not directoryexists(dbdir) then
-     begin
-      ok:= exec(cmd+'mkdir '+dbdir,[], admin);
-     end;
-
-    if not ok then
-      begin
-        showmessage('Cannot create the rpmgr database. Error #'+i2str(errnum)+' '+errstr+' Run setup?');
-
-        halt(errnum);
-      end;
+    //
+    //if not directoryexists(dbdir) then
+    //begin
+    //  ok:= exec('mkdir '+dbdir,[''], admin);
+    //  ok:= exec('chown root:wheel ' + dbdir,[],admin);
+    //  ok:= exec('chmod 775 ' + dbdir,[],admin);
+    //end;
+    //
+    //if not ok then
+    //  begin
+    //    showmessage('Cannot create the rpmgr database. Error #'+i2str(errnum)+' '+errstr+' Run setup?');
+    //
+    //    halt(errnum);
+    //  end;
+    //
+    //if not fileexists(dbfile) then
+    //begin
+    //ok:= exec('touch /var/lib/rpmgr/rpmgr.db',[],admin);
+    //makeit.DatabaseName:= dbfile;
+    //makeit.Open;
+    //
+    //rcon.Connected:= true;
+    //rcon.Connected:= false;
+    //
+    //ok:= exec('cp '+mydir+'rpmgr.db /var/lib/rpmgr/rpmgr.db',[],admin);
+    //ok:= exec('touch ' + dbfile,[],admin);
+    //ok:= exec('chown root:wheel ' + dbfile,[],admin);
+    //ok:= exec('chmod 774 ' + dbfile,[],admin);
+    //
+    //rcon.Connect;
+    //rcon.ExecuteDirect(dropsql);
+    //rcon.ExecuteDirect(tblsql);
+    //
+    //pkg.Active:= True;
+    //tot:= pkg.RecordCount;
+    //grp.Active:= True;
+    //repos.Active:= True;
+    //query.Active:= True;
+    //end;
 
 end;
 
@@ -234,20 +282,13 @@ initialization
 
     i:= lastpos('/',application.Params[0]);
 
-    homedir:= application.EnvironmentVariable['HOME'] + '/';
-    mydir:= getcurrentdir + '/';
-    cfgdir:= homedir + '.config/rpmgr/';
-    dbdir:= '/usr/share/rpmgr/';
+    mydir:= application.EnvironmentVariable['HOME'] + '/';
+    cfgdir:= mydir + '.config/rpmgr/';
+    dbdir:= '/var/lib/rpmgr/';
 
     if loginfrm = nil then
     loginfrm:= Tloginfrm.Create(nil);
 
     loginfrm.ShowModal;
-
-    If not directoryexists(dbdir) Then
-    ok:= exec(cmd+'mkdir '+dbdir,[], admin);
-
-    if not fileexists(dbdir+'rpmgr.db') then
-      dm.newdb;
 
 End.
